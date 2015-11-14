@@ -8,6 +8,7 @@
 
         <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,700,700italic">
         <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link type="text/css" rel="stylesheet" href="{{ asset('css/global.css') }}" />
     </head>
 
