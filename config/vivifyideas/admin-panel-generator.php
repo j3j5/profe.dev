@@ -5,7 +5,7 @@ return [
 
     'authMiddleware' => 'auth',
 
-    'tables' => ['users'],
+    'tables' => ['users', 'propuestas'],
 
     'rowsPerPage' => 15,
 
@@ -13,19 +13,31 @@ return [
 
     'columns' => ['users' => [ 'id', 'name', 'email', 'created_at' ],],
 
-    'filters' => ['users' =>
-        [
-            'email' => [
-                'label' => 'Email',
-                'type' => 'text',
-                'compare' => 'LIKE',
+    'filters' => [
+        'users' =>
+            [
+                'email' => [
+                    'label' => 'Email',
+                    'type' => 'text',
+                    'compare' => 'LIKE',
+                ],
+                'name' => [
+                    'label' => 'Nombre',
+                    'type' => 'text',
+                    'compare' => 'LIKE',
+                ],
             ],
-        ],
     ],
     'forms' => [
         'users' => [
             'name',
             'email',
+        ],
+        'propuestas' => [
+            'nombre',
+            'contenidos',
+            'thumbnail',
+            'archivo',
         ],
     ],
 
@@ -33,6 +45,12 @@ return [
         'users' => [
             'name' => 'required|string',
             'email' => 'required|email',
-        ]
+        ],
+        'propuestas' => [
+            'nombre' => 'required|string',
+            'contenidos' => 'required|string',
+            'thumbnail' => 'string',
+            'archivo' => 'string',
+        ],
     ]
 ];
