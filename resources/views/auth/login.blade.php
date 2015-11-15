@@ -1,37 +1,29 @@
 @extends('site.layouts.master')
 
 @section('content')
-<div class="container">
-    {!! Form::open(array('url'=>'auth/login', 'method'=>'POST', 'accept-charset'=>'UTF-8', 'class' => 'form-horizontal')) !!}
+<div class="container login col-md-8 col-md-offset-2">
+    {!! Form::open(array('url'=>'auth/login', 'method'=>'POST', 'accept-charset'=>'UTF-8', 'class' => 'form-signin')) !!}
 
+        <h2 class="form-signin-heading">{{ trans('auth.login-heading') }}</h2>
         <div class="form-group">
-        {!! Form::label('email','E-mail',array('id'=>'','class'=>'col-sm-2 control-label', 'for' => 'inputEmail')) !!}
-            <div class="col-sm-10">
-                {!! Form::email('email','',array('id'=>'inputEmail','class'=>'form-control', 'placeholder' => 'Tu dirección de email')) !!}
-            </div>
+            {!! Form::label('email','E-mail',array('id'=>'','class'=>'sr-only', 'for' => 'inputEmail')) !!}
+            <?php $email_placeholder = trans('auth.email-placeholder'); ?>
+            {!! Form::email('email','',array('id'=>'inputEmail','class'=>'form-control', 'placeholder' => $email_placeholder)) !!}
         </div>
         <div class="form-group">
-        {!! Form::label('password','Contraseña',array('id'=>'','class'=>'col-sm-2 control-label', 'for' => 'inputPassword')) !!}
-            <div class="col-sm-10">
-            {!! Form::password('password',array('id'=>'inputPassword','class'=>'form-control', 'placeholder' => 'Tu contraseña')) !!}
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                    <label>
-                    {!! Form::checkbox('status','1',true) !!} Recuérdame
-                    </label>
-                </div>
-            </div>
+            <?php $password = trans('auth.password'); $password_placeholder = trans('auth.password-placeholder'); ?>
+            {!! Form::label('password', $password, array('id'=>'','class'=>'sr-only', 'for' => 'inputPassword')) !!}
+            {!! Form::password('password', array('id'=>'inputPassword', 'class'=>'form-control', 'placeholder' => $password_placeholder, 'required' => '')) !!}
         </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                {!! Form::submit('Login', array('id' => '', 'class'=>'btn btn-default')) !!}
-            </div>
+        <div class="checkbox">
+          <label>
+            {!! Form::checkbox('status','1',true) !!} {{ trans('auth.remember-me') }}
+          </label>
         </div>
+
+        <?php $login = trans('auth.login-btn'); ?>
+        {!! Form::submit($login, array('id' => '', 'class'=>'btn btn-lg btn-primary btn-block')) !!}
 
     {!! Form::close() !!}
 </div>
