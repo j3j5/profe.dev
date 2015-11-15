@@ -13,9 +13,14 @@ return [
     |
     */
 
-    'login' => "Por favor, loguéate para continuar",
+    'login-heading' => "Por favor, loguéate para continuar",
+    'email-placeholder' => "Tu dirección de email",
     'email' => "Dirección de E-Mail",
-    'password' => "Contraseña"
+    'password' => "Contraseña",
+    'password-placeholder' => "Tu contraseña",
+    'remember-me' => 'Recuérdame',
+    'login-btn' => 'Login',
+    'logout-btn' => 'Log out',
     'failed' => 'Tu nombre de usuario y/o contraseña no coinciden.',
     'throttle' => '¡Demasiados intentos para conectar. Por favor, intenta otra vez en :seconds segundos.',
 
