@@ -27,3 +27,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+
+Route::get('admin/propuestas/create', 'PropuestasController@create');
+Route::post('propuestas/upload', 'PropuestasController@upload');
