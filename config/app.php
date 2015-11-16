@@ -145,6 +145,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         VivifyIdeas\AdminPanelGenerator\Providers\AdminPanelGeneratorProvider::class,
+        Roumen\Asset\AssetServiceProvider::class,
 
     ],
 
@@ -163,6 +164,7 @@ return [
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
+        'Asset'     => Roumen\Asset\Asset::class,
         'Auth'      => Illuminate\Support\Facades\Auth::class,
         'Blade'     => Illuminate\Support\Facades\Blade::class,
         'Bus'       => Illuminate\Support\Facades\Bus::class,
@@ -194,7 +196,6 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-
     ],
 
 ];
