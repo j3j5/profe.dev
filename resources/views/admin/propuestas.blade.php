@@ -1,4 +1,4 @@
-@extends('vivifyideas/admin-panel-generator::main-layout')
+@extends('site.layouts.master')
 
 @section('content')
 <div class="container-fluid">
