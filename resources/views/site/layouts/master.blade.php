@@ -6,10 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="_token" content="{{ csrf_token() }}">
 
-        <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet" type="text/css">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-        <link href="{{ asset('css/global.css') }}" rel="stylesheet" type="text/css"/>
+                <!-- css files -->
+        {{ Asset::css() }}
+        <!-- less files -->
+        {{ Asset::less() }}
+        <!-- css styles -->
+        {{ Asset::styles() }}
+        <!-- js files (header) -->
+        {{ Asset::js('header') }}
+        <!-- js scripts (header) -->
+        {{ Asset::scripts('header') }}
     </head>
 
     <body class="">
@@ -28,8 +34,11 @@
             </div>
         </footer>
 
-        <!-- Scripts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <!-- js files -->
+        {{ Asset::js() }}
+        <!-- js scripts -->
+        {{ Asset::scripts('footer') }}
+        <!-- jquery scripts -->
+        {{ Asset::scripts('ready') }}
     </body>
 </html>
