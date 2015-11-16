@@ -1,10 +1,9 @@
 <?php
-    $request = request();
-    if($request->is('admin/*')) {
+    if(request()->is('admin/*')) {
         $active_admin = 'active';
-    } elseif($request->is('auth/*')) {
+    } elseif(request()->is('auth/*')) {
         $active_login = 'active';
-    } elseif($request->is('/')) {
+    } elseif(request()->is('/')) {
         $active_home = 'active';
     }
 ?>

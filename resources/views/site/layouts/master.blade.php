@@ -14,7 +14,11 @@
 
     <body class="">
 
-        @include('site.layouts.navigation')
+        @if(request()->is('admin/*'))
+            @include('site.layouts.admin-navigation')
+        @else
+            @include('site.layouts.navigation')
+        @endif
 
         @yield('content')
 
