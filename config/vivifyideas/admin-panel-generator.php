@@ -11,7 +11,14 @@ return [
 
     'additionalLinks' => [],
 
-    'columns' => ['users' => [ 'id', 'name', 'email', 'created_at' ],],
+    'columns' => [
+        'users' => [
+            'id', 'name', 'email', 'created_at'
+        ],
+        'propuestas' => [
+            'nombre', 'contenidos', 'thumbnail', 'archivo', 'updated_at',
+        ],
+    ],
 
     'filters' => [
         'users' =>
