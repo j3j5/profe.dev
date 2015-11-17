@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', ['as' => 'Home', 'uses' => 'HomeController@index']);
+
+Route::get('/home', function () {
+    return redirect('/');
 });
 
 // Authentication routes...
