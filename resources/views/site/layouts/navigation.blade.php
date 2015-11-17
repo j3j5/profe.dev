@@ -1,8 +1,8 @@
 <?php
     if(request()->is('admin/*')) {
         $active_admin = 'active';
-    } elseif(request()->is('auth/*')) {
-        $active_login = 'active';
+    } elseif(request()->is('propuestas/*')) {
+        $active_propuestas = 'active';
     } elseif(request()->is('/')) {
         $active_home = 'active';
     }
@@ -23,12 +23,13 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="{{ $active_home or '' }}"><a href="/">{{ trans('navbar.home') }}</a></li>
+                <li class="{{ $active_propuestas or '' }}"><a href="/">{{ trans('navbar.propuestas') }}</a></li>
+            @if(Auth::check())
                 <li class="{{ $active_admin or '' }}"><a href="/admin/propuestas">{{ trans('navbar.admin') }}</a></li>
+            @endif
             </ul>
             <ul class="nav navbar-nav navbar-right ">
-            @if(Auth::guest())
-                <li class="{{ $active_login or '' }}"><a href="/auth/login">{{ trans('auth.login-btn') }}</a></li>
-            @else
+            @if(Auth::check())
                 <li>
                     <div class="form-group navbar-form navbar-right home-login">
                         <a href="/auth/logout"><button type="submit" class="btn my-btn logout">{{ trans('auth.logout-btn') }}</button></a>

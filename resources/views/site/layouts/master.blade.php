@@ -30,7 +30,7 @@
 
         <footer class="footer">
             <div class="container">
-                <p class="text-muted"><strong>{{ trans('messages.footer') }} © {{ date('y') }}</strong></p>
+                <p class="text-muted"><strong>{{ trans('messages.footer') }} © {{ date('Y') }}</strong></p>
             </div>
         </footer>
 
