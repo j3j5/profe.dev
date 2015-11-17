@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
         // CSS Files
         Asset::add('//fonts.googleapis.com/css?family=Lato:100');
         Asset::add('//fonts.googleapis.com/css?family=Source+Sans+Pro:400');
-        Asset::add('//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
+        Asset::add('css/vendor/bootstrap.min.superhero.css');
         Asset::add('css/global.css');
 
         // JS Files
