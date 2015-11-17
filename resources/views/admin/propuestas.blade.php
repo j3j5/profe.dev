@@ -2,60 +2,52 @@
 
 @section('content')
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <h2>New {{ ucwords(str_replace('_', ' ', str_singular($tableName))) }}</h2>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h2>New {{ ucwords(str_replace('_', ' ', str_singular($tableName))) }}</h2>
 
-        <form method="POST" action="/{{ packageConfig('prefix') }}/{{ $tableName }}">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <form method="POST" action="/{{ packageConfig('prefix') }}/{{ $tableName }}">
+                {!! csrf_field() !!}
 
-            @foreach($form as $name => $options)
-                @if ($name == 'hasMany')
-                @foreach($options as $hasManyName => $hasManyOptions)
-                    <div class="form-group {{ $errors->has($hasManyName)? 'has-error' : '' }}">
-                    {!! Form::label($hasManyName, $hasManyOptions['label'], [ 'class' => 'control-label' ]) !!}
-                    {!! Form::select("hasMany[{$hasManyName}][]", $hasMany[$hasManyName], null, ['multiple' => 'multiple', 'class' => 'form-control']) !!}
-                    </div>
-                @endforeach
-                @elseif ($name == 'belongsTo')
-                @foreach($options as $belongsToName => $belongsToOptions)
-                    <div class="form-group {{ $errors->has($belongsToName)? 'has-error' : '' }}">
-                    {!! Form::label($belongsToName, $belongsToOptions['label'], [ 'class' => 'control-label' ]) !!}
-                    {!! Form::select($belongsToOptions['column'], $belongsTo[$belongsToName], null, ['class' => 'form-control']) !!}
-                    </div>
-                @endforeach
-                @else
+                @foreach($form as $name => $options)
                 <div class="form-group {{ $errors->has($name)? 'has-error' : '' }}">
                     {!! Form::label($name, $options['label'], [ 'class' => 'control-label' ]) !!}
                     @if($options['type'] == 'checkbox')
-                    {!! Form::$options['type']($name, 1) !!}
+                        {!! Form::$options['type']($name, 1) !!}
                     @elseif ($options['type'] == 'number')
-                    {!! Form::input($options['type'], $name, null, ['class'=>'form-control']) !!}
+                        {!! Form::input($options['type'], $name, null, ['class'=>'form-control']) !!}
+                    @elseif ($name == 'thumbnail' OR $name == 'archivo')
+                        {!! Form::$options['type']($name, null, ['class'=>'form-control', 'readonly' => '']) !!}
                     @else
-                    {!! Form::$options['type']($name, null, ['class'=>'form-control']) !!}
+                        {!! Form::$options['type']($name, null, ['class'=>'form-control']) !!}
                     @endif
+
                     @if ($errors->has($name))
                     <p class="help-block">{{ $errors->first($name) }}</p>
                     @endif
                 </div>
-                @endif
-            @endforeach
-            <button class="btn btn-success" type="submit">{{ packageTranslation('vivify.insert') }}</button>
-            <a class="btn btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
-        </form>
-
-        <div id="dropzoneFileUpload" class="container col-md-4 col-md-offset-4">
-            <form id="my-awesome-dropzone" action="/propuestas/upload" class="dropzone">
-            {!! csrf_field() !!}
+                @endforeach
+                <button class="btn btn-success" type="submit">{{ packageTranslation('vivify.insert') }}</button>
+                <a class="btn btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
             </form>
         </div>
-        <div id="dialog" title="Basic dialog">
-            <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+        <div class="col-md-8 col-md-offset-2 uploadZone">
+            <div id="thumbnails-upload" class="col-md-6">
+                <label class="control-label">Thumbnail</label>
+                <form id="images-dropzone" action="/propuestas/images/upload" class="dropzone">
+                    {!! csrf_field() !!}
+                    <div class="dz-message"><span>{{ packageTranslation('vivify.uploadDropZone') }}</span></div>
+                </form>
+            </div>
+            <div id="files-upload" class="col-md-6">
+                <label class="control-label">Archivo</label>
+                <form id="files-dropzone" action="/propuestas/upload" class="dropzone">
+                    {!! csrf_field() !!}
+                    <div class="dz-message"><span>{{ packageTranslation('vivify.uploadDropZone') }}</span></div>
+                </form>
+            </div>
         </div>
     </div>
-  </div>
 </div>
 
-<link rel="stylesheet" href="{{ asset('css/dropzone/dropzone.min.css') }}">
-<script src="{{ asset('js/dropzone/dropzone.min.js') }}"></script>
 @stop
