@@ -9,4 +9,5 @@ return [
     'edit'			=> 'Editar',
 	'confirmation'	=> '¿Estás seguro de que deseas eliminar esta entrada?',
     'remove'		=> 'Eliminar',
+    'uploadDropZone'=> 'Arrastra y suelta archivos o clicka'
 ];
