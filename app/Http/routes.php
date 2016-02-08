@@ -18,11 +18,13 @@ Route::get('/home', function () {
 });
 
 // Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::get('auth/login', ['as' => 'loginView', 'uses' => 'Auth\AuthController@getLogin']);
+Route::post('auth/login', ['as' => 'loginPost', 'uses' => 'Auth\AuthController@postLogin']);
+Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
 // Propuestas routes
-Route::get('admin/propuestas/create', 'PropuestasController@create');
-Route::post('propuestas/images/upload', 'PropuestasController@imageUpload');
-Route::post('propuestas/upload', 'PropuestasController@upload');
+Route::get('admin/propuestas/create', ['as' => 'createPropuestas', 'uses' => 'PropuestasController@create']);
+Route::post('propuestas/upload', ['as' => 'uploadPropuesta', 'uses' => 'PropuestasController@upload']);
+Route::post('propuestas/images/upload', ['as' => 'uploadPropuestaImage', 'uses' => 'PropuestasController@imageUpload']);
+
+// Tests
