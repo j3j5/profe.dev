@@ -17,6 +17,7 @@ class CreatePreguntasTable extends Migration
             $table->timestamps();
             $table->text('pregunta');
             $table->boolean('practica')->default(true);
+            $table->integer('curso')->unsigned();
         });
     }
 
