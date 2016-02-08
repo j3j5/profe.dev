@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pregunta extends Model
+class Respuesta extends Model
 {
-    protected $fillable = [ 'pregunta', 'practica' ];
+    protected $fillable = [ 'texto', 'practica' ];
 
     protected $casts = [
-        'practica' => 'boolean',
+    'practica' => 'boolean',
     ];
 
     public function respuestas()
