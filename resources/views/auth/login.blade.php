@@ -25,6 +25,8 @@
         <?php $login = trans('auth.login-btn'); ?>
         {!! Form::submit($login, array('id' => '', 'class'=>'btn btn-lg btn-primary btn-block')) !!}
 
+        {!! csrf_field() !!}
+
     {!! Form::close() !!}
 </div>
 
