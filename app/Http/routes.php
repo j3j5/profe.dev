@@ -22,6 +22,11 @@ Route::get('auth/login', ['as' => 'loginView', 'uses' => 'Auth\AuthController@ge
 Route::post('auth/login', ['as' => 'loginPost', 'uses' => 'Auth\AuthController@postLogin']);
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
+// Cursos
+Route::get('primero', ['as' => 'PropuestasPrimero', 'uses' => 'CursosController@getPrimero']);
+Route::get('segundo', ['as' => 'PropuestasSegundo', 'uses' => 'CursosController@getSegundo']);
+Route::get('tercero', ['as' => 'PropuestasTercero', 'uses' => 'CursosController@getTercero']);
+
 // Propuestas routes
 Route::get('admin/propuestas/create', ['as' => 'createPropuestas', 'uses' => 'PropuestasController@create']);
 Route::post('propuestas/upload', ['as' => 'uploadPropuesta', 'uses' => 'PropuestasController@upload']);
