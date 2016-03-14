@@ -15,6 +15,7 @@ class Propuestas extends Migration
         Schema::create('propuestas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre')->unique();
+            $table->integer('curso');
             $table->string('contenidos');
             $table->string('thumbnail');
             $table->string('archivo');
