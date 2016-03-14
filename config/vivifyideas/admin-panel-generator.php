@@ -13,32 +13,44 @@ return [
 
     'columns'   => [
         'users'         => ['id', 'name', 'email', 'created_at'],
-        'propuestas'    => ['nombre', 'contenidos', 'thumbnail', 'archivo', 'updated_at',],
+        'propuestas'    => ['nombre', 'contenidos', 'thumbnail', 'archivo', 'curso', 'updated_at',],
         'preguntas'     => ['pregunta', 'practica', 'updated_at'],
         'respuestas'     => ['respuesta', 'updated_at'],
     ],
 
     'filters' => [
-        'users'     =>
-            [
-                'email' => [
-                    'label'     => 'Email',
-                    'type'      => 'text',
-                    'compare'   => 'LIKE',
-                ],
-                'name' => [
-                    'label'     => 'Nombre',
-                    'type'      => 'text',
-                    'compare'   => 'LIKE',
-                ],
+        'users' => [
+            'email' => [
+                'label'     => 'Email',
+                'type'      => 'text',
+                'compare'   => 'LIKE',
             ],
-        'preguntas' =>
-            [
-                'practica' => [
-                    'label' => '¿Es de práctica?',
-                    'type'  => 'checkbox',
-                ],
+            'name' => [
+                'label'     => 'Nombre',
+                'type'      => 'text',
+                'compare'   => 'LIKE',
             ],
+        ],
+        'propuestas' => [
+            'name' => [
+                'label'     => 'Nombre',
+                'type'      => 'text',
+                'compare'   => 'LIKE',
+            ],
+        ],
+        'preguntas' => [
+            'practica'  => [
+                'label' => '¿Es de práctica?',
+                'type'  => 'checkbox',
+            ],
+            'nivel'     => [
+                'label' => 'Nivel',
+                'type'  => 'text'
+            ],
+        ],
+        'respuestas' => [
+//             'pregunta_id'
+        ],
     ],
     'forms' => [
         'users'         => [
@@ -48,6 +60,7 @@ return [
         'propuestas'    => [
             'nombre',
             'contenidos',
+            'curso',
             'thumbnail',
             'archivo',
         ],
@@ -56,6 +69,10 @@ return [
             'practica' => [
                 'label' => '¿Es de prácticas?',
                 'type' => 'checkbox',
+            ],
+            'nivel' => [
+                'label' => 'Nivel',
+                'type' => 'number',
             ],
             'hasMany' => [
                 'respuestas' => [
@@ -86,11 +103,13 @@ return [
             'nombre'        => 'required|string',
             'contenidos'    => 'required|string',
             'thumbnail'     => 'string',
+            'curso'         => 'required|int|min:1|max:3',
             'archivo'       => 'string',
         ],
         'preguntas'     => [
             'pregunta'  => 'required|string',
             'practica'  => 'boolean',
+            'nivel'     => 'required|int|min:1',
         ],
         'respuestas'    => [
             'respuesta' => 'required|string',
