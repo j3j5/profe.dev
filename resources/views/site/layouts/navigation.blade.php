@@ -22,8 +22,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="{{ $active_home or '' }}"><a href="/">{{ trans('navbar.home') }}</a></li>
-                <li class="{{ $active_propuestas or '' }}"><a href="/">{{ trans('navbar.propuestas') }}</a></li>
+                <li class=""><a href="{{ route("PropuestasPrimero") }}">Primero</a></li>
+                <li class=""><a href="{{ route("PropuestasSegundo") }}">Segundo</a></li>
+                <li class=""><a href="{{ route("PropuestasTercero") }}">Tercero</a></li>
             @if(Auth::check())
                 <li class="{{ $active_admin or '' }}"><a href="/admin/propuestas">{{ trans('navbar.admin') }}</a></li>
             @endif
