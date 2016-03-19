@@ -28,8 +28,26 @@ Route::get('segundo', ['as' => 'PropuestasSegundo', 'uses' => 'CursosController@
 Route::get('tercero', ['as' => 'PropuestasTercero', 'uses' => 'CursosController@getTercero']);
 
 // Propuestas routes
-Route::get('admin/propuestas/create', ['as' => 'createPropuestas', 'uses' => 'PropuestasController@create']);
-Route::post('propuestas/upload', ['as' => 'uploadPropuesta', 'uses' => 'PropuestasController@upload']);
-Route::post('propuestas/images/upload', ['as' => 'uploadPropuestaImage', 'uses' => 'PropuestasController@imageUpload']);
 
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    // Admin main page
+    Route::get('/', ['as' => 'adminPanel', 'middleware' => 'auth', function () {
+        return redirect()->route("createPropuestas");
+    }]);
+
+    // Propuestas
+    Route::get('/propuestas/create', [
+        'as' => 'createPropuestas', 'uses' => 'PropuestasController@create'
+    ]);
+    Route::get('/propuestas/edit/{id}', [
+        'as' => 'editPropuestas', 'uses' => 'PropuestasController@edit'
+    ]);
+    Route::post('/propuestas/upload', [
+        'as' => 'uploadPropuesta', 'uses' => 'PropuestasController@upload'
+    ]);
+    Route::post('/propuestas/images/upload', [
+        'as' => 'uploadPropuestaImage', 'uses' => 'PropuestasController@imageUpload'
+    ]);
+
+});
 // Tests
