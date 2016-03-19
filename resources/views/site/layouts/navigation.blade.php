@@ -1,10 +1,8 @@
 <?php
     if(request()->is('admin/*')) {
         $active_admin = 'active';
-    } elseif(request()->is('propuestas/*')) {
-        $active_propuestas = 'active';
-    } elseif(request()->is('/')) {
-        $active_home = 'active';
+    } else {
+        $active = request()->path();
     }
 ?>
 
@@ -18,13 +16,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Profe Mariana</a>
+            <a class="navbar-brand" href="{{ route("Home") }}">Profe Mariana</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class=""><a href="{{ route("PropuestasPrimero") }}">Primero</a></li>
-                <li class=""><a href="{{ route("PropuestasSegundo") }}">Segundo</a></li>
-                <li class=""><a href="{{ route("PropuestasTercero") }}">Tercero</a></li>
+                <li class="@if($active == "primero") active @endif"><a href="{{ route("PropuestasPrimero") }}">Primero</a></li>
+                <li class="@if($active == "segundo") active @endif"><a href="{{ route("PropuestasSegundo") }}">Segundo</a></li>
+                <li class="@if($active == "tercero") active @endif"><a href="{{ route("PropuestasTercero") }}">Tercero</a></li>
             @if(Auth::check())
                 <li class="{{ $active_admin or '' }}"><a href="/admin/propuestas">{{ trans('navbar.admin') }}</a></li>
             @endif
