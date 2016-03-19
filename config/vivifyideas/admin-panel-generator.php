@@ -32,10 +32,14 @@ return [
             ],
         ],
         'propuestas' => [
-            'name' => [
+            'nombre' => [
                 'label'     => 'Nombre',
                 'type'      => 'text',
                 'compare'   => 'LIKE',
+            ],
+            'curso' => [
+                'label'     => 'Curso',
+                'type'      => 'number',
             ],
         ],
         'preguntas' => [
@@ -101,7 +105,7 @@ return [
         ],
         'propuestas'    => [
             'nombre'        => 'required|string',
-            'contenidos'    => 'required|string',
+            'contenidos'    => 'string',
             'thumbnail'     => 'string',
             'curso'         => 'required|int|min:1|max:3',
             'archivo'       => 'string',
