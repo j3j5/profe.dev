@@ -4,10 +4,16 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/j3j5/admin-panel-generator.git"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-	"vivify-ideas/admin-panel-generator": "dev-master",
+        "vivify-ideas/admin-panel-generator": "dev-master",
         "roumen/asset": "^2.5"
     },
     "require-dev": {
