@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 
 class PropuestasController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +23,15 @@ class PropuestasController extends Controller
         $this->createAddAssets();
         $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('create', ['propuestas']);
         $data = $parent_view->getData();
-        return view('admin.propuestas', $data);
+        return view('admin.create-propuestas', $data);
+    }
+
+    public function edit($id, Request $request)
+    {
+        $this->createAddAssets();
+        $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('edit', ['propuestas', $id]);
+        $data = $parent_view->getData();
+        return view('admin.edit-propuestas', $data);
     }
 
     private function createAddAssets() {
