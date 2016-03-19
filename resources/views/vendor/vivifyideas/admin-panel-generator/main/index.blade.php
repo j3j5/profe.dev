@@ -40,7 +40,7 @@
                   </a>
                 </th>
               @endforeach
-              <th></th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -50,21 +50,14 @@
                   <td>{{ $row->$col }}</td>
                 @endforeach
                 <td class="text-right">
-
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false">
-                      {{ packageTranslation('vivify.actions') }} <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li>
-                        <a href="/{{ packageConfig('prefix') }}/{{ $tableName }}/edit/{{ $row->id }}">{{ packageTranslation('vivify.edit') }}</a>
-                      </li>
-                      <li>
-                        <a onclick="return confirm('{{ packageTranslation('vivify.confirmation') }}')" href="/{{ packageConfig('prefix') }}/{{ $tableName }}/delete/{{ $row->id }}">{{ packageTranslation('vivify.remove') }}</a>
-                      </li>
-                    </ul>
-                  </div>
-
+                    <div class="btn-group">
+                        <a class="btn btn-xs btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}/edit/{{ $row->id }}">
+                            <i class="fa fa-4 fa-pencil-square-o"></i>
+                        </a>
+                        <a class="btn btn-xs btn-danger" onclick="return confirm('{{ packageTranslation('vivify.confirmation') }}')" href="/{{ packageConfig('prefix') }}/{{ $tableName }}/delete/{{ $row->id }}">
+                            <i class="fa fa-1 fa-trash-o"></i>
+                        </a>
+                    </div>
                 </td>
               </tr>
             @endforeach
