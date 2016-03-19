@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h2>New {{ ucwords(str_replace('_', ' ', str_singular($tableName))) }}</h2>
+            <h2>Nueva {{ ucwords(str_replace('_', ' ', str_singular($tableName))) }}</h2>
 
             <form method="POST" action="/{{ packageConfig('prefix') }}/{{ $tableName }}">
                 {!! csrf_field() !!}
@@ -27,26 +27,11 @@
                     @endif
                 </div>
                 @endforeach
-                <button class="btn btn-success" type="submit">{{ packageTranslation('vivify.insert') }}</button>
-                <a class="btn btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
+                <button class="btn btn-lg btn-success" type="submit">{{ packageTranslation('vivify.insert') }}</button>
+                <a class="btn btn-sm btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
             </form>
         </div>
-        <div class="col-md-8 col-md-offset-2 uploadZone">
-            <div id="thumbnails-upload" class="col-md-6">
-                <label class="control-label">Thumbnail</label>
-                <form id="images-dropzone" action="/propuestas/images/upload" class="dropzone">
-                    {!! csrf_field() !!}
-                    <div class="dz-message"><span>{{ packageTranslation('vivify.uploadDropZone') }}</span></div>
-                </form>
-            </div>
-            <div id="files-upload" class="col-md-6">
-                <label class="control-label">Archivo</label>
-                <form id="files-dropzone" action="/propuestas/upload" class="dropzone">
-                    {!! csrf_field() !!}
-                    <div class="dz-message"><span>{{ packageTranslation('vivify.uploadDropZone') }}</span></div>
-                </form>
-            </div>
-        </div>
+        @include("admin.partials._uploadZone")
     </div>
 </div>
 
