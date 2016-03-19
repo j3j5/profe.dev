@@ -17,8 +17,8 @@ class Propuestas extends Migration
             $table->string('nombre')->unique();
             $table->integer('curso');
             $table->string('contenidos');
-            $table->string('thumbnail');
-            $table->string('archivo');
+            $table->string('thumbnail')->nullable();
+            $table->string('archivo')->nullable();
             $table->timestamps();
         });
     }
