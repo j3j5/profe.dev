@@ -15,8 +15,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // CSS Files
-        Asset::add('//fonts.googleapis.com/css?family=Lato:100');
-        Asset::add('//fonts.googleapis.com/css?family=Source+Sans+Pro:400');
+//         Asset::add('//fonts.googleapis.com/css?family=Lato:100');
+//         Asset::add('//fonts.googleapis.com/css?family=Source+Sans+Pro:400');
+        Asset::add('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
         Asset::add('css/vendor/bootstrap.min.superhero.css');
         Asset::add('css/global.css');
 
