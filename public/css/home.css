@@ -5,11 +5,23 @@
 /* @import url(https://fonts.googleapis.com/css?family=Pacifico); */
 @import url(https://fonts.googleapis.com/css?family=Crafty+Girls);
 @import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
-@import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
 /* Padding below the footer and lighter body text */
 
 body {
 /*   padding-bottom: 40px; */
+}
+
+body > .container {
+    padding: 60px 15px 0;
+}
+
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 #mainContainer {

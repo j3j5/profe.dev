@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+@import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
+
+
 /* Sticky footer with navbar
 -------------------------------------------------- */
 html {
@@ -10,7 +13,15 @@ html {
 body {
     margin-top: 60px;
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    margin-bottom: 50px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #df691a;
+}
+
+.navbar-default .navbar-brand {
+    color: #df691a;
 }
 
 .footer {
@@ -20,25 +31,17 @@ body {
     right: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 60px;
+    height: 50px;
     background-color: #4E5D6C;
+}
+
+.footer .container {
+    margin-top: 1.5%;
 }
 
 .footer .text-muted {
     color: #EBEBEB;
 }
-body > .container {
-    padding: 60px 15px 0;
-}
-.container .text-muted {
-    margin: 20px 0;
-}
-
-.footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
 
 /* Login page */
 
@@ -84,3 +87,4 @@ body > .container {
     padding: 15px;
     text-align: center;
 }
+
