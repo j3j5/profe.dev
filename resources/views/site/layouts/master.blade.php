@@ -21,7 +21,7 @@
     <body class="">
 
         @if(request()->is('admin/*'))
-            @include('site.layouts.admin-navigation')
+            @include('admin.layouts.admin-navigation')
         @else
             @include('site.layouts.navigation')
         @endif
