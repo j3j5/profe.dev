@@ -37,6 +37,11 @@ return [
                 'type'      => 'text',
                 'compare'   => 'LIKE',
             ],
+            'contenidos' => [
+                'label'     => 'Contenidos',
+                'type'      => 'text',
+                'compare'   => 'LIKE',
+            ],
             'curso' => [
                 'label'     => 'Curso',
                 'type'      => 'number',
