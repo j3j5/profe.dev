@@ -7,11 +7,18 @@ use Input;
 use Validator;
 use Response;
 use Asset;
-
 use App\Http\Controllers\Controller;
+use iansltx\B2Client\Client;
+use iansltx\B2Client\Credentials;
 
 class PropuestasController extends Controller
 {
+
+    private $b2client;
+
+    public function __construct() {
+        $this->b2client = new Client(new Credentials(config('b2client.account_id'), config('b2client.app_key')));
+    }
 
     /**
      * Display a listing of the resource.
@@ -58,8 +65,8 @@ class PropuestasController extends Controller
         Asset::addScript($dropzone_options);
     }
 
-    public function imageUpload() {
-        $file = array('file' => Input::file('file'));
+    public function imageUpload(Request $request) {
+        $file = array('file' => $request->file('file'));
         $rules = array('file' => 'required|mimes:jpg,jpeg,bmp,png',); //mimes:jpeg,bmp,png and for max size max:10000
         $validator = Validator::make($file, $rules);
         if ($validator->fails()) {
@@ -68,11 +75,17 @@ class PropuestasController extends Controller
         }
         else {
             // checking file is valid.
-            if (Input::file('file')->isValid()) {
+            if ($request->file('file')->isValid()) {
                 $destination_path = 'uploads'; // upload path
-                $filename = Input::file('file')->getClientOriginalName();
+                $filename = $request->file('file')->getClientOriginalName();
 
-                Input::file('file')->move($destination_path, $filename); // uploading file to given path
+                $response = $this->b2client->uploadContents(
+                    config('b2client.bucket_id'),
+                    "$destination_path/$filename",
+                    file_get_contents($request->file('file')->getRealPath())
+                );
+
+                unlink($request->file('file')->getRealPath());
 
                 // sending back with message
                 return Response::json('success', 200);
@@ -83,8 +96,8 @@ class PropuestasController extends Controller
         }
     }
 
-    public function upload() {
-        $file = array('file' => Input::file('file'));
+    public function upload(Request $request) {
+        $file = array('file' => $request->file('file'));
         $rules = array('file' => 'required',); //mimes:jpeg,bmp,png and for max size max:10000
         $validator = Validator::make($file, $rules);
         if ($validator->fails()) {
@@ -92,10 +105,17 @@ class PropuestasController extends Controller
             return Response::json(['error' => $validator->errors()], 400);
         } else {
             // checking file is valid.
-            if (Input::file('file')->isValid()) {
+            if ($request->file('file')->isValid()) {
                 $destination_path = 'uploads'; // upload path
+                $filename = $request->file('file')->getClientOriginalName();
 
-                Input::file('file')->move($destination_path, Input::file('file')->getClientOriginalName()); // uploading file to given path
+                $response = $this->b2client->uploadContents(
+                    config('b2client.bucket_id'),
+                    "$destination_path/$filename",
+                    file_get_contents($request->file('file')->getRealPath())
+                );
+
+                unlink($request->file('file')->getRealPath());
 
                 // sending back with message
                 return Response::json('success', 200);
