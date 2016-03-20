@@ -8,12 +8,17 @@
         {
             "type": "vcs",
             "url": "https://github.com/j3j5/admin-panel-generator.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:j3j5/b2-flysystem-adapter.git"
         }
     ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "vivify-ideas/admin-panel-generator": "dev-master",
+	"iansltx/flysystem-b2": "dev-master",
         "roumen/asset": "^2.5"
     },
     "require-dev": {

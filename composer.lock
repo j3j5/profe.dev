@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "99f9cc6fdb7c7063cbb0f06c6ee4b875",
-    "content-hash": "7ebfbe4a3d9df7da0ec217ef109abc32",
+    "hash": "cffc9defe7af358f307f5fdb065cae41",
+    "content-hash": "c865fb87b847f965e19fccbc9f6d5dca",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -216,6 +216,50 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "iansltx/flysystem-b2",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/j3j5/b2-flysystem-adapter.git",
+                "reference": "e13d674f38beb2a2729133cecc562536eea1ba51"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/j3j5/b2-flysystem-adapter/zipball/e13d674f38beb2a2729133cecc562536eea1ba51",
+                "reference": "e13d674f38beb2a2729133cecc562536eea1ba51",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "~1.0",
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "iansltx\\": "src/"
+                }
+            },
+            "license": [
+                "BSD-2-clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Littman",
+                    "email": "iansltx@gmail.com"
+                }
+            ],
+            "description": "Flysystem adapter for Backblaze B2",
+            "support": {
+                "source": "https://github.com/j3j5/b2-flysystem-adapter/tree/master"
+            },
+            "time": "2015-12-28 05:53:22"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -3252,7 +3296,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "vivify-ideas/admin-panel-generator": 20
+        "vivify-ideas/admin-panel-generator": 20,
+        "iansltx/flysystem-b2": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
