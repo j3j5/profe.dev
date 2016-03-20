@@ -1932,12 +1932,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/j3j5/admin-panel-generator.git",
-                "reference": "449a2e68a7a7cfa29dd2d05966b687f268cf31aa"
+                "reference": "46570f2bd5a3b8e91121ad8418bdedacae9499be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/j3j5/admin-panel-generator/zipball/449a2e68a7a7cfa29dd2d05966b687f268cf31aa",
-                "reference": "449a2e68a7a7cfa29dd2d05966b687f268cf31aa",
+                "url": "https://api.github.com/repos/j3j5/admin-panel-generator/zipball/46570f2bd5a3b8e91121ad8418bdedacae9499be",
+                "reference": "46570f2bd5a3b8e91121ad8418bdedacae9499be",
                 "shasum": ""
             },
             "require": {
@@ -1971,7 +1971,7 @@
             "support": {
                 "source": "https://github.com/j3j5/admin-panel-generator/tree/master"
             },
-            "time": "2016-03-19 16:50:56"
+            "time": "2016-03-20 16:02:55"
         },
         {
             "name": "vlucas/phpdotenv",
