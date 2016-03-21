@@ -8,12 +8,12 @@
     @if(!$propuestas->isEmpty())
     <div class="container">
         @foreach($propuestas as $propuesta)
-            <a href="/uploads/{{ $propuesta->archivo }}" target="_blank">
+            <a href="https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}/uploads/{{ $propuesta->archivo }}" target="_blank">
                 <div class="col-xs-6 col-md-3">
                     <div class="container-fluid">
                         <div class="row thumb center-block">
                             @if(!empty($propuesta->thumbnail))
-                            <img class="img-thumbnail" src="uploads/{{ $propuesta->thumbnail}}">
+                            <img class="img-thumbnail" src="https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}/uploads/{{ $propuesta->thumbnail}}">
                             @else
                             <img class="img-thumbnail" src="images/pdficon.png">
 
