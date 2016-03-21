@@ -20,9 +20,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="@if($active == "primero") active @endif"><a href="{{ route("PropuestasPrimero") }}">Primero</a></li>
-                <li class="@if($active == "segundo") active @endif"><a href="{{ route("PropuestasSegundo") }}">Segundo</a></li>
-                <li class="@if($active == "tercero") active @endif"><a href="{{ route("PropuestasTercero") }}">Tercero</a></li>
+                <li class="@if($active == "primero") active @endif"><a href="{{ route("curso", ["primero"]) }}">Primero</a></li>
+                <li class="@if($active == "segundo") active @endif"><a href="{{ route("curso", ["segundo"]) }}">Segundo</a></li>
+                <li class="@if($active == "tercero") active @endif"><a href="{{ route("curso", ["tercero"]) }}">Tercero</a></li>
             @if(Auth::check())
                 <li class="{{ $active_admin or '' }}"><a href="/admin/propuestas">{{ trans('navbar.admin') }}</a></li>
             @endif

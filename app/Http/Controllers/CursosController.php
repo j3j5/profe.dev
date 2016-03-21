@@ -11,28 +11,33 @@ use Asset;
 
 class CursosController extends Controller
 {
-    public function __construct()
+    public function __construct(Request $request)
     {
+        Asset::add('css/curso.css');
+    }
+
+    public function getCurso($curso) {
+
+        return view("site.cursos.index", [
+            'curso' => $curso,
+        ]);
+    }
+
+    public function getPropuestas($curso) {
         Asset::add('css/propuestas.css');
+        $propuestas = Propuesta::whereCurso($this->fromNameToNumber($curso))->get();
+
+        foreach ($propuestas as &$propuesta) {
+            $propuesta->contenidos = explode(",", $propuesta->contenidos);
+        }
+        return view("site.cursos.propuestas", [
+            'curso' => $curso,
+            'propuestas' => $propuestas,
+        ]);
     }
 
-    public function getPrimero()
+    private function fromNumberToName($curso)
     {
-        return $this->getCurso(1);
-    }
-
-    public function getSegundo()
-    {
-        return $this->getCurso(2);
-    }
-
-    public function getTercero()
-    {
-        return $this->getCurso(3);
-    }
-
-    private function getCurso($curso) {
-        $propuestas = Propuesta::whereCurso($curso)->get();
         switch ($curso) {
             case 1:
                 $name = "Primero";
@@ -46,12 +51,24 @@ class CursosController extends Controller
             default:
                 break;
         }
-        foreach ($propuestas as &$propuesta) {
-            $propuesta->contenidos = explode(",", $propuesta->contenidos);
+        return $name;
+    }
+
+    private function fromNameToNumber($name)
+    {
+        switch (mb_strtolower($name)) {
+            case "primero":
+                $number = 1;
+                break;
+            case "segundo":
+                $number = 2;
+                break;
+            case "tercero":
+                $number = 3;
+                break;
+            default:
+                break;
         }
-        return view("site.cursos.index", [
-            'curso' => $name,
-            'propuestas' => $propuestas,
-        ]);
+        return $number;
     }
 }

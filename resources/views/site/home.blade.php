@@ -10,7 +10,7 @@
 
                 <!-- Three columns of text below the carousel -->
                 <div class="row">
-                    <a href="{{ route('PropuestasPrimero') }}">
+                    <a href="{{ route("curso", ["primero"]) }}">
                         <div class="col-lg-4">
                             <div class="img-circle" style="width: 140px; height: 140px; margin:auto; background:url(data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==);">
                                 <span class="course">1<sup style="text-decoration: underline;">o</sup></span>
@@ -19,7 +19,7 @@
                             <p>Aquí están las propuestas para primero.</p>
                         </div><!-- /.col-lg-4 -->
                     </a>
-                    <a href="{{ route('PropuestasSegundo') }}">
+                    <a href="{{ route("curso", ["segundo"]) }}">
                         <div class="col-lg-4">
                             <div class="img-circle" style="width: 140px; height: 140px; margin:auto; background:url(data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==);">
                                 <span class="course">2<sup style="text-decoration: underline;">o</sup></span>
@@ -28,7 +28,7 @@
                             <p>Propuestas para segundo, ¡aquí!.</p>
                         </div><!-- /.col-lg-4 -->
                     </a>
-                    <a href="{{ route('PropuestasTercero') }}">
+                    <a href="{{ route("curso", ["tercero"]) }}">
                         <div class="col-lg-4">
                             <div class="img-circle" style="width: 140px; height: 140px; margin:auto; background:url(data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==);">
                                 <span class="course">3<sup style="text-decoration: underline;">o</sup></span>

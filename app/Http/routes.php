@@ -22,13 +22,6 @@ Route::get('auth/login', ['as' => 'loginView', 'uses' => 'Auth\AuthController@ge
 Route::post('auth/login', ['as' => 'loginPost', 'uses' => 'Auth\AuthController@postLogin']);
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
-// Cursos
-Route::get('primero', ['as' => 'PropuestasPrimero', 'uses' => 'CursosController@getPrimero']);
-Route::get('segundo', ['as' => 'PropuestasSegundo', 'uses' => 'CursosController@getSegundo']);
-Route::get('tercero', ['as' => 'PropuestasTercero', 'uses' => 'CursosController@getTercero']);
-
-// Propuestas routes
-
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Admin main page
     Route::get('/', ['as' => 'adminPanel', 'middleware' => 'auth', function () {
@@ -49,5 +42,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'as' => 'uploadPropuestaImage', 'uses' => 'Admin\PropuestasController@imageUpload'
     ]);
 
+});
+
+// Cursos
+Route::group(['prefix' => 'curso/{curso}'], function () {
+
+    Route::get('/', ['as' => 'curso', 'uses' => "CursosController@getCurso"]);
+
+    Route::get('/propuestas', ['as' => 'Propuestas', 'uses' => 'CursosController@getPropuestas']);
 });
 // Tests
