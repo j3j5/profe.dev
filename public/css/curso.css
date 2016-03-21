@@ -1,0 +1,59 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
+
+.page-header {
+    margin: 0px 0px 20px 0px;
+    font-family: 'Covered By Your Grace', bold;
+    border-bottom: 1px solid rgba(235,235,235,.5);
+}
+
+.breadcrumb {
+    font-size: 2em;
+    background-color: #2b3e50;
+    padding: 0px 0px 0px 20px;
+    margin: 0px;
+}
+
+.breadcrumb a {
+    color: hsla(210, 30%, 55%, 1);
+}
+
+.breadcrumb a:hover {
+    color: hsla(210, 30%, 85%, 1);
+}
+
+.breadcrumb > li + li::before {
+    content: "↷";
+    color: #507395;
+    padding-right: 0.4em;
+}
+
+.breadcrumb li:nth-child(2) a       { color: hsla(210, 30%, 55%, 1); }
+.breadcrumb li:nth-child(2) a:hover { color: hsla(210, 30%, 65%, 1); }
+.breadcrumb li:nth-child(3) a       { color: hsla(210, 30%, 65%, 1); }
+.breadcrumb li:nth-child(3) a:hover { color: hsla(210, 30%, 75%, 1); }
+.breadcrumb li:nth-child(4) a       { color: hsla(210, 30%, 75%, 1); }
+.breadcrumb li:nth-child(4) a:hover { color: hsla(210, 30%, 85%, 1); }
+.breadcrumb li:last-child a {
+    background: transparent !important;
+    color: #D3661E;
+    pointer-events: none;
+    cursor: default;
+}
+
+.container-seccion {
+    height: 6em;
+}
+
+.curso-seccion {
+    font-family: "Permanent Marker", bold;
+    font-size: 2.6em;
+    border-radius: 15px;
+    height: 100%;
+    margin: 15px;
+    background:url(data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==);
+}
+
+.curso-seccion p {
+    padding: 0.3em;
+}
