@@ -37,16 +37,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     // Propuestas
     Route::get('/propuestas/create', [
-        'as' => 'createPropuestas', 'uses' => 'PropuestasController@create'
+        'as' => 'createPropuestas', 'uses' => 'Admin\PropuestasController@create'
     ]);
     Route::get('/propuestas/edit/{id}', [
-        'as' => 'editPropuestas', 'uses' => 'PropuestasController@edit'
+        'as' => 'editPropuestas', 'uses' => 'Admin\PropuestasController@edit'
     ]);
     Route::post('/propuestas/upload', [
-        'as' => 'uploadPropuesta', 'uses' => 'PropuestasController@upload'
+        'as' => 'uploadPropuesta', 'uses' => 'Admin\PropuestasController@upload'
     ]);
     Route::post('/propuestas/images/upload', [
-        'as' => 'uploadPropuestaImage', 'uses' => 'PropuestasController@imageUpload'
+        'as' => 'uploadPropuestaImage', 'uses' => 'Admin\PropuestasController@imageUpload'
     ]);
 
 });

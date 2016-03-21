@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Input;
@@ -76,17 +76,7 @@ class PropuestasController extends Controller
         else {
             // checking file is valid.
             if ($request->file('file')->isValid()) {
-                $destination_path = 'uploads'; // upload path
-                $filename = $request->file('file')->getClientOriginalName();
-
-                $response = $this->b2client->uploadContents(
-                    config('b2client.bucket_id'),
-                    "$destination_path/$filename",
-                    file_get_contents($request->file('file')->getRealPath())
-                );
-
-                unlink($request->file('file')->getRealPath());
-
+                $this->handleUpload($request);
                 // sending back with message
                 return Response::json('success', 200);
             } else {
@@ -106,16 +96,7 @@ class PropuestasController extends Controller
         } else {
             // checking file is valid.
             if ($request->file('file')->isValid()) {
-                $destination_path = 'uploads'; // upload path
-                $filename = $request->file('file')->getClientOriginalName();
-
-                $response = $this->b2client->uploadContents(
-                    config('b2client.bucket_id'),
-                    "$destination_path/$filename",
-                    file_get_contents($request->file('file')->getRealPath())
-                );
-
-                unlink($request->file('file')->getRealPath());
+                $this->handleUpload($request);
 
                 // sending back with message
                 return Response::json('success', 200);
@@ -123,6 +104,27 @@ class PropuestasController extends Controller
                 // sending back with error message.
                 return Response::json(['error' => 'Not a valid file.'], 400);
             }
+        }
+    }
+
+    /**
+     * Move the uploaded file to a desired destination, CDN on production, uploads folder on dev.
+     */
+    private function handleUpload(Request $request)
+    {
+        $destination_path = 'uploads'; // upload path
+        $filename = $request->file('file')->getClientOriginalName();
+
+        if(app()->environment('production')) {
+            $response = $this->b2client->uploadContents(
+                config('b2client.bucket_id'),
+                "$destination_path/$filename",
+                file_get_contents($request->file('file')->getRealPath())
+            );
+
+            unlink($request->file('file')->getRealPath());
+        } else {
+            $request->file('file')->move($destination_path, $filename); // uploading file to given path
         }
     }
 
