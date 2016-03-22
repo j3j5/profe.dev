@@ -36,6 +36,13 @@ class CursosController extends Controller
         ]);
     }
 
+    public function getGalleries($curso) {
+        Asset::add("//blueimp.github.io/Gallery/css/blueimp-gallery.min.css");
+        Asset::add("css/vendor/bootstrap-image-gallery.min.css");
+        Asset::add("//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js");
+        Asset::add("js/vendor/bootstrap-image-gallery.min.js");
+    }
+
     private function fromNumberToName($curso)
     {
         switch ($curso) {
