@@ -23,6 +23,13 @@ class AppServiceProvider extends ServiceProvider
         // JS Files
         Asset::add('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js');
         Asset::add('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js');
+        Asset::add('/upup.min.js');
+        Asset::add('/upup.sw.min.js');
+        $offline_script = "UpUp.start({
+            'content-url': 'offline.html',
+            'assets': ['/css/vendor/bootstrap.min.superhero.css', 'css/global.css' , 'css/home.css']
+        });";
+        Asset::addScript($offline_script);
 
     }
 
