@@ -113,7 +113,7 @@ return [
             'contenidos'    => 'string',
             'thumbnail'     => 'string',
             'curso'         => 'required|int|min:1|max:3',
-            'archivo'       => 'string',
+            'archivo'       => 'required|string',
         ],
         'preguntas'     => [
             'pregunta'  => 'required|string',
