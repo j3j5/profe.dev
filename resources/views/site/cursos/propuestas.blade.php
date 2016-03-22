@@ -8,10 +8,10 @@
     @if(!$propuestas->isEmpty())
     <div class="container">
         @foreach($propuestas as $propuesta)
-            <a href="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $propuesta->archivo }}" target="_blank">
-                <div class="col-xs-6 col-md-3">
-                    <div class="container-fluid">
-                        <div class="row thumb center-block">
+            <div class="col-md-4">
+                <a href="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $propuesta->archivo }}" target="_blank">
+                    <div class="">
+                        <div class="thumb center-block">
                         @if(!empty($propuesta->thumbnail))
                             <img class="img-thumbnail" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $propuesta->thumbnail}}">
 
@@ -28,9 +28,8 @@
                             </p>
                         </div>
                     </div>
-                </div>
-            </a>
-
+                </a>
+            </div>
         @endforeach
     </div>
     @else

@@ -6,21 +6,8 @@
 @import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
 
 /* Padding below the footer and lighter body text */
-
-body {
-/*   padding-bottom: 40px; */
-}
-
 body > .container-fluid {
-    padding: 60px 15px 0;
-}
-
-.container .text-muted {
-    margin: 20px 0;
-}
-
-#mainContainer {
-/*     margin-top: -9px; */
+    padding: 50px 15px 0px 15px;
 }
 
 /* CUSTOMIZE THE CAROUSEL

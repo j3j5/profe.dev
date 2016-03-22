@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="_token" content="{{ csrf_token() }}">
-
+        <title>Profe Mariana</title>
                 <!-- css files -->
         {{ Asset::css() }}
         <!-- less files -->
@@ -30,7 +30,11 @@
 
         <footer class="footer">
             <div class="container">
-                <p class="text-muted pull-right"><strong>{{ trans('messages.footer') }} © {{ date('Y') }}</strong></p>
+                <p class="text-muted pull-right">
+                <strong>
+                    Hecho con <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> por J&amp;M
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> {{ date('Y') }}
+                </strong></p>
             </div>
         </footer>
 

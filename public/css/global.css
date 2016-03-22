@@ -3,7 +3,6 @@
 @import url(https://fonts.googleapis.com/css?family=Oxygen);
 @import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
 
-
 /* Sticky footer with navbar
 -------------------------------------------------- */
 html {
@@ -25,6 +24,10 @@ body {
     /* Set the fixed height of the footer here */
     height: 60px;
     background-color: #4E5D6C;
+}
+
+.footer .container .text-muted {
+    margin: 20px 0;
 }
 
 .footer .text-muted {
