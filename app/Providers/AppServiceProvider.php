@@ -14,10 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Asset::$secure = request()->secure();
         // CSS Files
         Asset::add('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
-        Asset::add('css/vendor/bootstrap.min.superhero.css');
-        Asset::add('css/global.css');
+        Asset::add('/css/vendor/bootstrap.min.superhero.css');
+        Asset::add('/css/global.css');
 
         // JS Files
         Asset::add('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js');
