@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Propuesta;
+use App\Models\Image;
 use Asset;
 
 class CursosController extends Controller
@@ -36,11 +37,18 @@ class CursosController extends Controller
         ]);
     }
 
-    public function getGalleries($curso) {
+    public function getImages($curso) {
         Asset::add("//blueimp.github.io/Gallery/css/blueimp-gallery.min.css");
         Asset::add("css/vendor/bootstrap-image-gallery.min.css");
         Asset::add("//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js");
         Asset::add("js/vendor/bootstrap-image-gallery.min.js");
+
+        $images = Image::whereCurso($this->fromNameToNumber($curso))->get();
+
+        return view("site.cursos.gallery", [
+            'curso' => $curso,
+            'images' => $images,
+        ]);
     }
 
     private function fromNumberToName($curso)
