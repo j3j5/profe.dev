@@ -36,10 +36,11 @@
 .breadcrumb li:nth-child(4) a       { color: hsla(210, 30%, 75%, 1); }
 .breadcrumb li:nth-child(4) a:hover { color: hsla(210, 30%, 85%, 1); }
 .breadcrumb li:last-child a {
-    background: transparent !important;
-    color: #D3661E;
+/*     background: transparent !important; */
+/*     color: #D3661E; */
     pointer-events: none;
     cursor: default;
+    text-decoration: underline;
 }
 
 .container-seccion {
