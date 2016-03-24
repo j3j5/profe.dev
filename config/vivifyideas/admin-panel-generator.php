@@ -15,7 +15,8 @@ return [
         'users'         => ['id', 'name', 'email', 'created_at'],
         'propuestas'    => ['nombre', 'contenidos', 'thumbnail', 'archivo', 'curso', 'updated_at',],
         'preguntas'     => ['pregunta', 'practica', 'updated_at'],
-        'respuestas'     => ['respuesta', 'updated_at'],
+        'respuestas'    => ['respuesta', 'updated_at'],
+        'images'        => ['titulo', 'artista', 'año', 'curso', 'nombre-archivo', 'updated_at'],
     ],
 
     'filters' => [
@@ -60,6 +61,8 @@ return [
         'respuestas' => [
 //             'pregunta_id'
         ],
+        'images' => [
+        ],
     ],
     'forms' => [
         'users'         => [
@@ -72,6 +75,13 @@ return [
             'curso',
             'thumbnail',
             'archivo',
+        ],
+        'images'        => [
+            'titulo',
+            'artista',
+            'año',
+            'curso',
+            'nombre-archivo',
         ],
         'preguntas'     => [
             'pregunta',
@@ -114,6 +124,13 @@ return [
             'thumbnail'     => 'string',
             'curso'         => 'required|int|min:1|max:3',
             'archivo'       => 'required|string',
+        ],
+        'images' =>  [
+            'titulo'    => 'string',
+            'artista'   => 'string',
+            'año'       => 'int',
+            'curso'     => 'required|int',
+            'nombre-archivo' => 'required|string',
         ],
         'preguntas'     => [
             'pregunta'  => 'required|string',

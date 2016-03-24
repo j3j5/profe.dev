@@ -42,6 +42,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'as' => 'uploadPropuestaImage', 'uses' => 'Admin\PropuestasController@imageUpload'
     ]);
 
+    // Images
+    Route::get('/images/create', [
+        'as' => 'createImage', 'uses' => 'Admin\ImagesController@create'
+    ]);
+    Route::get('/images/edit/{id}', [
+        'as' => 'editImage', 'uses' => 'Admin\ImagesController@edit'
+    ]);
+    Route::post('/images/upload', [
+        'as' => 'uploadImage', 'uses' => 'Admin\ImagesController@upload'
+    ]);
+    Route::post('/images/bulk/upload', [
+        'as' => 'uploadBulkImages', 'uses' => 'Admin\ImagesController@bulkUpload'
+    ]);
+
 });
 
 // Cursos
