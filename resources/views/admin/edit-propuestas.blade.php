@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h2>Edit {{ ucwords(str_replace('_', ' ', str_singular($tableName))) }} #{{ $entity->id }}</h2>
+            <h2>Editar {{ ucwords(str_replace('_', ' ', str_singular($tableName))) }} </h2>
             <form method="POST" action="/{{ packageConfig('prefix') }}/{{ $tableName }}/{{ $entity->id }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="_method" value="PUT">
@@ -39,6 +39,8 @@
                         {!! Form::$options['type']($name, 1, $entity->$name) !!}
                     @elseif ($options['type'] == 'number')
                         {!! Form::input($options['type'], $name, $entity->$name, ['class'=>'form-control']) !!}
+                    @elseif ($name == 'thumbnail' OR $name == 'archivo')
+                        {!! Form::{$options['type']}($name, $entity->$name, ['class'=>'form-control', 'readonly' => '']) !!}
                     @else
                         {!! Form::$options['type']($name, $entity->$name, ['class'=>'form-control']) !!}
                     @endif
@@ -54,7 +56,7 @@
                 <a class="btn btn-sm btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
             </form>
         </div>
-    @include("admin.partials._uploadZone")
+    @include("admin.partials._propuestas-uploadZone")
     </div> <!-- row -->
 </div> <!-- container -->
 @stop

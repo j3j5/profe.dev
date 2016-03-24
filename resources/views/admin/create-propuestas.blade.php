@@ -31,7 +31,7 @@
                 <a class="btn btn-sm btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
             </form>
         </div>
-        @include("admin.partials._uploadZone")
+        @include("admin.partials._propuestas-uploadZone")
     </div>
 </div>
 
