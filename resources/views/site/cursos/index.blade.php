@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </a>
-            <a href="{{ route("curso") }}">
+            <a href="{{ route("Gallery", [$curso]) }}">
                 <div class="col-md-4 container-seccion">
                     <div class="curso-seccion">
                         <p>Galería</p>
