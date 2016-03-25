@@ -36,35 +36,33 @@
 }
 
 .breadcrumb {
-    font-size: 2em;
-    background-color: #2b3e50;
+    font-size: 0.5em;
     padding: 0px 0px 0px 20px;
     margin: 0px;
 }
 
 .breadcrumb a {
-    color: hsla(210, 30%, 55%, 1);
+    color: hsla(193, 60%, 55%, 1);
 }
 
 .breadcrumb a:hover {
-    color: hsla(210, 30%, 85%, 1);
+    color: hsla(193, 60%, 45%, 1);
 }
 
 .breadcrumb > li + li::before {
     content: "/";
-    color: #507395;
-    padding-right: 0.4em;
+    color: hsla(193, 60%, 45%, 1);
 }
 
-.breadcrumb li:nth-child(2) a       { color: hsla(210, 30%, 55%, 1); }
-.breadcrumb li:nth-child(2) a:hover { color: hsla(210, 30%, 65%, 1); }
-.breadcrumb li:nth-child(3) a       { color: hsla(210, 30%, 65%, 1); }
-.breadcrumb li:nth-child(3) a:hover { color: hsla(210, 30%, 75%, 1); }
-.breadcrumb li:nth-child(4) a       { color: hsla(210, 30%, 75%, 1); }
-.breadcrumb li:nth-child(4) a:hover { color: hsla(210, 30%, 85%, 1); }
+.breadcrumb li:nth-child(2) a       { color: hsla(193, 60%, 55%, 1); /* rain */ }
+.breadcrumb li:nth-child(2) a:hover { color: hsla(193, 60%, 45%, 1); }
+.breadcrumb li:nth-child(3) a       { color: hsla(193, 60%, 65%, 1); }
+.breadcrumb li:nth-child(3) a:hover { color: hsla(193, 60%, 55%, 1); }
+.breadcrumb li:nth-child(4) a       { color: hsla(193, 60%, 75%, 1); }
+.breadcrumb li:nth-child(4) a:hover { color: hsla(193, 60%, 65%, 1); }
 .breadcrumb li:last-child a {
     background: transparent !important;
-    color: #D3661E;
+/*     color: #D3661E; */
     pointer-events: none;
     cursor: default;
     text-decoration: underline;

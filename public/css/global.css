@@ -30,6 +30,7 @@ a {
 
 a:hover {
     color: hsla(193, 60%, 45%, 1); /* darker rain */
+    text-decoration: none;
 }
 
 .navbar-default {
