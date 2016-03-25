@@ -17,7 +17,11 @@ class AppServiceProvider extends ServiceProvider
         Asset::$secure = request()->secure();
         // CSS Files
         Asset::add('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
-        Asset::add('/css/vendor/bootstrap.min.superhero.css');
+//         Asset::add('/css/vendor/bootstrap.min.superhero.css');
+//         Asset::add('/css/vendor/bootstrap.min.spacelab.css');
+//         Asset::add('/css/vendor/bootstrap.min.cerulean.css');
+//         Asset::add('/css/vendor/bootstrap.min.lumen.css');
+        Asset::add('/css/vendor/bootstrap.min.simplex.css');
         Asset::add('/css/global.css');
 
         // JS Files

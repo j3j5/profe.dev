@@ -3,6 +3,13 @@
 @import url(https://fonts.googleapis.com/css?family=Oxygen);
 @import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
 
+:root{
+    --salmon:#FA7C92;
+    --rain:#6EC4DB;
+    --buttermilk:#FFF7C0;
+    --leaf:#66AB8C;
+}
+
 /* Sticky footer with navbar
 -------------------------------------------------- */
 html {
@@ -17,13 +24,41 @@ body {
     font-family: "Oxygen";
 }
 
+a {
+    color: var(--rain);
+}
+
+a:hover {
+    color: hsla(193, 60%, 45%, 1); /* darker rain */
+}
+
+.navbar-default {
+    background-color: var(--leaf);
+    font-weight: bold;
+}
+
+.navbar-default .navbar-brand img {
+    max-height: 300%;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: gray;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: gray;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 60px;
-    background-color: #4E5D6C;
+    background-color: var(--leaf);
 }
 
 .footer .container .text-muted {
@@ -31,16 +66,21 @@ body {
 }
 
 .footer .text-muted {
-    color: #EBEBEB;
+    color: white;
 }
 
-.navbar-default .navbar-nav > li > a {
-    color: #df691a;
+.btn-primary {
+    background-image: none;
+    background-color: var(--salmon);
+    color: white;
+    border: 1px solid var(--salmon) ;
+    text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
 }
 
-.navbar-default .navbar-brand {
-    color: #df691a;
-}
 
 
 /* Login page */
@@ -61,8 +101,8 @@ body {
     position: relative;
     height: auto;
     -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     padding: 10px;
     font-size: 16px;
 }

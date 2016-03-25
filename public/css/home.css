@@ -2,13 +2,15 @@
 /* GLOBAL STYLES
 -------------------------------------------------- */
 
-@import url(https://fonts.googleapis.com/css?family=Crafty+Girls);
+/* @import url(https://fonts.googleapis.com/css?family=Crafty+Girls); */
+@import url(https://fonts.googleapis.com/css?family=Gloria+Hallelujah);
 @import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
 
 /* Padding below the footer and lighter body text */
 body > .container-fluid {
     padding: 50px 15px 0px 15px;
 }
+
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -33,9 +35,53 @@ body > .container-fluid {
 }
 
 .carousel-caption > h1 {
+    color: var(--rain);
     font-family: 'Covered By Your Grace', bold;
-    text-shadow: 3px 3px 6px rgba(118, 128, 125, 1);
     font-size: 5em;
+    text-shadow:
+        3px 3px 6px gray,
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
+}
+
+.carousel-caption .btn {
+    color: white;
+    text-shadow: 1px 1px 0 gray;
+}
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+.marketing {
+    font-family: 'Gloria Hallelujah';
+}
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.marketing h2 {
+    font-family: 'Gloria Hallelujah';
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.marketing p {
+    font-size: 1.5em;
+}
+.marketing .col-lg-4 p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#mark {
+/*     background: url(/images/logo-color-medium.png); */
+/*     background-repeat: no-repeat; */
+/*     background-position: center; */
+/*     background-size: 100%; */
 }
 
 .course {
@@ -44,28 +90,21 @@ body > .container-fluid {
     font-size: 5em;
     position: relative;
     top: 12%;
-    padding-left: 11%
-
+    padding-left: 11%;
+    text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
 }
 
-
-
-/* MARKETING CONTENT
--------------------------------------------------- */
-.marketing {
-    font-family: "Crafty Girls";
-}
-/* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-.marketing h2 {
-  font-weight: normal;
-}
-.marketing .col-lg-4 p {
-  margin-right: 10px;
-  margin-left: 10px;
+.curso-home {
+    width: 140px;
+    height: 140px;
+    margin:auto;
+    background-color: var(--buttermilk);
+    border: 1px solid black;
+/*     color: black; */
 }
 
 /* RESPONSIVE CSS

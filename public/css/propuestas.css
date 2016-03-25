@@ -14,6 +14,15 @@
     padding: 0 2px 0 2px;
 }
 
+.propuesta {
+    margin: 0px 10px;
+    max-width: 20%;
+    min-height: 40%;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: var(--buttermilk);
+}
+
 .propuesta-nombre {
     font-family: 'Chewy', cursive;
     margin-top: 10px;
