@@ -16,7 +16,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route("Home") }}">Profe Mariana</a>
+            <a class="navbar-brand" href="{{ route("Home") }}"><img src="/images/logo2-small.png" alt="Profe Mariana"></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
