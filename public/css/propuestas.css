@@ -15,12 +15,15 @@
 }
 
 .propuesta {
-    margin: 0px 10px;
-    max-width: 20%;
-    min-height: 40%;
+    margin: 5px 10px;
+    max-width: 30%;
+    /*min-height: 40%;*/
     border: 1px solid black;
     border-radius: 15px;
     background-color: var(--buttermilk);
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }
 
 .propuesta-nombre {

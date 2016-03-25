@@ -9,7 +9,6 @@
     <div class="container">
         <?php $counter = 0; ?>
         @foreach($propuestas as $propuesta)
-        <?php $counter++; ?>
         @if($counter%3 == 0)
         <div class="row">
         @endif
@@ -37,10 +36,17 @@
                     </div>
                 </a>
             </div>
-        @if($counter%3 == 0)
-        </div>
+        @if($counter%3 == 2)
+        </div> <!--  row (loop)   -->
         @endif
+        <?php $counter++; ?>
         @endforeach
+
+        <?php // Close the div the the amount of propuestas is not multiple of 3 ?>
+        @if(in_array($counter%3, [1,2]))
+        </div> <!--  row (out of the loop)   -->
+        @endif
+
     </div>
     @else
     <div class="col-md-offset-4 col-md-4 well bg-info">
