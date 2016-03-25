@@ -2,7 +2,7 @@
 
 @section('content')
 
-        @include('site.partials._cursos-header')
+    @include('site.partials._cursos-header')
     <div class="container">
         <div class="text-center row">
             <a href="{{ route("Propuestas", [$curso]) }}">

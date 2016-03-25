@@ -13,7 +13,7 @@
         @if($counter%3 == 0)
         <div class="row">
         @endif
-            <div class="col-md-4">
+            <div class="propuesta col-md-4">
                 <a href="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $propuesta->archivo }}" target="_blank">
                     <div class="">
                         <div class="thumb center-block">
