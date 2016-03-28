@@ -8,6 +8,8 @@
     --rain:#6EC4DB;
     --buttermilk:#FFF7C0;
     --leaf:#66AB8C;
+    --light-leaf:#E1F5E5;
+    --pioletongo: #730659;
 }
 
 /* Sticky footer with navbar
@@ -22,7 +24,7 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     font-family: "Oxygen";
-    background-color: #E1F5E5;
+    background-color: var(--light-leaf);
 }
 
 a {
