@@ -2,31 +2,6 @@
 
 @import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
 
-.container-seccion {
-    height: 6em;
-}
-
-.curso-seccion {
-    font-family: "Permanent Marker";
-    font-size: 2.6em;
-    border-radius: 15px;
-    height: 100%;
-    margin: 15px;
-    background-color: var(--buttermilk);
-    border: 1px solid black;
-    text-shadow:
-        -1px -1px 0 black,
-        1px -1px 0 black,
-        -1px 1px 0 black,
-        1px 1px 0 black;
-}
-
-.curso-seccion p {
-    padding: 0.3em;
-}
-
-
-
 .page-header {
     margin: 0px 0px 20px 0px;
     font-family: 'Covered By Your Grace', bold;
@@ -66,4 +41,67 @@
     pointer-events: none;
     cursor: default;
     text-decoration: underline;
+}
+
+
+.curso-seccion {
+    font-family: "Permanent Marker";
+    font-size: 2.6em;
+    border-radius: 15px;
+    height: 100%;
+    margin: 15px;
+    background-color: var(--buttermilk);
+    border: 1px solid black;
+}
+
+.curso-seccion p {
+    padding: 0.3em;
+    color: var(--pioletongo);
+}
+
+
+/* Galeria */
+.image-gallery {
+    max-width:100px;
+    max-height:100px;
+    display: inline-block;
+}
+
+/* Propuestas */
+.container .contenidos {
+    margin: 5px 0;
+    font-size: small;
+    font-weight: bold;
+    color: #507395;
+}
+
+.contenido {
+    padding: 0 2px 0 2px;
+}
+
+.propuesta {
+    margin: 5px 10px;
+    max-width: 30%;
+    /*min-height: 40%;*/
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: var(--buttermilk);
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.propuesta-nombre {
+    font-family: 'Chewy', cursive;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: var(--pioletongo);
+}
+
+.thumb {
+    max-width: 120px;
+}
+
+.img-thumbnail {
+    width: 100%;
 }

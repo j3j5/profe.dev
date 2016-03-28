@@ -88,7 +88,7 @@ class ImagesController extends Controller
      */
     private function handleUpload(Request $request)
     {
-        $destination_path = 'images'; // upload path
+        $destination_path = 'images/galeria/' . $request->get("curso"); // upload path
         $filename = $request->file('file')->getClientOriginalName();
 
         if(app()->environment('production')) {

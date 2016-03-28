@@ -8,9 +8,9 @@
     <div class="container">
         <div id="links">
             @foreach($images as $image)
-            <div class="col-md-1" style="width:75px;">
-            <a href="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/images/{{ $image->{"nombre-archivo"} }}" title="{{ $image->titulo }}" data-gallery>
-                <img style=" width:100%;" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/images/{{ $image->{"nombre-archivo"} }}" alt="">
+            <div class="image-gallery">
+            <a href="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/images/galeria/{{ $image->curso }}/{{ $image->{"nombre-archivo"} }}" title="{{ $image->titulo }}" data-gallery>
+                <img style=" width:100%;" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/images/galeria/{{ $image->curso }}/{{ $image->{"nombre-archivo"} }}" alt="">
             </a>
             </div>
             @endforeach

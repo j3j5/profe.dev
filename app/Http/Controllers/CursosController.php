@@ -14,7 +14,7 @@ class CursosController extends Controller
 {
     public function __construct(Request $request)
     {
-        Asset::add('css/curso.css');
+        Asset::add('css/cursos.css');
     }
 
     public function getCurso($curso) {
