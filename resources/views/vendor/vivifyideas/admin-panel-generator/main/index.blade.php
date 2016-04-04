@@ -56,7 +56,7 @@
                     <td class="admin-row">{{ $row->$col }}</td>
                     @endif
                 @endforeach
-                <td class="text-right">
+                <td class="admin-row text-right">
                     <div class="btn-group">
                         <a class="btn btn-xs btn-info" href="/{{ packageConfig('prefix') }}/{{ $tableName }}/edit/{{ $row->id }}">
                             <i class="fa fa-4 fa-pencil-square-o"></i>
