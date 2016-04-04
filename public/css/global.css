@@ -24,11 +24,11 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     font-family: "Oxygen";
-    background-color: var(--light-leaf);
+    background-color: #E1F5E5; /* light-leaf */
 }
 
 a {
-    color: var(--rain);
+    color: #6EC4DB; /* rain */
 }
 
 a:hover {
@@ -37,8 +37,9 @@ a:hover {
 }
 
 .navbar-default {
-    background-color: var(--leaf);
+    background-color: #66AB8C; /* leaf */
     font-weight: bold;
+    border: none;
 }
 
 .navbar-default .navbar-brand img {
@@ -62,7 +63,7 @@ a:hover {
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 60px;
-    background-color: var(--leaf);
+    background-color: #66AB8C; /* leaf */
 }
 
 .footer .container .text-muted {
@@ -73,16 +74,16 @@ a:hover {
     color: white;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary:hover {
     background-image: none;
-    background-color: var(--salmon);
-    color: white;
-    border: 1px solid var(--salmon) ;
-    text-shadow:
+    background-color: #6EC4DB; /* rain */
+    color: #730659; /* pioletongo /*
+    border: 1px solid #6EC4DB; /* rain */
+    /*text-shadow:
         -1px -1px 0 black,
         1px -1px 0 black,
         -1px 1px 0 black,
-        1px 1px 0 black;
+        1px 1px 0 black;*/
 }
 
 

@@ -35,7 +35,7 @@ body > .container-fluid {
 }
 
 .carousel-caption > h1 {
-    color: var(--rain);
+    color: #6EC4DB; /* rain */
     font-family: 'Covered By Your Grace', bold;
     font-size: 5em;
     text-shadow:
@@ -47,7 +47,7 @@ body > .container-fluid {
 }
 
 .carousel-caption .btn {
-    color: white;
+/*     color: white; */
     text-shadow: 1px 1px 0 gray;
 }
 
@@ -102,9 +102,8 @@ body > .container-fluid {
     width: 140px;
     height: 140px;
     margin:auto;
-    background-color: var(--buttermilk);
+    background-color: #FFF7C0; /* buttermilk */
     border: 1px solid black;
-/*     color: black; */
 }
 
 /* RESPONSIVE CSS
