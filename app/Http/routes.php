@@ -25,7 +25,7 @@ Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getL
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Admin main page
     Route::get('/', ['as' => 'adminPanel', 'middleware' => 'auth', function () {
-        return redirect()->route("createPropuestas");
+        return redirect('/admin/propuestas');
     }]);
 
     // Propuestas
