@@ -6,12 +6,12 @@
 
     @if(!$images->isEmpty())
     <div class="container">
-        <div id="links">
+        <div id="links" class="text-center">
             @foreach($images as $image)
             <div class="image-gallery">
-            <a href="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/images/galeria/{{ $image->curso }}/{{ $image->{"nombre-archivo"} }}" title="{{ $image->titulo }}" data-gallery>
-                <img style=" width:100%;" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/images/galeria/{{ $image->curso }}/{{ $image->{"nombre-archivo"} }}" alt="">
-            </a>
+                <a href="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/images/galeria/{{ $image->curso }}/{{ $image->{"nombre-archivo"} }}" title="{{ $image->titulo }}" data-gallery>
+                    <img src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/images/galeria/{{ $image->curso }}/{{ $image->{"nombre-archivo"} }}" alt="">
+                </a>
             </div>
             @endforeach
         </div>

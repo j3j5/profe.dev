@@ -10,7 +10,7 @@
         <?php $counter = 0; ?>
         @foreach($propuestas as $propuesta)
         @if($counter%3 == 0)
-        <div class="row">
+        <div class="row text-center">
         @endif
             <div class="propuesta col-md-4">
                 <a href="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $propuesta->archivo }}" target="_blank">
