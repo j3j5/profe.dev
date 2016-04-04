@@ -5,11 +5,11 @@ return [
 
     'authMiddleware' => 'auth',
 
-    'tables' => ['users', 'propuestas', 'preguntas', 'respuestas'],
+    'tables' => ['propuestas', 'images',],
 
     'rowsPerPage' => 15,
 
-    'additionalLinks' => [],
+    'additionalLinks' => ['Ver página' => 'HomeController@index'],
 
     'columns'   => [
         'users'         => ['id', 'name', 'email', 'created_at'],
@@ -62,12 +62,26 @@ return [
 //             'pregunta_id'
         ],
         'images' => [
+            'curso' => [
+                'label' => 'Curso',
+                'type'  => 'number',
+            ],
+            'año' => [
+                'label' => 'Año',
+                'type'  => 'number',
+            ],
+            'artista' => [
+                'label'     => 'Artista',
+                'type'      => 'text',
+                'compare'   => 'LIKE',
+            ],
         ],
     ],
     'forms' => [
         'users'         => [
             'name',
             'email',
+            'password',
         ],
         'propuestas'    => [
             'nombre',
