@@ -43,6 +43,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     ]);
 
     // Images
+    Route::get('/images', [
+        'as' => 'adminImages', 'uses' => 'Admin\ImagesController@index'
+    ]);
+
     Route::get('/images/create', [
         'as' => 'createImage', 'uses' => 'Admin\ImagesController@create'
     ]);

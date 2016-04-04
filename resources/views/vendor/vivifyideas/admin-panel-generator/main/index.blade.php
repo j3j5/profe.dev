@@ -47,7 +47,14 @@
             @foreach($rows as $row)
               <tr>
                 @foreach($columns as $col)
-                  <td>{{ $row->$col }}</td>
+                    @if($tableName == 'images' && $col == 'nombre-archivo')
+                    <td class="admin-row-thumb"><img class="admin-thumb" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/images/galeria/{{ $row->curso }}/{{ $row->$col }}"></td>
+                    @elseif($tableName == 'propuestas' && $col == 'thumbnail')
+                    <td class="admin-row-thumb"><img class="admin-thumb" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $row->$col}}"></td>
+
+                    @else
+                    <td class="admin-row">{{ $row->$col }}</td>
+                    @endif
                 @endforeach
                 <td class="text-right">
                     <div class="btn-group">
@@ -69,6 +76,17 @@
         </div>
       @endif
     </div>
+        @if($tableName == 'images')
+        <div class="col-md-8 col-md-offset-2 uploadZone">
+            <div id="thumbnails-upload" class="col-md-offset-2 col-md-6">
+                <label class="control-label">Imágen[es]</label>
+                <form id="images-dropzone" action="{{ route("uploadBulkImages") }}" class="dropzone">
+                    {!! csrf_field() !!}
+                    <div class="dz-message"><span><i class="fa fa-cloud-upload"></i>{{ packageTranslation('vivify.uploadDropZone') }}</span></div>
+                </form>
+            </div>
+        </div>
+        @endif
   </div>
 </div>
 @endsection

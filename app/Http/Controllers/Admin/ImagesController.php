@@ -8,6 +8,7 @@ use Validator;
 use Response;
 use Asset;
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use iansltx\B2Client\Client;
 use iansltx\B2Client\Credentials;
 
@@ -25,9 +26,17 @@ class ImagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index(Request $request)
+    {
+        $this->createAddAssets();
+        $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('index', ['images', $request]);
+        return $parent_view;
+    }
+
     public function create(Request $request)
     {
         $this->createAddAssets();
+        $this->fillInFieldsAfterUpload();
         $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('create', ['images']);
         $data = $parent_view->getData();
         return view('admin.create-images', $data);
@@ -36,6 +45,7 @@ class ImagesController extends Controller
     public function edit($id, Request $request)
     {
         $this->createAddAssets();
+        $this->fillInFieldsAfterUpload();
         $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('edit', ['images', $id]);
         $data = $parent_view->getData();
         return view('admin.edit-images', $data);
@@ -73,6 +83,9 @@ class ImagesController extends Controller
             // checking file is valid.
             if ($request->file('file')->isValid()) {
                 $this->handleUpload($request);
+                $image = new Image;
+                $image->{"nombre-archivo"} = $request->file('file')->getClientOriginalName();
+                $image->save();
 
                 // sending back with message
                 return Response::json('success', 200);
@@ -108,7 +121,10 @@ class ImagesController extends Controller
         Asset::add('css/dropzone/dropzone.min.css');
         Asset::add('//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', 'footer');
         Asset::add('js/dropzone/dropzone.min.js', 'footer');
+    }
 
+    private function fillInFieldsAfterUpload()
+    {
         $dropzone_options = '
             Dropzone.options.imagesDropzone = {
                 init: function() {

@@ -125,6 +125,17 @@ a:hover {
     border-top-right-radius: 0;
 }
 
+.admin-row {
+    vertical-align: middle !important;
+}
+
+.admin-row-thumb {
+    text-align: center;
+}
+
+.admin-thumb {
+    max-height: 90px;
+}
 
 /* Propuestas Admin */
 
