@@ -5,3 +5,5 @@ Homestead.json
 .env
 *kdev4
 *.diff
+resources/views/site/partials/_analytics.blade.php
+public/google*
