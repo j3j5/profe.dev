@@ -2,6 +2,8 @@
 
 return [
 
+    'analytics_template' => env('ANALYTICS_TEMPLATE', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

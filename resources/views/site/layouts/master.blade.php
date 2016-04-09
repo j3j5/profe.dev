@@ -7,7 +7,8 @@
         <meta name="_token" content="{{ csrf_token() }}">
         <link rel="icon" type="image/png" href="/favicon.ico" />
         <title>Profe Mariana</title>
-                <!-- css files -->
+
+        <!-- css files -->
         {{ Asset::css() }}
         <!-- less files -->
         {{ Asset::less() }}
@@ -17,6 +18,8 @@
         {{ Asset::js('header') }}
         <!-- js scripts (header) -->
         {{ Asset::scripts('header') }}
+
+        @include(config('app.analytics_template'))
     </head>
 
     <body class="">
