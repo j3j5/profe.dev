@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </a>
-            <a href="#">
+            <a href="{{ route("Glossary", [$curso]) }}">
                 <div class="col-md-4 container-seccion">
                     <div class="curso-seccion">
                         <p>Glosario</p>

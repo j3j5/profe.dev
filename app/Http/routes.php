@@ -79,5 +79,6 @@ Route::group(['prefix' => 'curso/{curso}'], function () {
 
     Route::get('/propuestas', ['as' => 'Propuestas', 'uses' => 'CursosController@getPropuestas']);
     Route::get('/galeria', ['as' => 'Gallery', 'uses' => 'CursosController@getImages']);
+    Route::get('/glosario', ['as' => 'Glossary', 'uses' => 'CursosController@getGlosario']);
 });
 // Tests
