@@ -41,8 +41,8 @@
             </div>
           @endif
         @endforeach
-        <button class="btn btn-success" type="submit">{{ packageTranslation('vivify.insert') }}</button>
-        <a class="btn btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
+        <button class="btn btn-lg btn-success" type="submit">{{ packageTranslation('vivify.insert') }}</button>
+        <a class="btn btn-sm btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
       </form>
 
     </div>
