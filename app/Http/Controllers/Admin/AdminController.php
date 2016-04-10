@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Input;
 use Validator;
 use Response;
 use Asset;
@@ -35,7 +34,7 @@ class AdminController extends Controller
         $this->createAddAssets();
         $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('create', [$this->model]);
         $data = $parent_view->getData();
-        return view("admin.create-{$this->model}", $data);
+        return view("admin.{$this->model}.create", $data);
     }
 
     public function edit($id, Request $request)
@@ -43,7 +42,7 @@ class AdminController extends Controller
         $this->createAddAssets();
         $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('edit', [$this->model, $id]);
         $data = $parent_view->getData();
-        return view("admin.edit-{$this->model}", $data);
+        return view("admin.{$this->model}.edit", $data);
     }
 
     public function imageUpload(Request $request) {
