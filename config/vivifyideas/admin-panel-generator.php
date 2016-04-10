@@ -5,7 +5,7 @@ return [
 
     'authMiddleware' => 'auth',
 
-    'tables' => ['propuestas', 'images', 'conceptos'],
+    'tables' => ['propuestas', 'images', 'grupo_conceptos', 'conceptos', ],
 
     'rowsPerPage' => 15,
 
@@ -15,7 +15,8 @@ return [
         'users'         => ['id', 'name', 'email', 'created_at'],
         'propuestas'    => ['nombre', 'contenidos', 'thumbnail', 'archivo', 'curso', 'updated_at',],
         'images'        => ['titulo', 'artista', 'año', 'curso', 'nombre-archivo', 'updated_at'],
-        'conceptos'     => ['palabra', 'definicion', 'curso', 'thumbnail', 'updated_at'],
+        'conceptos'     => ['palabra', 'definicion', 'curso', 'grupo','thumbnail', 'updated_at'],
+        'grupo_conceptos' => ['nombre', 'created_at'],
 //         'preguntas'     => ['pregunta', 'practica', 'updated_at'],
 //         'respuestas'    => ['respuesta', 'updated_at'],
     ],
@@ -75,6 +76,7 @@ return [
                 'type'  => 'number',
             ],
         ],
+        'grupo_conceptos' => [],
 //         'preguntas' => [
 //             'practica'  => [
 //                 'label' => '¿Es de práctica?',
@@ -146,7 +148,17 @@ return [
                 'type' => 'select',
                 'dropdown' => ['1' => 'Primero', '2'=> 'Segundo',  '3'=> 'Tercero',],
             ],
+            'belongsTo' => [
+                'grupo_conceptos' => [
+                    'label' => 'Grupo de Conceptos',
+                    'column' => 'grupo_id',
+                    'foreignLabel' => 'nombre',
+                ]
+            ],
             'thumbnail',
+        ],
+        'grupo_conceptos' => [
+            'nombre',
         ],
 //         'preguntas'     => [
 //             'pregunta',
@@ -202,6 +214,9 @@ return [
             'definicion'    => "string",
             'curso'         => "required|int|min:1|max:3",
             'thumbnail'     => "string",
+        ],
+        'grupo_conceptos' => [
+            'nombre'    => 'required|string',
         ],
 //         'preguntas'     => [
 //             'pregunta'  => 'required|string',

@@ -58,6 +58,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     ]);
 
     // Conceptos
+    Route::get('/conceptos', [
+        'as' => 'adminConceptos', 'uses' => 'Admin\ConceptosController@index'
+    ]);
     Route::get('/conceptos/create', [
         'as' => 'createConcepto', 'uses' => 'Admin\ConceptosController@create'
     ]);
