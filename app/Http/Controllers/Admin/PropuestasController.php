@@ -12,26 +12,7 @@ use iansltx\B2Client\Credentials;
 
 class PropuestasController extends AdminController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        $this->createAddAssets();
-        $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('create', ['propuestas']);
-        $data = $parent_view->getData();
-        return view('admin.create-propuestas', $data);
-    }
-
-    public function edit($id, Request $request)
-    {
-        $this->createAddAssets();
-        $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('edit', ['propuestas', $id]);
-        $data = $parent_view->getData();
-        return view('admin.edit-propuestas', $data);
-    }
+    protected $model = 'propuestas';
 
     protected function createAddAssets() {
         parent::createAddAssets();
@@ -73,27 +54,6 @@ class PropuestasController extends AdminController
                 // sending back with error message.
                 return Response::json(['error' => 'Not a valid file.'], 400);
             }
-        }
-    }
-
-    /**
-     * Move the uploaded file to a desired destination, CDN on production, uploads folder on dev.
-     */
-    private function handleUpload(Request $request)
-    {
-        $destination_path = 'uploads'; // upload path
-        $filename = $request->file('file')->getClientOriginalName();
-
-        if(app()->environment('production')) {
-            $response = $this->b2client->uploadContents(
-                config('b2client.bucket_id'),
-                "$destination_path/$filename",
-                file_get_contents($request->file('file')->getRealPath())
-            );
-
-            unlink($request->file('file')->getRealPath());
-        } else {
-            $request->file('file')->move($destination_path, $filename); // uploading file to given path
         }
     }
 

@@ -38,9 +38,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/propuestas/upload', [
         'as' => 'uploadPropuesta', 'uses' => 'Admin\PropuestasController@upload'
     ]);
-    Route::post('/propuestas/images/upload', [
-        'as' => 'uploadPropuestaImage', 'uses' => 'Admin\PropuestasController@imageUpload'
-    ]);
 
     // Images
     Route::get('/images', [
@@ -53,11 +50,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/images/edit/{id}', [
         'as' => 'editImage', 'uses' => 'Admin\ImagesController@edit'
     ]);
-    Route::post('/images/upload', [
-        'as' => 'uploadImage', 'uses' => 'Admin\ImagesController@upload'
+    Route::post('/images/gallery/upload', [
+        'as' => 'uploadGalleryImage', 'uses' => 'Admin\ImagesController@upload'
     ]);
-    Route::post('/images/bulk/upload', [
+    Route::post('/images/gallery/bulk/upload', [
         'as' => 'uploadBulkImages', 'uses' => 'Admin\ImagesController@bulkUpload'
+    ]);
+
+    // Misc
+    Route::post('/images/upload', [
+        'as' => 'uploadImage', 'uses' => 'Admin\AdminController@imageUpload'
     ]);
 
 });
