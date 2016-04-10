@@ -77,8 +77,8 @@ a:hover {
 .btn-primary, .btn-primary:hover {
     background-image: none;
     background-color: #6EC4DB; /* rain */
-    color: #730659; /* pioletongo /*
-    border: 1px solid #6EC4DB; /* rain */
+    color: #730659; /* pioletongo */
+    border: 1px solid black; /* rain */
     /*text-shadow:
         -1px -1px 0 black,
         1px -1px 0 black,
