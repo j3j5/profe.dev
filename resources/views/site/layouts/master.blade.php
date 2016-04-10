@@ -19,7 +19,9 @@
         <!-- js scripts (header) -->
         {{ Asset::scripts('header') }}
 
+        @if(config('app.analytics_template'))
         @include(config('app.analytics_template'))
+        @endif
     </head>
 
     <body class="">
