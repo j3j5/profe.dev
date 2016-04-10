@@ -7,19 +7,12 @@ use Input;
 use Validator;
 use Response;
 use Asset;
-use App\Http\Controllers\Controller;
 use App\Models\Image;
 use iansltx\B2Client\Client;
 use iansltx\B2Client\Credentials;
 
-class ImagesController extends Controller
+class ImagesController extends AdminController
 {
-
-    private $b2client;
-
-    public function __construct() {
-        $this->b2client = new Client(new Credentials(config('b2client.account_id'), config('b2client.app_key')));
-    }
 
     /**
      * Display a listing of the resource.
@@ -36,7 +29,6 @@ class ImagesController extends Controller
     public function create(Request $request)
     {
         $this->createAddAssets();
-        $this->fillInFieldsAfterUpload();
         $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('create', ['images']);
         $data = $parent_view->getData();
         return view('admin.create-images', $data);
@@ -45,7 +37,6 @@ class ImagesController extends Controller
     public function edit($id, Request $request)
     {
         $this->createAddAssets();
-        $this->fillInFieldsAfterUpload();
         $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('edit', ['images', $id]);
         $data = $parent_view->getData();
         return view('admin.edit-images', $data);
@@ -117,14 +108,9 @@ class ImagesController extends Controller
         }
     }
 
-    private function createAddAssets() {
-        Asset::add('css/dropzone/dropzone.min.css');
-        Asset::add('//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', 'footer');
-        Asset::add('js/dropzone/dropzone.min.js', 'footer');
-    }
+    protected function createAddAssets() {
+        parent::createAddAssets();
 
-    private function fillInFieldsAfterUpload()
-    {
         $dropzone_options = '
             Dropzone.options.imagesDropzone = {
                 init: function() {
