@@ -5,7 +5,7 @@ return [
 
     'authMiddleware' => 'auth',
 
-    'tables' => ['propuestas', 'images',],
+    'tables' => ['propuestas', 'images', 'conceptos'],
 
     'rowsPerPage' => 15,
 
@@ -14,9 +14,10 @@ return [
     'columns'   => [
         'users'         => ['id', 'name', 'email', 'created_at'],
         'propuestas'    => ['nombre', 'contenidos', 'thumbnail', 'archivo', 'curso', 'updated_at',],
-        'preguntas'     => ['pregunta', 'practica', 'updated_at'],
-        'respuestas'    => ['respuesta', 'updated_at'],
         'images'        => ['titulo', 'artista', 'año', 'curso', 'nombre-archivo', 'updated_at'],
+        'conceptos'     => ['palabra', 'definicion', 'curso', 'thumbnail', 'updated_at'],
+//         'preguntas'     => ['pregunta', 'practica', 'updated_at'],
+//         'respuestas'    => ['respuesta', 'updated_at'],
     ],
 
     'filters' => [
@@ -48,19 +49,6 @@ return [
                 'type'      => 'number',
             ],
         ],
-        'preguntas' => [
-            'practica'  => [
-                'label' => '¿Es de práctica?',
-                'type'  => 'checkbox',
-            ],
-            'nivel'     => [
-                'label' => 'Nivel',
-                'type'  => 'text'
-            ],
-        ],
-        'respuestas' => [
-//             'pregunta_id'
-        ],
         'images' => [
             'curso' => [
                 'label' => 'Curso',
@@ -76,6 +64,30 @@ return [
                 'compare'   => 'LIKE',
             ],
         ],
+        'conceptos' => [
+            'palabra' => [
+                'label'     => 'Palabra',
+                'type'      => 'text',
+                'compare'   => 'LIKE',
+            ],
+            'curso' => [
+                'label' => 'Curso',
+                'type'  => 'number',
+            ],
+        ],
+//         'preguntas' => [
+//             'practica'  => [
+//                 'label' => '¿Es de práctica?',
+//                 'type'  => 'checkbox',
+//             ],
+//             'nivel'     => [
+//                 'label' => 'Nivel',
+//                 'type'  => 'text'
+//             ],
+//         ],
+//         'respuestas' => [
+// //             'pregunta_id'
+//         ],
     ],
     'forms' => [
         'users'         => [
@@ -97,34 +109,49 @@ return [
             'curso',
             'nombre-archivo',
         ],
-        'preguntas'     => [
-            'pregunta',
-            'practica' => [
-                'label' => '¿Es de prácticas?',
-                'type' => 'checkbox',
+        'conceptos'     => [
+            'palabra' => [
+                'label' => "Concepto",
+                'type'  => "text",
             ],
-            'nivel' => [
-                'label' => 'Nivel',
-                'type' => 'number',
+            'definicion' => [
+                'label' => "Definición del concepto",
+                'type'  => "textarea",
             ],
-            'hasMany' => [
-                'respuestas' => [
-                    'label' => 'Respuesta',
-                    'column' => 'id',
-                    'foreignLabel' => 'respuesta'
-                ]
+            'curso' => [
+                'label' => 'Curso',
+                'type'  => 'number',
             ],
+            'thumbnail',
         ],
-        'respuestas'    => [
-            'respuesta',
-            'belongsTo' => [
-                'preguntas' => [
-                    'label' => 'Pregunta',
-                    'column' => 'pregunta_id',
-                    'foreignLabel' => 'pregunta',
-                ]
-            ],
-        ],
+//         'preguntas'     => [
+//             'pregunta',
+//             'practica' => [
+//                 'label' => '¿Es de prácticas?',
+//                 'type' => 'checkbox',
+//             ],
+//             'nivel' => [
+//                 'label' => 'Nivel',
+//                 'type' => 'number',
+//             ],
+//             'hasMany' => [
+//                 'respuestas' => [
+//                     'label' => 'Respuesta',
+//                     'column' => 'id',
+//                     'foreignLabel' => 'respuesta'
+//                 ]
+//             ],
+//         ],
+//         'respuestas'    => [
+//             'respuesta',
+//             'belongsTo' => [
+//                 'preguntas' => [
+//                     'label' => 'Pregunta',
+//                     'column' => 'pregunta_id',
+//                     'foreignLabel' => 'pregunta',
+//                 ]
+//             ],
+//         ],
     ],
 
     'validationRules' => [
@@ -143,16 +170,22 @@ return [
             'titulo'    => 'string',
             'artista'   => 'string',
             'año'       => 'int',
-            'curso'     => 'required|int',
+            'curso'     => 'required|int|min:1|max:3',
             'nombre-archivo' => 'required|string',
         ],
-        'preguntas'     => [
-            'pregunta'  => 'required|string',
-            'practica'  => 'boolean',
-            'nivel'     => 'required|int|min:1',
+        'conceptos' => [
+            'palabra'       => "required|string",
+            'definicion'    => "string",
+            'curso'         => "required|int|min:1|max:3",
+            'thumbnail'     => "string",
         ],
-        'respuestas'    => [
-            'respuesta' => 'required|string',
-        ],
+//         'preguntas'     => [
+//             'pregunta'  => 'required|string',
+//             'practica'  => 'boolean',
+//             'nivel'     => 'required|int|min:1',
+//         ],
+//         'respuestas'    => [
+//             'respuesta' => 'required|string',
+//         ],
     ]
 ];

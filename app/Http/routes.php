@@ -57,6 +57,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'as' => 'uploadBulkImages', 'uses' => 'Admin\ImagesController@bulkUpload'
     ]);
 
+    // Conceptos
+    Route::get('/conceptos/create', [
+        'as' => 'createConcepto', 'uses' => 'Admin\ConceptosController@create'
+    ]);
+    Route::get('/conceptos/edit/{id}', [
+        'as' => 'editConcepto', 'uses' => 'Admin\ConceptosController@edit'
+    ]);
+
     // Misc
     Route::post('/images/upload', [
         'as' => 'uploadImage', 'uses' => 'Admin\AdminController@imageUpload'
