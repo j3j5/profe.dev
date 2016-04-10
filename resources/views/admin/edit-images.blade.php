@@ -10,43 +10,22 @@
                 <input type="hidden" name="_method" value="PUT">
 
                 @foreach($form as $name => $options)
-                @if ($name == 'hasMany')
-                    @foreach($options as $hasManyName => $hasManyOptions)
-                    <div class="form-group {{ $errors->has($hasManyName)? 'has-error' : '' }}">
-                        {!! Form::label($hasManyName, $hasManyOptions['label'], [ 'class' => 'control-label' ]) !!}
-                        {!! Form::select("hasMany[{$hasManyName}][]", $hasMany[$hasManyName], $selectedHasMany[$hasManyName], ['multiple' => 'multiple', 'class' => 'form-control']) !!}
-                    </div>
-                    @endforeach
-                @elseif ($name == 'belongsTo')
-                    @foreach($options as $belongsToName => $belongsToOptions)
-                    <div class="form-group {{ $errors->has($belongsToName)? 'has-error' : '' }}">
-                        {!! Form::label($belongsToName, $belongsToOptions['label'], [ 'class' => 'control-label' ]) !!}
-                        {!! Form::select($belongsToOptions['column'], $belongsTo[$belongsToName], $entity->$belongsToOptions['column'], ['class' => 'form-control']) !!}
-                    </div>
-                    @endforeach
-                @elseif ($name == 'belongsToMany')
-                    @foreach($options as $belongsToManyName => $belongsToManyOptions)
-                    <div class="form-group {{ $errors->has($belongsToManyName)? 'has-error' : '' }}">
-                        {!! Form::label($belongsToManyName, $belongsToManyOptions['label'], [ 'class' => 'control-label' ]) !!}
-                        {!! Form::select("belongsToMany[{$belongsToManyName}][]", $belongsToMany[$belongsToManyName], $selectedBelongsToMany[$belongsToManyName], ['multiple' => 'multiple', 'class' => 'form-control']) !!}
-                    </div>
-                    @endforeach
-                @else
-                    <div class="form-group {{ $errors->has($name)? 'has-error' : '' }}">
+                <div class="form-group {{ $errors->has($name)? 'has-error' : '' }}">
                     {!! Form::label($name, $options['label']) !!}
                     @if($options['type'] == 'checkbox')
                         {!! Form::hidden($name, 0) !!}
                         {!! Form::{$options['type']}($name, 1, $entity->$name) !!}
                     @elseif ($options['type'] == 'number')
                         {!! Form::input($options['type'], $name, $entity->$name, ['class'=>'form-control']) !!}
+                    @elseif ($options['type'] == 'select')
+                        {!! Form::{$options['type']}($name, $options['dropdown'], $entity->$name, ['class'=>'form-control']) !!}
                     @else
                         {!! Form::{$options['type']}($name, $entity->$name, ['class'=>'form-control']) !!}
                     @endif
                     @if ($errors->has($name))
                         <p class="help-block">{{ $errors->first($name) }}</p>
                     @endif
-                    </div>
-                @endif
+                </div>
                 @endforeach
 
 

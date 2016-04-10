@@ -11,14 +11,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 @foreach($form as $name => $options)
-                @if ($name == 'hasMany')
-                    @foreach($options as $hasManyName => $hasManyOptions)
-                    <div class="form-group {{ $errors->has($hasManyName)? 'has-error' : '' }}">
-                        {!! Form::label($hasManyName, $hasManyOptions['label'], [ 'class' => 'control-label' ]) !!}
-                        {!! Form::select("hasMany[{$hasManyName}][]", $hasMany[$hasManyName], null, ['multiple' => 'multiple', 'class' => 'form-control']) !!}
-                    </div>
-                    @endforeach
-                @elseif ($name == 'belongsTo')
+                @if ($name == 'belongsTo')
                     @foreach($options as $belongsToName => $belongsToOptions)
                     <div class="form-group {{ $errors->has($belongsToName)? 'has-error' : '' }}">
                         {!! Form::label($belongsToName, $belongsToOptions['label'], [ 'class' => 'control-label' ]) !!}
@@ -32,6 +25,8 @@
                         {!! Form::{$options['type']}($name, 1) !!}
                     @elseif ($options['type'] == 'number')
                         {!! Form::input($options['type'], $name, null, ['class'=>'form-control']) !!}
+                    @elseif ($options['type'] == 'select')
+                        {!! Form::{$options['type']}($name, $options['dropdown'], null, ['class'=>'form-control']) !!}
                     @elseif ($name == 'thumbnail')
                         {!! Form::{$options['type']}($name, null, ['class'=>'form-control', 'readonly' => '']) !!}
                     @else

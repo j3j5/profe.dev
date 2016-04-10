@@ -96,17 +96,40 @@ return [
             'password',
         ],
         'propuestas'    => [
-            'nombre',
-            'contenidos',
-            'curso',
+            'nombre' => [
+                'label' => "Nombre",
+                'type'  => "text",
+            ],
+            'contenidos' => [
+                'label' => "Contenidos de la propuesta",
+                'type'  => "text",
+            ],
+            'curso' => [
+                'label' => 'Curso',
+                'type' => 'select',
+                'dropdown' => ['1' => 'Primero', '2'=> 'Segundo',  '3'=> 'Tercero',],
+            ],
             'thumbnail',
             'archivo',
         ],
-        'images'        => [
-            'titulo',
-            'artista',
-            'año',
-            'curso',
+        'images' => [
+            'titulo' => [
+                'label' => "Título de la imagen",
+                'type'  => "text",
+            ],
+            'artista' => [
+                'label' => "Nombre del artista",
+                'type'  => "text",
+            ],
+            'año' => [
+                'label' => "Año en que se realizó la imagen",
+                'type'  => "text",
+            ],
+            'curso' => [
+                'label' => 'Curso',
+                'type' => 'select',
+                'dropdown' => ['1' => 'Primero', '2'=> 'Segundo',  '3'=> 'Tercero',],
+            ],
             'nombre-archivo',
         ],
         'conceptos'     => [
@@ -120,7 +143,8 @@ return [
             ],
             'curso' => [
                 'label' => 'Curso',
-                'type'  => 'number',
+                'type' => 'select',
+                'dropdown' => ['1' => 'Primero', '2'=> 'Segundo',  '3'=> 'Tercero',],
             ],
             'thumbnail',
         ],

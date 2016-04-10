@@ -16,6 +16,8 @@
                         {!! Form::{$options['type']}($name, 1) !!}
                     @elseif ($options['type'] == 'number')
                         {!! Form::input($options['type'], $name, null, ['class'=>'form-control']) !!}
+                    @elseif ($options['type'] == 'select')
+                        {!! Form::{$options['type']}($name, $options['dropdown'], null, ['class'=>'form-control']) !!}
                     @elseif ($name == 'thumbnail' OR $name == 'archivo')
                         {!! Form::{$options['type']}($name, null, ['class'=>'form-control', 'readonly' => '']) !!}
                     @else
