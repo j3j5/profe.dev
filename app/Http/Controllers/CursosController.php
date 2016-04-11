@@ -20,6 +20,8 @@ class CursosController extends Controller
 
     public function getCurso($curso)
     {
+        view()->share('title', ucfirst($curso));
+
         return view("site.cursos.index", [
             'curso' => $curso,
         ]);
@@ -27,6 +29,8 @@ class CursosController extends Controller
 
     public function getPropuestas($curso)
     {
+        view()->share('title', "Propuestas de " . ucfirst($curso));
+
         Asset::add('css/propuestas.css');
         $propuestas = Propuesta::whereCurso($this->fromNameToNumber($curso))->get();
 
@@ -41,6 +45,8 @@ class CursosController extends Controller
 
     public function getImages($curso)
     {
+        view()->share('title', "Galería de " . ucfirst($curso));
+
         Asset::add("//blueimp.github.io/Gallery/css/blueimp-gallery.min.css");
         Asset::add("css/vendor/bootstrap-image-gallery.min.css");
         Asset::add("//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js");
@@ -56,6 +62,8 @@ class CursosController extends Controller
 
     public function getGlosario($curso)
     {
+        view()->share('title', "Glosario de " . ucfirst($curso));
+
         $secciones_id = Concepto::whereCurso($this->fromNameToNumber($curso))->groupBy('grupo_id')->get(['grupo_id']);
         $secciones = [];
         $secciones_id->each( function($item, $key) use(&$secciones) {
@@ -66,7 +74,6 @@ class CursosController extends Controller
         foreach ($conceptos as $concepto) {
             $secciones[$concepto->grupo_id]['conceptos'][] = $concepto;
         }
-
 
 
         return view("site.cursos.glossary", [
