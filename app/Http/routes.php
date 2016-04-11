@@ -22,6 +22,9 @@ Route::get('auth/login', ['as' => 'loginView', 'uses' => 'Auth\AuthController@ge
 Route::post('auth/login', ['as' => 'loginPost', 'uses' => 'Auth\AuthController@postLogin']);
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
+Route::get('sitemap.xml', ['as' => 'sitemap', 'uses' => 'CursosController@sitemap']);
+Route::get('sitemap/{format}', ['as' => 'sitemap', 'uses' => 'CursosController@sitemap']);
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Admin main page
     Route::get('/', ['as' => 'adminPanel', 'middleware' => 'auth', function () {

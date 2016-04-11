@@ -148,6 +148,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         VivifyIdeas\AdminPanelGenerator\Providers\AdminPanelGeneratorProvider::class,
         Roumen\Asset\AssetServiceProvider::class,
+        Roumen\Sitemap\SitemapServiceProvider::class,
 
     ],
 
