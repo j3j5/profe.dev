@@ -21,7 +21,7 @@
             @foreach($options as $belongsToName => $belongsToOptions)
               <div class="form-group {{ $errors->has($belongsToName)? 'has-error' : '' }}">
                 {!! Form::label($belongsToName, $belongsToOptions['label'], [ 'class' => 'control-label' ]) !!}
-                {!! Form::select($belongsToOptions['column'], $belongsTo[$belongsToName], $entity->$belongsToOptions['column'], ['class' => 'form-control']) !!}
+                {!! Form::select($belongsToOptions['column'], $belongsTo[$belongsToName], $entity->{$belongsToOptions['column']}, ['class' => 'form-control']) !!}
               </div>
             @endforeach
           @else
