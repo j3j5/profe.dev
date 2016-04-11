@@ -56,11 +56,23 @@ class CursosController extends Controller
 
     public function getGlosario($curso)
     {
-        $conceptos = Concepto::whereCurso($this->fromNameToNumber($curso))->get();
+        $secciones_id = Concepto::whereCurso($this->fromNameToNumber($curso))->groupBy('grupo_id')->get(['grupo_id']);
+        $secciones = [];
+        $secciones_id->each( function($item, $key) use(&$secciones) {
+            $secciones[$item->grupo->id] = ['nombre' =>$item->grupo->nombre];
+        });
+
+        $conceptos = Concepto::whereCurso($this->fromNameToNumber($curso))->orderBy('grupo_id')->get();
+        foreach ($conceptos as $concepto) {
+            $secciones[$concepto->grupo_id]['conceptos'][] = $concepto;
+        }
+
+
 
         return view("site.cursos.glossary", [
-            'curso' => $curso,
-            'conceptos' => $conceptos,
+            'secciones' => $secciones,
+            'curso'     => $curso,
+            'empty'     => $conceptos->isEmpty(),
         ]);
     }
 

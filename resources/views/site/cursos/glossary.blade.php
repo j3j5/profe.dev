@@ -4,10 +4,12 @@
 
     @include('site.partials._cursos-header')
 
-    @if(!$conceptos->isEmpty())
+    @if(!$empty)
     <div class="container">
-        <div id="links" class="text-left">
-            @foreach($conceptos as $concepto)
+        @foreach($secciones as $seccion)
+        <div class="row">
+            <h2><span class="label label-default seccion">{{ $seccion['nombre'] }}</span></h2>
+            @foreach($seccion['conceptos'] as $concepto)
             <div class="col-md-6 concepto">
                 <h3><span class="label label-info palabra">{{ $concepto->palabra }}</span></h3>
                 <span class="col-md-8 definicion"> @newlinesToBr($concepto->definicion) </span>
@@ -17,6 +19,7 @@
             </div>
             @endforeach
         </div>
+        @endforeach
     </div>
     @else
     <div class="col-md-offset-4 col-md-4 well bg-info">
