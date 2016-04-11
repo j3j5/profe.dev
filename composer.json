@@ -19,7 +19,8 @@
         "laravel/framework": "5.1.*",
         "vivify-ideas/admin-panel-generator": "dev-master",
 	"iansltx/flysystem-b2": "dev-master",
-        "roumen/asset": "^2.5"
+        "roumen/asset": "^2.5",
+	"roumen/sitemap": "2.6.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
