@@ -9,6 +9,6 @@ class Concepto extends Model
     //
     public function grupo()
     {
-        return $this->belongsTo(GrupoConceptos::class, 'grupo_id');
+        return $this->belongsTo(GrupoConcepto::class, 'grupo_id');
     }
 }

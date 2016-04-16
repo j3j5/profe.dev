@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GrupoConceptos extends Model
+class GrupoConcepto extends Model
 {
     //
     public function conceptos()
