@@ -144,3 +144,52 @@ a:hover {
     text-align: center;
 }
 
+
+@media print {
+    /* All your print styles go here */
+    .body {
+        color: #000;
+        background: #fff;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    @page {
+        margin: 0cm 1.5cm;
+        size: auto;   /* auto is the initial value */
+    }
+
+    h2, h3 {
+        page-break-after: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    ul, img, .row {
+        page-break-inside: avoid;
+    }
+
+    a {
+        font-weight: bolder;
+        text-decoration: none;
+    }
+
+    .seccion {
+        border: none;
+        text-decoration: underline;
+        font-size: 17px;
+    }
+
+    .palabra {
+        border: none;
+        text-decoration: underline;
+        font-size: 15px;
+    }
+
+    .navbar, .footer, .page-header {
+        display: none !important;
+    }
+}
