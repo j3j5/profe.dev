@@ -10,15 +10,16 @@
         <div class="row">
             <h2><span class="label label-default seccion">{{ $seccion['nombre'] }}</span></h2>
             @foreach($seccion['conceptos'] as $concepto)
-            <div class="col-md-6 concepto">
+            <div class="col-md-12 concepto">
                 <h3><span class="label label-info palabra">{{ $concepto->palabra }}</span></h3>
-                <span class="col-md-8 definicion"> @newlinesToBr($concepto->definicion) </span>
+                <span class="definicion"> @newlinesToBr($concepto->definicion) </span>
                 @if($concepto->thumbnail)
-                <span class="col-md-4"> <img style="max-height:120px;" class="" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $concepto->thumbnail}}"></span>
+                <span class="concepto-thumb"> <img style="max-height:120px;" class="" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $concepto->thumbnail}}"></span>
                 @endif
             </div>
             @endforeach
         </div>
+        <hr>
         @endforeach
     </div>
     @else

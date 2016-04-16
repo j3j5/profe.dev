@@ -116,3 +116,18 @@
 .img-thumbnail {
     width: 100%;
 }
+
+.seccion {
+    background-color: #66AB8C;
+}
+
+.palabra {
+    text-decoration: underline;
+    background-color: transparent;
+    color: #6EC4DB;
+    padding: 0;
+}
+
+.concepto-thumb {
+    padding: 0 0 0 15px;
+}

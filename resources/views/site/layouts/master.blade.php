@@ -16,11 +16,11 @@
         <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
         <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
         <link rel="icon" type="image/gif" href="/favicon-194x194.gif" sizes="194x194">
         <link rel="icon" type="image/gif" href="/favicon-96x96.gif" sizes="96x96">
         <link rel="icon" type="image/gif" href="/favicon-32x32.gif" sizes="32x32">
         <link rel="icon" type="image/gif" href="/favicon-16x16.gif" sizes="16x16">
-        <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
         <link rel="manifest" href="/manifest.json">
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#66ab8c">
         <meta name="msapplication-TileColor" content="#da532c">
