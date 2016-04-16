@@ -3,6 +3,9 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Closure;
+use Illuminate\Session\TokenMismatchException;
+
 
 class VerifyCsrfToken extends BaseVerifier
 {
@@ -14,4 +17,26 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         //
     ];
+
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     *
+     * @throws \Illuminate\Session\TokenMismatchException
+     */
+    public function handle($request, Closure $next)
+    {
+        if (!$request->is('auth/*') && !$request->is('admin*')) {
+            return $next($request);
+        }
+
+        if ($this->isReading($request) || $this->shouldPassThrough($request) || $this->tokensMatch($request)) {
+            return $this->addCookieToResponse($request, $next($request));
+        }
+
+        throw new TokenMismatchException;
+    }
 }
