@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel as Model;
 
 class Image extends Model
 {
+
+    protected $guarded = ['created_at'];
+
     //
 }

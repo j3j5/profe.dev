@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel as Model;
 
 class Concepto extends Model
 {
+    protected $guarded = ['created_at'];
+
     //
     public function grupo()
     {
