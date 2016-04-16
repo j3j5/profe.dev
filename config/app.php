@@ -149,6 +149,7 @@ return [
         VivifyIdeas\AdminPanelGenerator\Providers\AdminPanelGeneratorProvider::class,
         Roumen\Asset\AssetServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
+        JDare\Acetone\AcetoneServiceProvider::class,
 
     ],
 
