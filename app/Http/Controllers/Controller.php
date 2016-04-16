@@ -40,10 +40,10 @@ abstract class Controller extends BaseController
             $sitemap->add(route('Home'), $last_modified->toAtomString(), '1.0', 'weekly');
             // Cursos
             foreach (['primero', 'segundo', 'tercero'] as $curso) {
-                $sitemap->add(route("curso", [$curso]), $last_modified->toAtomString(), '1.0', 'monthly');
-                $sitemap->add(route("Propuestas", [$curso]), $last_modified->toAtomString(), '1.0', 'monthly');
-                $sitemap->add(route("Gallery", [$curso]), $last_modified->toAtomString(), '1.0', 'monthly');
-                $sitemap->add(route("Glossary", [$curso]), $last_modified->toAtomString(), '1.0', 'monthly');
+                $sitemap->add(route("curso", [$curso]), $last_modified->toAtomString(), '1.0', 'weekly');
+                $sitemap->add(route("Propuestas", [$curso]), $last_modified->toAtomString(), '1.0', 'weekly');
+                $sitemap->add(route("Gallery", [$curso]), $last_modified->toAtomString(), '1.0', 'weekly');
+                $sitemap->add(route("Glossary", [$curso]), $last_modified->toAtomString(), '1.0', 'weekly');
             }
 
         }
