@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Asset;
 use Blade;
+use Storage;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('newlinesToBr', function ($text) {
             return "<?php echo str_replace(\"\n\", \"</br>\", $text); ?>";
         });
+
+        $this->buildCacheBuster();
+
+        Asset::setCachebuster(storage_path('assets/assets.json'));
 
         Asset::$secure = request()->secure();
         // CSS Files
@@ -46,5 +51,29 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    private function buildCacheBuster()
+    {
+        $files = [
+            "css/vendor/bootstrap.min.simplex.css",
+            "css/global.css",
+            "css/home.css",
+            "css/cursos.css",
+            "css/propuestas.css",
+            "css/vendor/bootstrap-image-gallery.min.css",
+            "js/vendor/bootstrap-image-gallery.min.js",
+            "css/dropzone/dropzone.min.css",
+            "js/dropzone/dropzone.min.js",
+            "css/propuestas.css",
+            "css/propuestas.css",
+            "css/propuestas.css",
+        ];
+        $assets = [];
+        foreach ($files as $file) {
+            $assets[$file] = md5(public_path($file));
+        }
+
+        Storage::put("assets/assets.json", json_encode($assets, JSON_UNESCAPED_SLASHES));
     }
 }
