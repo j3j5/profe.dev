@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Acetone;
 
 class BaseModel extends Model
 {
@@ -15,14 +16,14 @@ class BaseModel extends Model
 
         self::saved( function($concepto) {
             if(app()->environment("production")) {
-                // Ban varnish cache!!
+                Acetone::banMany("/curso*");
             }
             \Log::info("Model created/updated, varnish cache deleted");
         });
 
         self::deleted( function($concepto) {
             if(app()->environment("production")) {
-                // Ban varnish cache!!
+                Acetone::banMany("/curso*");
             }
             \Log::info("Model deleted, varnish cache deleted");
         });
