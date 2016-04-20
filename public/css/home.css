@@ -2,9 +2,6 @@
 /* GLOBAL STYLES
 -------------------------------------------------- */
 
-/* @import url(https://fonts.googleapis.com/css?family=Crafty+Girls); */
-@import url(https://fonts.googleapis.com/css?family=Gloria+Hallelujah);
-@import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
 
 /* Padding below the footer and lighter body text */
 body > .container-fluid {
@@ -47,7 +44,7 @@ body > .container-fluid {
 }
 
 .carousel-caption .btn {
-/*     color: white; */
+    font-family: "Oxygen";
     text-shadow: 1px 1px 0 gray;
 }
 

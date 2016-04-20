@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-@import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
-
 .page-header {
     margin: 0px 0px 20px 0px;
     font-family: 'Covered By Your Grace', bold;
@@ -119,9 +117,13 @@
 
 .seccion {
     background-color: #66AB8C;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 700;
 }
 
 .palabra {
+    font-family: 'Oxygen Bold', sans-serif;
+/*     font-weight: 700; */
     text-decoration: underline;
     background-color: transparent;
     color: #6EC4DB;

@@ -22,13 +22,16 @@ class AppServiceProvider extends ServiceProvider
 
         $this->buildCacheBuster();
 
-        Asset::setCachebuster(storage_path('assets/assets.json'));
+        Asset::setCachebuster(storage_path('app/assets/assets.json'));
 
         Asset::$secure = request()->secure();
         // CSS Files
         Asset::add('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
-        Asset::add('/css/vendor/bootstrap.min.simplex.css');
-        Asset::add('/css/global.css');
+        Asset::add('css/vendor/bootstrap.min.simplex.css');
+        Asset::addStyle(file_get_contents(public_path('css/global.css')));
+
+        Asset::add('//fonts.googleapis.com/css?family=Oxygen:400,700');
+        Asset::add('//fonts.googleapis.com/css?family=Covered+By+Your+Grace');
 
         // JS Files
         Asset::add('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js');
@@ -73,6 +76,7 @@ class AppServiceProvider extends ServiceProvider
         foreach ($files as $file) {
             $assets[$file] = md5(public_path($file));
         }
+        $files = NULL;
 
         Storage::put("assets/assets.json", json_encode($assets, JSON_UNESCAPED_SLASHES));
     }

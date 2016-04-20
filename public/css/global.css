@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-@import url(https://fonts.googleapis.com/css?family=Oxygen);
-@import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
-
 :root{
     --salmon:#FA7C92;
     --rain:#6EC4DB;
@@ -38,7 +35,9 @@ a:hover {
 
 .navbar-default {
     background-color: #66AB8C; /* leaf */
-    font-weight: bold;
+    font-family: 'Covered By Your Grace';
+    font-size: 2em;
+/*     font-weight: bold; */
     border: none;
 }
 
