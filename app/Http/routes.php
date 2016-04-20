@@ -71,6 +71,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'as' => 'editConcepto', 'uses' => 'Admin\ConceptosController@edit'
     ]);
 
+    // Megustas
+    Route::get('/me_gustas', [
+        'as' => 'adminMegustas', 'uses' => 'Admin\MegustasController@index'
+    ]);
+    Route::get('/me_gustas/create', [
+        'as' => 'createMeGusta', 'uses' => 'Admin\MegustasController@create'
+    ]);
+    Route::get('/me_gustas/edit/{id}', [
+        'as' => 'editMegusta', 'uses' => 'Admin\MegustasController@edit'
+    ]);
+
     // Misc
     Route::post('/images/upload', [
         'as' => 'uploadImage', 'uses' => 'Admin\AdminController@imageUpload'
@@ -86,5 +97,6 @@ Route::group(['prefix' => 'curso/{curso}'], function () {
     Route::get('/propuestas', ['as' => 'Propuestas', 'uses' => 'CursosController@getPropuestas']);
     Route::get('/galeria', ['as' => 'Gallery', 'uses' => 'CursosController@getImages']);
     Route::get('/glosario', ['as' => 'Glossary', 'uses' => 'CursosController@getGlosario']);
+    Route::get('/megusta', ['as' => 'Megustas', 'uses' => 'CursosController@getLikes']);
 });
 // Tests

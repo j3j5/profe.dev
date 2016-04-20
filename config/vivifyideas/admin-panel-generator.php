@@ -5,7 +5,7 @@ return [
 
     'authMiddleware' => 'auth',
 
-    'tables' => ['propuestas', 'images', 'grupo_conceptos', 'conceptos', ],
+    'tables' => ['propuestas', 'images', 'grupo_conceptos', 'conceptos', 'me_gustas'],
 
     'rowsPerPage' => 15,
 
@@ -17,6 +17,7 @@ return [
         'images'        => ['titulo', 'artista', 'año', 'curso', 'nombre-archivo', 'updated_at'],
         'conceptos'     => ['palabra', 'definicion', 'curso', 'grupo','thumbnail', 'updated_at'],
         'grupo_conceptos' => ['nombre', 'created_at'],
+        'me_gustas'     => ['titulo', 'autor', 'curso', 'imagen', 'featured'],
 //         'preguntas'     => ['pregunta', 'practica', 'updated_at'],
 //         'respuestas'    => ['respuesta', 'updated_at'],
     ],
@@ -77,6 +78,12 @@ return [
             ],
         ],
         'grupo_conceptos' => [],
+        'me_gustas' => [
+            'curso' => [
+                'label' => 'Curso',
+                'type'  => 'number',
+            ],
+        ],
 //         'preguntas' => [
 //             'practica'  => [
 //                 'label' => '¿Es de práctica?',
@@ -160,6 +167,26 @@ return [
         'grupo_conceptos' => [
             'nombre',
         ],
+        'me_gustas' => [
+             'titulo' => [
+                'label' => "Título de la imagen",
+                'type'  => "text",
+            ],
+            'autor' => [
+                'label' => "Nombre del artista",
+                'type'  => "text",
+            ],
+            'curso' => [
+                'label' => 'Curso',
+                'type' => 'select',
+                'dropdown' => ['1' => 'Primero', '2'=> 'Segundo',  '3'=> 'Tercero',],
+            ],
+            'featured' => [
+                'label' => "¿Mostrar en portada?",
+                'type'  => "checkbox",
+            ],
+            'imagen',
+        ],
 //         'preguntas'     => [
 //             'pregunta',
 //             'practica' => [
@@ -217,6 +244,10 @@ return [
         ],
         'grupo_conceptos' => [
             'nombre'    => 'required|string',
+        ],
+        'me_gustas' => [
+            'titulo'    => 'string',
+            'imagen'    => 'required|string',
         ],
 //         'preguntas'     => [
 //             'pregunta'  => 'required|string',

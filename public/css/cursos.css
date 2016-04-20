@@ -133,3 +133,15 @@
 .concepto-thumb {
     padding: 0 0 0 15px;
 }
+
+/* ME GUSTAS */
+
+.megusta-gallery {
+    height:200px;
+    margin: 5px 0px;
+    display: inline-block;
+}
+
+.megusta-gallery img {
+    max-height:100%;
+}

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Propuesta;
 use App\Models\Image;
 use App\Models\Concepto;
+use App\Models\MeGusta;
 use Asset;
 
 class CursosController extends Controller
@@ -24,6 +25,7 @@ class CursosController extends Controller
         view()->share('title', ucfirst($curso));
 
         return view("site.cursos.index", [
+            'cursoNr' => $this->fromNameToNumber($curso),
             'curso' => $curso,
         ]);
     }
@@ -48,10 +50,7 @@ class CursosController extends Controller
     {
         view()->share('title', "Galería de " . ucfirst($curso));
 
-        Asset::add("//blueimp.github.io/Gallery/css/blueimp-gallery.min.css");
-        Asset::add("css/vendor/bootstrap-image-gallery.min.css");
-        Asset::add("//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js");
-        Asset::add("js/vendor/bootstrap-image-gallery.min.js");
+        $this->addGalleryAssets();
 
         $images = Image::whereCurso($this->fromNameToNumber($curso))->get();
 
@@ -82,6 +81,22 @@ class CursosController extends Controller
             'curso'     => $curso,
             'empty'     => $conceptos->isEmpty(),
         ]);
+    }
+
+    public function getLikes($curso)
+    {
+        view()->share('title', "\"Me Gustas\" de " . ucfirst($curso));
+        $this->addGalleryAssets();
+
+        $titles = MeGusta::whereCurso($this->fromNameToNumber($curso))->groupBy('titulo')->distinct()->get();
+        $likes = MeGusta::whereCurso($this->fromNameToNumber($curso))->get();
+
+        return view('site.cursos.megustas', [
+            'curso'     => $curso,
+            'titles'    => $titles,
+            'likes'     => $likes,
+        ]);
+
     }
 
     private function fromNumberToName($curso)
@@ -118,5 +133,13 @@ class CursosController extends Controller
                 break;
         }
         return $number;
+    }
+
+    private function addGalleryAssets()
+    {
+        Asset::add("//blueimp.github.io/Gallery/css/blueimp-gallery.min.css");
+        Asset::add("css/vendor/bootstrap-image-gallery.min.css");
+        Asset::add("//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js");
+        Asset::add("js/vendor/bootstrap-image-gallery.min.js");
     }
 }

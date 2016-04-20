@@ -1,5 +1,5 @@
 @extends('site.layouts.master')
-
+<?php use App\Models\MeGusta; ?>
 @section('content')
 
     @include('site.partials._cursos-header')
@@ -27,5 +27,16 @@
                 </div>
             </a>
         </div> <!--  content row    -->
+        @if(MeGusta::whereCurso($cursoNr)->exists())
+        <div class="text-center row">
+            <a href="{{ route("Megustas", [$curso]) }}">
+                <div class="col-md-offset-4 col-md-4 container-seccion">
+                    <div class="curso-seccion">
+                        <p>Me Gusta</p>
+                    </div>
+                </div>
+            </a>
+        </div> <!--  content row    -->
+        @endif
     </div> <!--  container    -->
 @stop
