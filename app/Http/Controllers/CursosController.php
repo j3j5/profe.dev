@@ -17,7 +17,7 @@ class CursosController extends Controller
     public function __construct(Request $request)
     {
         parent::__construct();
-        Asset::add('css/cursos.css');
+        Asset::addStyle(file_get_contents(public_path('css/cursos.css')));
     }
 
     public function getCurso($curso)
@@ -141,5 +141,6 @@ class CursosController extends Controller
         Asset::add("css/vendor/bootstrap-image-gallery.min.css");
         Asset::add("//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js");
         Asset::add("js/vendor/bootstrap-image-gallery.min.js");
+        Asset::addScript(file_get_contents(public_path("js/gallery.js")));
     }
 }
