@@ -51,6 +51,8 @@
                             <td class="admin-row-thumb"><img class="admin-thumb" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/images/galeria/{{ $row->curso }}/{{ $row->$col }}"></td>
                             @elseif($tableName == 'propuestas' && $col == 'thumbnail')
                             <td class="admin-row-thumb">@if($row->$col)<img class="admin-thumb" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $row->$col}}">@endif</td>
+                            @elseif($tableName == 'me_gustas' && $col == 'imagen')
+                            <td class="admin-row-thumb">@if($row->$col)<img class="admin-thumb" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $row->$col}}">@endif</td>
                             @else
                             <td class="admin-row">{{ str_limit($row->$col, 35) }}</td>
                             @endif
@@ -75,7 +77,7 @@
                 </div>
             @endif
         </div>
-        @if($tableName == 'images')
+        @if(in_array($tableName, ['images']))
         @include('admin.partials._bulkImages-uploadZone')
         @endif
     </div>

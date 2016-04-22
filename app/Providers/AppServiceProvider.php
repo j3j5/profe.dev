@@ -68,13 +68,10 @@ class AppServiceProvider extends ServiceProvider
             "js/vendor/bootstrap-image-gallery.min.js",
             "css/dropzone/dropzone.min.css",
             "js/dropzone/dropzone.min.js",
-            "css/propuestas.css",
-            "css/propuestas.css",
-            "css/propuestas.css",
         ];
         $assets = [];
         foreach ($files as $file) {
-            $assets[$file] = md5(public_path($file));
+            $assets[$file] = md5(file_get_contents(public_path($file)));
         }
         $files = NULL;
 

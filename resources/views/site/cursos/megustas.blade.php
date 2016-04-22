@@ -20,7 +20,7 @@
     @include('site.partials._curso-gallery')
     @else
     <div class="col-md-offset-4 col-md-4 well bg-info">
-        <p class="">Lo siento, aún no hay ninguna imagen disponible para este curso.</p>
+        <p class="">Lo siento, aún no hay ningún <i>me gusta</i> en este curso.</p>
     </div>
     @endif
 

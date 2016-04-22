@@ -93,7 +93,7 @@ class CursosController extends Controller
 
         return view('site.cursos.megustas', [
             'curso'     => $curso,
-            'titles'    => $titles,
+            'titulos'    => $titles,
             'likes'     => $likes,
         ]);
 

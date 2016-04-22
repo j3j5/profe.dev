@@ -22,10 +22,11 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left prev">
                             <i class="glyphicon glyphicon-chevron-left"></i>
-                            Previous
+                            Anterior
                         </button>
-                        <button type="button" class="btn btn-primary next">
-                            Next
+                        <span id="gallery-author">blabla</span>
+                        <button type="button" class="btn btn-primary pull-right next">
+                            Siguiente
                             <i class="glyphicon glyphicon-chevron-right"></i>
                         </button>
                     </div>

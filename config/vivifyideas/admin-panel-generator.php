@@ -17,7 +17,7 @@ return [
         'images'        => ['titulo', 'artista', 'año', 'curso', 'nombre-archivo', 'updated_at'],
         'conceptos'     => ['palabra', 'definicion', 'curso', 'grupo','thumbnail', 'updated_at'],
         'grupo_conceptos' => ['nombre', 'created_at'],
-        'me_gustas'     => ['titulo', 'autor', 'curso', 'imagen', 'featured'],
+        'me_gustas'     => ['titulo', 'autor', 'curso', 'imagen', 'featured', 'updated_at'],
 //         'preguntas'     => ['pregunta', 'practica', 'updated_at'],
 //         'respuestas'    => ['respuesta', 'updated_at'],
     ],
@@ -79,6 +79,11 @@ return [
         ],
         'grupo_conceptos' => [],
         'me_gustas' => [
+            'autor' => [
+                'label'     => 'Nombre',
+                'type'      => 'text',
+                'compare'   => 'LIKE',
+            ],
             'curso' => [
                 'label' => 'Curso',
                 'type'  => 'number',

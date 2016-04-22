@@ -18,7 +18,7 @@
                         {!! Form::input($options['type'], $name, null, ['class'=>'form-control']) !!}
                     @elseif ($options['type'] == 'select')
                         {!! Form::{$options['type']}($name, $options['dropdown'], null, ['class'=>'form-control']) !!}
-                    @elseif ( $name == 'nombre-archivo')
+                    @elseif ( $name == 'imagen')
                         {!! Form::{$options['type']}($name, null, ['class'=>'form-control', 'readonly' => '']) !!}
                     @else
                         {!! Form::{$options['type']}($name, null, ['class'=>'form-control']) !!}
