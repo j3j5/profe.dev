@@ -41,6 +41,11 @@ a:hover {
     border: none;
 }
 
+.admin-navbar {
+    font-family: 'Oxygen' ;
+    font-size: 15px;
+}
+
 .navbar-default .navbar-brand img {
     max-height: 300%;
 }
