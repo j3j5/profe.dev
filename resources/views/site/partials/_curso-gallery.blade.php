@@ -24,7 +24,7 @@
                             <i class="glyphicon glyphicon-chevron-left"></i>
                             Anterior
                         </button>
-                        <span id="gallery-author">blabla</span>
+                        <span id="gallery-author"></span>
                         <button type="button" class="btn btn-primary pull-right next">
                             Siguiente
                             <i class="glyphicon glyphicon-chevron-right"></i>
