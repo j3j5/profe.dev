@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Be right back.</title>
+        <title>Prueba mañana.</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -40,7 +40,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Be right back.</div>
+                <div style="margin-top: 35px;" class="title">Tenemos unos pequeños problemas técnicos. Volveremos pronto.</div>
+		<img src="/images/technical-dificulties.jpg" class="img-responsive"/>
             </div>
         </div>
     </body>
