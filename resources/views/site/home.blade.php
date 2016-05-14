@@ -3,6 +3,12 @@
 @section('content')
     <div id="mainContainer" class="container-fluid">
 
+        <div class="concurso img-circle col-md-offset-5 col-md-2">
+            <a href="https://f001.backblaze.com/file/profemariana/uploads/CONCURSO+LOGOTIPO.pdf">
+                <span class="concurso-text">Concurso</br>&nbsp;Logo</span>
+            </a>
+        </div>
+
         @include('site.partials._carousel')
 
         <div id="mark" class="container marketing" >

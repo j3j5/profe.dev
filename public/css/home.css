@@ -16,6 +16,7 @@ body > .container-fluid {
 .carousel {
     height: 480px;
     margin-bottom: 60px;
+    margin-top: 50px;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -101,6 +102,36 @@ body > .container-fluid {
     margin:auto;
     background-color: #FFF7C0; /* buttermilk */
     border: 1px solid black;
+}
+
+.concurso {
+    width: 200px;
+    height: 100px;
+    background-color: #FFF7C0; /* buttermilk */
+    border: 2px solid black;
+    text-align: center;
+    -webkit-transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    -o-transform: rotate(-10deg);
+    writing-mode: lr-tb;
+    margin-top: -60px;
+}
+
+.concurso-text {
+    font-family: "Gloria Hallelujah";
+    font-weight: 700;
+    font-size: 2.5em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100px;
+    line-height: 23px;
+    margin-left: -11px;
+    text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
 }
 
 /* RESPONSIVE CSS

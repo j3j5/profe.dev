@@ -26,6 +26,15 @@
                     </div>
                 </div>
             </a>
+            @if(request()->is("curso/segundo"))
+            <a href="https://f001.backblaze.com/file/profemariana/uploads/SIMULACROS+2%C2%B0.pdf">
+                <div class="col-md-offset-4 col-md-4 container-seccion">
+                    <div class="curso-seccion">
+                        <p>Simulacros</p>
+                    </div>
+                </div>
+            </a>
+            @endif
         </div> <!--  content row    -->
         @if(MeGusta::whereCurso($cursoNr)->exists())
         <div class="text-center row">

@@ -28,6 +28,11 @@
             @endif
             </ul>
             <ul class="nav navbar-nav navbar-right ">
+            @if(!request()->is('/'))
+            <li><a href="https://f001.backblaze.com/file/profemariana/uploads/CONCURSO+LOGOTIPO.pdf">
+            Concurso Logo
+            </a></li>
+            @endif
             @if(Auth::check())
                 <li>
                     <div class="form-group navbar-form navbar-right home-login">
