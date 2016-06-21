@@ -24,7 +24,8 @@ class AppServiceProvider extends ServiceProvider
 
         Asset::setCachebuster(storage_path('app/assets/assets.json'));
 
-        Asset::$secure = request()->secure();
+        Asset::$secure = true;
+
         // CSS Files
         Asset::add('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
         Asset::add('css/vendor/bootstrap.min.simplex.css');
