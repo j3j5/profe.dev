@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class EnforceSecureConnection
+class ValidProxies
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,9 @@ class EnforceSecureConnection
      */
     public function handle($request, Closure $next)
     {
-        if (!request()->secure() && !app()->environment('local')) {
-            return redirect()->secure($request->getRequestUri());
-        }
-
+        // Proxies
+        $request->setTrustedProxies([ $request->getClientIp() ]);
+        
         return $next($request);
     }
 }
