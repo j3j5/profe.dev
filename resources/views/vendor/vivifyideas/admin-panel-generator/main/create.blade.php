@@ -9,7 +9,6 @@
 
       <form method="POST" action="/{{ packageConfig('prefix') }}/{{ $tableName }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
         @foreach($form as $name => $options)
           @if ($name == 'hasMany')
             @foreach($options as $hasManyName => $hasManyOptions)

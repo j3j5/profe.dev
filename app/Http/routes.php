@@ -82,6 +82,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'as' => 'editMegusta', 'uses' => 'Admin\MegustasController@edit'
     ]);
 
+    // Examenes
+    Route::get('/examens/create', [
+        'as' => 'createExamenes', 'uses' => 'Admin\ExamenesController@create'
+    ]);
+    Route::get('/examens/edit/{id}', [
+        'as' => 'editExamenes', 'uses' => 'Admin\ExamenesController@edit'
+    ]);
+    Route::post('/examens/upload', [
+        'as' => 'uploadExamen', 'uses' => 'Admin\ExamenesController@upload'
+    ]);
+
     // Misc
     Route::post('/images/upload', [
         'as' => 'uploadImage', 'uses' => 'Admin\AdminController@imageUpload'
@@ -98,5 +109,6 @@ Route::group(['prefix' => 'curso/{curso}'], function () {
     Route::get('/galeria', ['as' => 'Gallery', 'uses' => 'CursosController@getImages']);
     Route::get('/glosario', ['as' => 'Glossary', 'uses' => 'CursosController@getGlosario']);
     Route::get('/megusta', ['as' => 'Megustas', 'uses' => 'CursosController@getLikes']);
+    Route::get('/examenes', ['as' => 'Examenes', 'uses' => 'CursosController@getExamenes']);
 });
 // Tests

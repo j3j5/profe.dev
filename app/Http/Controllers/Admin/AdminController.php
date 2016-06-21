@@ -34,6 +34,9 @@ class AdminController extends Controller
         $this->createAddAssets();
         $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('create', [$this->model]);
         $data = $parent_view->getData();
+        if(isset($this->uploadRoute) && !empty($this->uploadRoute)) {
+            $data = array_merge($data, ['uploadRoute' => $this->uploadRoute]);
+        }
         return view("admin.{$this->model}.create", $data);
     }
 

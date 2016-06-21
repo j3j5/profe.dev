@@ -5,7 +5,7 @@ return [
 
     'authMiddleware' => 'auth',
 
-    'tables' => ['propuestas', 'images', 'grupo_conceptos', 'conceptos', 'me_gustas'],
+    'tables' => ['propuestas', 'images', 'grupo_conceptos', 'conceptos', 'me_gustas', 'examens'],
 
     'rowsPerPage' => 15,
 
@@ -18,6 +18,7 @@ return [
         'conceptos'     => ['palabra', 'definicion', 'curso', 'grupo','thumbnail', 'updated_at'],
         'grupo_conceptos' => ['nombre', 'created_at'],
         'me_gustas'     => ['titulo', 'autor', 'curso', 'imagen', 'featured', 'updated_at'],
+        'examens'       => ['nombre', 'trimestre', 'thumbnail', 'archivo', 'curso', 'updated_at',],
 //         'preguntas'     => ['pregunta', 'practica', 'updated_at'],
 //         'respuestas'    => ['respuesta', 'updated_at'],
     ],
@@ -87,6 +88,21 @@ return [
             'curso' => [
                 'label' => 'Curso',
                 'type'  => 'number',
+            ],
+        ],
+        'examens' => [
+            'nombre' => [
+                'label'     => 'Nombre',
+                'type'      => 'text',
+                'compare'   => 'LIKE',
+            ],
+            'trimestre' => [
+                'label'     => 'Trimestre',
+                'type'      => 'number',
+            ],
+            'curso' => [
+                'label'     => 'Curso',
+                'type'      => 'number',
             ],
         ],
 //         'preguntas' => [
@@ -192,6 +208,24 @@ return [
             ],
             'imagen',
         ],
+        'examens'    => [
+            'nombre' => [
+                'label' => "Nombre",
+                'type'  => "text",
+            ],
+            'trimestre' => [
+                'label' => 'Trimestre',
+                'type' => 'select',
+                'dropdown' => ['1' => 'Primer', '2'=> 'Segundo',  '3'=> 'Tercer',],
+            ],
+            'curso' => [
+                'label' => 'Curso',
+                'type' => 'select',
+                'dropdown' => ['1' => 'Primero', '2'=> 'Segundo',  '3'=> 'Tercero',],
+            ],
+            'thumbnail',
+            'archivo',
+        ],
 //         'preguntas'     => [
 //             'pregunta',
 //             'practica' => [
@@ -253,6 +287,13 @@ return [
         'me_gustas' => [
             'titulo'    => 'string',
             'imagen'    => 'required|string',
+        ],
+        'examens'       => [
+            'nombre'    => 'required|string',
+            'trimestre' => 'int',
+            'thumbnail' => 'string',
+            'archivo'   => 'string',
+            'curso'     => 'required|int',
         ],
 //         'preguntas'     => [
 //             'pregunta'  => 'required|string',

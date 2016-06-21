@@ -1,5 +1,7 @@
 @extends('site.layouts.master')
-<?php use App\Models\MeGusta; ?>
+<?php use App\Models\MeGusta;
+use App\Models\Examen;
+?>
 @section('content')
 
     @include('site.partials._cursos-header')
@@ -26,6 +28,15 @@
                     </div>
                 </div>
             </a>
+            @if(Examen::whereCurso($cursoNr)->exists())
+            <a href="{{ route("Examenes", [$curso]) }}">
+                <div class="col-md-4 container-seccion">
+                    <div class="curso-seccion">
+                        <p>Examenes</p>
+                    </div>
+                </div>
+            </a>
+            @endif
             @if(request()->is("curso/segundo"))
             <a href="https://f001.backblaze.com/file/profemariana/uploads/SIMULACROS+2%C2%B0.pdf">
                 <div class="col-md-offset-4 col-md-4 container-seccion">
@@ -35,9 +46,7 @@
                 </div>
             </a>
             @endif
-        </div> <!--  content row    -->
-        @if(MeGusta::whereCurso($cursoNr)->exists())
-        <div class="text-center row">
+            @if(MeGusta::whereCurso($cursoNr)->exists())
             <a href="{{ route("Megustas", [$curso]) }}">
                 <div class="col-md-offset-4 col-md-4 container-seccion">
                     <div class="curso-seccion">

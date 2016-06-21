@@ -10,10 +10,10 @@ use Asset;
 use iansltx\B2Client\Client;
 use iansltx\B2Client\Credentials;
 
-class PropuestasController extends AdminController
+class ExamenesController extends AdminController
 {
-    protected $model = 'propuestas';
-    protected $uploadRoute = 'uploadPropuesta';
+    protected $model = 'examens';
+    protected $uploadRoute = 'uploadExamen';
 
     protected function createAddAssets() {
         parent::createAddAssets();

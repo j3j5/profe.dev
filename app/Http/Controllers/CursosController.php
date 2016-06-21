@@ -10,6 +10,7 @@ use App\Models\Propuesta;
 use App\Models\Image;
 use App\Models\Concepto;
 use App\Models\MeGusta;
+use App\Models\Examen;
 use Asset;
 
 class CursosController extends Controller
@@ -97,6 +98,22 @@ class CursosController extends Controller
             'likes'     => $likes,
         ]);
 
+    }
+
+    public function getExamenes($curso)
+    {
+        view()->share('title', "Examenes de " . ucfirst($curso));
+
+        Asset::add('css/propuestas.css');
+        $examenes = Examen::whereCurso($this->fromNameToNumber($curso))->get();
+
+//         foreach ($examenes as &$examen) {
+//             $examen->contenidos = explode(",", $propuesta->contenidos);
+//         }
+        return view("site.cursos.propuestas", [
+        'curso' => $curso,
+        'propuestas' => $examenes,
+        ]);
     }
 
     private function fromNumberToName($curso)
