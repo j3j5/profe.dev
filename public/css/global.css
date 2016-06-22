@@ -68,6 +68,7 @@ a:hover {
     /* Set the fixed height of the footer here */
     height: 60px;
     background-color: #66AB8C; /* leaf */
+    left: 0;
 }
 
 .footer .container .text-muted {

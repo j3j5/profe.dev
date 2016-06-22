@@ -7,6 +7,7 @@
                 @if(in_array($crumb, ["primero", "segundo", "tercero"]))
                 <a href="{{ route("curso", [$curso]) }}">{{ $crumb }}</a>
                 @else
+                <?php if($crumb == 'examenes') { $crumb = "exámenes";  } ?>
                 <a href="{{ route("curso", [$curso, $crumb]) }}">{{ $crumb }}</a>
                 @endif
             </li>

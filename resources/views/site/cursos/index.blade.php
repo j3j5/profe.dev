@@ -32,7 +32,7 @@ use App\Models\Examen;
             <a href="{{ route("Examenes", [$curso]) }}">
                 <div class="col-md-4 container-seccion">
                     <div class="curso-seccion">
-                        <p>Examenes</p>
+                        <p>Exámenes</p>
                     </div>
                 </div>
             </a>
