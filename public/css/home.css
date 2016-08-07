@@ -45,8 +45,10 @@ body > .container-fluid {
 }
 
 .carousel-caption .btn {
-    font-family: "Oxygen";
-    text-shadow: 1px 1px 0 gray;
+    font-family: "Gloria Hallelujah";
+    font-weight: bold;
+/*     text-shadow: 1px 1px 0 gray; */
+    color: rgb(68, 68, 68);
 }
 
 /* MARKETING CONTENT
