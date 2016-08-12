@@ -111,8 +111,8 @@ class CursosController extends Controller
 //             $examen->contenidos = explode(",", $propuesta->contenidos);
 //         }
         return view("site.cursos.propuestas", [
-        'curso' => $curso,
-        'propuestas' => $examenes,
+            'curso' => $curso,
+            'propuestas' => $examenes,
         ]);
     }
 
