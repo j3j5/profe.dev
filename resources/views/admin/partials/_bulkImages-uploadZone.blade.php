@@ -4,7 +4,7 @@
                 <form id="images-dropzone" action="{{ route("uploadBulkImages") }}" class="dropzone">
                     {!! Form::select('curso', ['1' => 'Primero', '2'=> 'Segundo',  '3'=> 'Tercero',], ['class'=>'form-control']) !!}
                     {!! csrf_field() !!}
-                    <div class="dz-message"><span><i class="fa fa-cloud-upload"></i>{{ packageTranslation('vivify.uploadDropZone') }}</span></div>
+                    <div class="dz-message"><span><i class="fa fa-cloud-upload"></i>{{ trans('vivify.uploadDropZone') }}</span></div>
                 </form>
             </div>
         </div>

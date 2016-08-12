@@ -25,14 +25,14 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('index', [$this->model, $request]);
+        $parent_view = app()->make(MainController::class)->callAction('index', [$this->model, $request]);
         return $parent_view;
     }
 
     public function create(Request $request)
     {
         $this->createAddAssets();
-        $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('create', [$this->model]);
+        $parent_view = app()->make(MainController::class)->callAction('create', [$this->model]);
         $data = $parent_view->getData();
         if(isset($this->uploadRoute) && !empty($this->uploadRoute)) {
             $data = array_merge($data, ['uploadRoute' => $this->uploadRoute]);
@@ -43,7 +43,7 @@ class AdminController extends Controller
     public function edit($id, Request $request)
     {
         $this->createAddAssets();
-        $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('edit', [$this->model, $id]);
+        $parent_view = app()->make('MainController')->callAction('edit', [$this->model, $id]);
         $data = $parent_view->getData();
         if(isset($this->uploadRoute) && !empty($this->uploadRoute)) {
             $data = array_merge($data, ['uploadRoute' => $this->uploadRoute]);

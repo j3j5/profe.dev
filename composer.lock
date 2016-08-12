@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "07ad8cd439decb4e15d409a426b6e4f2",
-    "content-hash": "c003586639b04b9e0a7da279c7a630c8",
+    "hash": "ffbf6a6403a37b8f729f9a29479c14dd",
+    "content-hash": "e9349bf6e61703ab56def9dd2906fa19",
     "packages": [
         {
             "name": "ademes/acetone",
@@ -2070,53 +2070,6 @@
             "time": "2016-07-26 08:03:56"
         },
         {
-            "name": "vivify-ideas/admin-panel-generator",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/j3j5/admin-panel-generator.git",
-                "reference": "ed3033e96a354b9004d93c38c889ba1f7a3a4833"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/j3j5/admin-panel-generator/zipball/ed3033e96a354b9004d93c38c889ba1f7a3a4833",
-                "reference": "ed3033e96a354b9004d93c38c889ba1f7a3a4833",
-                "shasum": ""
-            },
-            "require": {
-                "laravelcollective/html": "5.*",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "VivifyIdeas\\AdminPanelGenerator\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "VivifyIdeas",
-                    "email": "dev@vivifyideas.com",
-                    "homepage": "http://vivifyideas.com"
-                }
-            ],
-            "description": "Generate admin panel interface based on configuration.",
-            "homepage": "https://github.com/Vivify-Ideas/admin-panel-generator",
-            "keywords": [
-                "admin",
-                "admin-panel",
-                "backoffice",
-                "laravel"
-            ],
-            "support": {
-                "source": "https://github.com/j3j5/admin-panel-generator/tree/master"
-            },
-            "time": "2016-04-16 20:20:09"
-        },
-        {
             "name": "vlucas/phpdotenv",
             "version": "v2.3.0",
             "source": {
@@ -3655,7 +3608,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "vivify-ideas/admin-panel-generator": 20,
         "iansltx/flysystem-b2": 20,
         "ademes/acetone": 20
     },

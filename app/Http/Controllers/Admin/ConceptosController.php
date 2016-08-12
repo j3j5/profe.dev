@@ -11,7 +11,7 @@ class ConceptosController extends AdminController
 
     public function index(Request $request)
     {
-        $parent_view = app()->make('VivifyIdeas\AdminPanelGenerator\Http\Controllers\MainController')->callAction('index', [$this->model, $request]);
+        $parent_view = app()->make(MainController::class)->callAction('index', [$this->model, $request]);
         $data = $parent_view->getData();
 
         return view("admin.conceptos.index", $data);

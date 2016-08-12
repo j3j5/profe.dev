@@ -98,6 +98,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'as' => 'uploadImage', 'uses' => 'Admin\AdminController@imageUpload'
     ]);
 
+    Route::get('/{modelName}', 'Admin\MainController@index');
+    Route::get('/{modelName}/create', 'Admin\MainController@create');
+    Route::get('/{modelName}/edit/{id}', 'Admin\MainController@edit');
+    Route::put('/{modelName}/{id}', 'Admin\MainController@update');
+    Route::post('/{modelName}', 'Admin\MainController@store');
+    Route::get('/{modelName}/delete/{id}', 'Admin\MainController@delete');
+
 });
 
 // Cursos

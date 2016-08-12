@@ -4,12 +4,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <h2>{{ ucwords(str_replace('_', ' ', str_plural($tableName))) }} <a class="btn btn-primary pull-right" href="/{{ packageConfig('prefix') }}/{{ $tableName }}/create">{{ packageTranslation('vivify.create') }}</a></h2>
+            <h2>{{ ucwords(str_replace('_', ' ', str_plural($tableName))) }} <a class="btn btn-primary pull-right" href="/{{ config('vivify.prefix') }}/{{ $tableName }}/create">{{ trans('vivify.create') }}</a></h2>
 
             @if ($filters)
                 <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ packageTranslation('vivify.filter-noun') }}</h3>
+                    <h3 class="panel-title">{{ trans('vivify.filter-noun') }}</h3>
                 </div>
                 <div class="panel-body">
                     <form class="form-inline" method="GET">
@@ -19,15 +19,15 @@
                         {!! Form::{$options['type']}($name, @$filterValue[$name], ['class'=>'form-control']) !!}
                         </div>
                     @endforeach
-                    <button class="btn btn-info" type="submit">{{ packageTranslation('vivify.filter-verb') }}</button>
-                    <a href="/{{ packageConfig('prefix') }}/{{ $tableName }}" class="btn btn-warning">{{ packageTranslation('vivify.reset') }}</a>
+                    <button class="btn btn-info" type="submit">{{ trans('vivify.filter-verb') }}</button>
+                    <a href="/{{ config('vivify.prefix') }}/{{ $tableName }}" class="btn btn-warning">{{ trans('vivify.reset') }}</a>
                     </form>
                 </div>
                 </div>
             @endif
 
             @if (count($rows) == 0)
-                <div class="alert alert-info" role="alert">{{ packageTranslation('vivify.no-records') }}</div>
+                <div class="alert alert-info" role="alert">{{ trans('vivify.no-records') }}</div>
             @else
                 <table class="table table-hover">
                 <thead>
@@ -63,10 +63,10 @@
                         @endforeach
                         <td class="admin-row text-right">
                             <div class="btn-group">
-                                <a class="btn btn-xs btn-info" href="/{{ packageConfig('prefix') }}/{{ $tableName }}/edit/{{ $row->id }}">
+                                <a class="btn btn-xs btn-info" href="/{{ config('vivify.prefix') }}/{{ $tableName }}/edit/{{ $row->id }}">
                                     <i class="fa fa-4 fa-pencil-square-o"></i>
                                 </a>
-                                <a class="btn btn-xs btn-danger" onclick="return confirm('{{ packageTranslation('vivify.confirmation') }}')" href="/{{ packageConfig('prefix') }}/{{ $tableName }}/delete/{{ $row->id }}">
+                                <a class="btn btn-xs btn-danger" onclick="return confirm('{{ trans('vivify.confirmation') }}')" href="/{{ config('vivify.prefix') }}/{{ $tableName }}/delete/{{ $row->id }}">
                                     <i class="fa fa-1 fa-trash-o"></i>
                                 </a>
                             </div>
