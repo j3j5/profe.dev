@@ -7,8 +7,8 @@
     <div class="col-md-8 col-md-offset-2">
       <h2>Nuevo/a {{ ucwords(str_replace('_', ' ', str_singular($tableName))) }}</h2>
 
-      <form method="POST" action="/{{ packageConfig('prefix') }}/{{ $tableName }}">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <form method="POST" action="/{{ config('vivify.prefix') }}/{{ $tableName }}">
+        {{ csrf_field() }}
         @foreach($form as $name => $options)
           @if ($name == 'hasMany')
             @foreach($options as $hasManyName => $hasManyOptions)
@@ -40,8 +40,8 @@
             </div>
           @endif
         @endforeach
-        <button class="btn btn-lg btn-success" type="submit">{{ packageTranslation('vivify.insert') }}</button>
-        <a class="btn btn-sm btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
+        <button class="btn btn-lg btn-success" type="submit">{{ trans('vivify.insert') }}</button>
+        <a class="btn btn-sm btn-default" href="/{{ config('vivify.prefix') }}/{{ $tableName }}">{{ trans('vivify.cancel') }}</a>
       </form>
 
     </div>

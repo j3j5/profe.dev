@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h2>Editar {{ ucwords(str_replace('_', ' ', str_singular($tableName))) }} </h2>
-            <form method="POST" action="/{{ packageConfig('prefix') }}/{{ $tableName }}/{{ $entity->id }}">
+            <form method="POST" action="/{{ config('vivify.prefix') }}/{{ $tableName }}/{{ $entity->id }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="_method" value="PUT">
 
@@ -31,8 +31,8 @@
                 @endforeach
 
 
-                <button class="btn btn-lg btn-success" type="submit">{{ packageTranslation('vivify.update') }}</button>
-                <a class="btn btn-sm btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
+                <button class="btn btn-lg btn-success" type="submit">{{ trans('vivify.update') }}</button>
+                <a class="btn btn-sm btn-default" href="/{{ config('vivify.prefix') }}/{{ $tableName }}">{{ trans('vivify.cancel') }}</a>
             </form>
         </div>
     @include("admin.partials._propuestas-uploadZone")

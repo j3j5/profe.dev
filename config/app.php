@@ -160,7 +160,7 @@ return [
         Roumen\Sitemap\SitemapServiceProvider::class,
         JDare\Acetone\AcetoneServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*

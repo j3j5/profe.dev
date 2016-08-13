@@ -4,7 +4,7 @@
                 <label class="control-label">Imagen</label>
                 <form id="images-dropzone" action="{{ route($route) }}" class="dropzone">
                     {!! csrf_field() !!}
-                    <div class="dz-message"><span><i class="fa fa-cloud-upload"></i>{{ packageTranslation('vivify.uploadDropZone') }}</span></div>
+                    <div class="dz-message"><span><i class="fa fa-cloud-upload"></i>{{ trans('vivify.uploadDropZone') }}</span></div>
                 </form>
             </div>
         </div>

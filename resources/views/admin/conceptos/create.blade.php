@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
             <h2>Nuevos {{ ucwords(str_replace('_', ' ', str_singular($tableName))) }}</h2>
 
-            <form method="POST" action="/{{ packageConfig('prefix') }}/{{ $tableName }}">
+            <form method="POST" action="/{{ config('vivify.prefix') }}/{{ $tableName }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 @foreach($form as $name => $options)
@@ -38,8 +38,8 @@
                     </div>
                 @endif
                 @endforeach
-                <button class="btn btn-success" type="submit">{{ packageTranslation('vivify.insert') }}</button>
-                <a class="btn btn-default" href="/{{ packageConfig('prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
+                <button class="btn btn-success" type="submit">{{ trans('vivify.insert') }}</button>
+                <a class="btn btn-default" href="/{{ config('vivify.prefix') }}/{{ $tableName }}">{{ trans('vivify.cancel') }}</a>
             </form>
         </div>
         @include("admin.partials._images-uploadZone")

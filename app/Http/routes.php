@@ -26,7 +26,7 @@ Route::get('sitemap/{format}', ['as' => 'sitemap', 'uses' => 'CursosController@s
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Admin main page
     Route::get('/', ['as' => 'adminPanel', 'middleware' => 'auth', function () {
-        return redirect('/admin/propuestas');
+        return redirect(url('/admin/propuestas'));
     }]);
 
     // Propuestas
