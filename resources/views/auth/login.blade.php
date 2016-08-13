@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container login col-md-8 col-md-offset-2">
-    {!! Form::open(array('url'=>'auth/login', 'method'=>'POST', 'accept-charset'=>'UTF-8', 'class' => 'form-signin')) !!}
+    {!! Form::open(array('url'=>route("login"), 'method'=>'POST', 'accept-charset'=>'UTF-8', 'class' => 'form-signin')) !!}
 
         <h2 class="form-signin-heading">{{ trans('auth.login-heading') }}</h2>
         <div class="form-group">

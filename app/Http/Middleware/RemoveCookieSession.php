@@ -16,11 +16,9 @@ class RemoveCookieSession
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->is('auth/*') && !$request->is('admin*')) {
+        if (!$request->is('login') && !$request->is('logout') && !$request->is('admin*')) {
             config(['session.driver' => 'array']);
-        } /*else {*/
-//             config(['session.driver' => 'file']);
-//         }
+        }
         return $next($request);
     }
 }

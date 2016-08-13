@@ -39,7 +39,7 @@
             @endif
                 <li>
                     <div class="form-group navbar-form navbar-right home-login">
-                        <a href="/auth/logout"><button type="submit" class="btn my-btn logout">{{ trans('auth.logout-btn') }}</button></a>
+                        <form action="{{url("/logout")}}">{{ csrf_field() }}<button type="submit" class="btn my-btn logout">{{ trans('auth.logout-btn') }}</button></form>
                     </div>
                 </li>
             </ul>

@@ -20,11 +20,11 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*",
+        "laravel/framework": "5.3.*",
         "iansltx/flysystem-b2": "dev-master",
         "roumen/asset": "^2.5",
         "roumen/sitemap": "2.6.*",
-        "laravelcollective/html": "5.*",
+        "laravelcollective/html": "dev-master",
         "ademes/acetone": "dev-master"
     },
     "require-dev": {
@@ -54,10 +54,8 @@
             "php artisan optimize"
         ],
         "pre-update-cmd": [
-            "php artisan clear-compiled"
         ],
         "post-update-cmd": [
-            "php artisan optimize"
         ],
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""
@@ -68,5 +66,7 @@
     },
     "config": {
         "preferred-install": "dist"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
