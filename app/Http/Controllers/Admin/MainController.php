@@ -65,17 +65,17 @@ class MainController extends Controller {
         return redirect()->back();
     }
 
-    public function create($tableName)
+    public function create($tableName, Request $request)
     {
         $form = $this->getForm($tableName);
 
-        return view('main.create', [
+        return [
             'tableName' => $tableName,
             'form' => $form,
             'belongsTo' => $this->getBelongsToColumns($form),
             'hasMany' => $this->getHasManyColumns($form),
             'belongsToMany' => $this->getBelongsToManyColumns($form)
-        ]);
+        ];
     }
 
     private function getForm($tableName)

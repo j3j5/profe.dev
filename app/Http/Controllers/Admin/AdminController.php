@@ -32,11 +32,15 @@ class AdminController extends Controller
     public function create(Request $request)
     {
         $this->createAddAssets();
-        $parent_view = app()->make(MainController::class)->callAction('create', [$this->model]);
-        $data = $parent_view->getData();
+        $data = app()->make('App\Http\Controllers\Admin\MainController')->callAction('create', [$this->model, $request]);
+        // $data = $parent_view->getData();
+
         if(isset($this->uploadRoute) && !empty($this->uploadRoute)) {
             $data = array_merge($data, ['uploadRoute' => $this->uploadRoute]);
         }
+        // return $parent_view;
+        // dd("admin.{$this->model}.create", $data);
+        // dd(view("admin.{$this->model}.create", $data));
         return view("admin.{$this->model}.create", $data);
     }
 

@@ -1,6 +1,5 @@
 @extends('site.layouts.master')
 
-
 @section('content')
 <div class="container-fluid">
   <div class="row">
@@ -40,8 +39,8 @@
             </div>
           @endif
         @endforeach
-        <button class="btn btn-lg btn-success" type="submit">{{ trans('vivify.insert') }}</button>
-        <a class="btn btn-sm btn-default" href="/{{ config('vivify.prefix') }}/{{ $tableName }}">{{ trans('vivify.cancel') }}</a>
+        <button class="btn btn-lg btn-success" type="submit">{{ packageTranslation('vivify.insert') }}</button>
+        <a class="btn btn-sm btn-default" href="/{{ config('vivify.prefix') }}/{{ $tableName }}">{{ packageTranslation('vivify.cancel') }}</a>
       </form>
 
     </div>

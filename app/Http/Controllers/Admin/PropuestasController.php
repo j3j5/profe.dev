@@ -7,6 +7,7 @@ use Input;
 use Validator;
 use Response;
 use Asset;
+use App\Http\Controllers\Admin\AdminController;
 use iansltx\B2Client\Client;
 use iansltx\B2Client\Credentials;
 
