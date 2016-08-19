@@ -9,20 +9,15 @@ use Response;
 use Asset;
 use App\Models\Image;
 
-class ImagesController extends AdminController
+class ImagesController extends MainController
 {
-
-    protected $model = 'images';
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function __construct()
     {
-        $this->createAddAssets();
-        return parent::index($request);
+        $this->model = 'images';
+        parent::__construct();
+        if(!app()->environment('production')) {
+            $this->images_base_url = "http://{$_SERVER['HTTP_HOST']}/images/galeria/1/";
+        }
     }
 
     public function upload(Request $request) {

@@ -1,10 +1,4 @@
 <template>
-    <div class="col-sm-12">
-        <button @click="addItem" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Añadir nuevo</button>
-        <button @click="toggleFilter" class="btn btn-default">Filtrar</button>
-        <!-- <button @click="togglePicker" class="btn btn-default">Toggle Column Picker</button> -->
-    </div>
-    <br/><br/>
     <div @click="closeDropdown" @keyup.esc="closeDropdown">
         <div class="col-sm-6">
             <div v-if="showFilter" style="padding-top: 10px;padding-bottom: 10px;">
@@ -41,8 +35,9 @@
                     <th v-for="column in displayCols | filterBy true in 'visible'" @click="sortBy(column.title)"
                         track-by="$index"
                         :class="getClasses(column.title)">
-                        {{ column.title }}
+                        {{ column.title | capitalize }}
                     </th>
+                    <th colspan="2" class="is-icon"> Acciones </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,11 +46,20 @@
                         v-show="column.visible">
                         {{{ entry[column.title] | displayMedia }}}
                     </td>
+                    <td class="is-icon" colspan="2">
+                        <a class="btn btn-xs btn-info" href="#" @click.prevent="">
+                            <i class="fa fa-4 fa-pencil-square-o"></i>
+                        </a>
+                        <a class="btn btn-xs btn-danger" href="#" @click.prevent="deleteItem(entry.id)">
+                            <i class="fa fa-1 fa-trash-o"></i>
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
 </template>
 <script>
     export default {
@@ -181,22 +185,20 @@
                 }
                 return classes;
             },
-            toggleColumn: function (column) {
-                column.visible = !column.visible;
-            },
             closeDropdown: function () {
                 this.columnMenuOpen = false;
             },
-            toggleFilter: function() {
-                this.showFilter = !this.showFilter;
+            toggleColumn: function (column) {
+                column.visible = !column.visible;
             },
-            togglePicker: function() {
-                this.showColumnPicker = !this.showColumnPicker;
-            },
-            addItem: function() {
-                var self = this;
-                var item = {};
-                this.values.push(item);
+            deleteItem: function(id) {
+                this.$http.get(DELETE_BASE_URL + id).then(function(response) {
+                    this.values = this.values.filter(function(item) {
+                        // console.log(id);
+                        // console.log(item.id);
+                        return item.id !== id;
+                    });
+                });
             }
         },
         events: {}
@@ -204,34 +206,8 @@
 </script>
 
 <style>
-    .vue-table {
-
-    }
-
-    table.vue-table thead > tr > th {
-        cursor: pointer;
-        padding-right: 30px !important;
-    }
-
-    .vue-table .arrow {
-        opacity: 1;
-        position: relative;
-    }
-
-    .vue-table .arrow:after {
-        position: absolute;
-        bottom: 8px;
-        right: 8px;
-        display: block;
-        font-family: 'Glyphicons Halflings';
-        content: "\e150";
-    }
-
-    .vue-table .arrow.asc:after {
-        content: "\e155";
-    }
-
-    .vue-table .arrow.dsc:after {
-        content: "\e156";
-    }
+.admin-thumb {
+    max-height: 90px;
+    margin: auto;
+}
 </style>

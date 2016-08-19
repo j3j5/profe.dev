@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class MeGusta extends Model
+class MeGusta extends BaseModel
 {
     protected $guarded = ['created_at'];
+
+
 }

@@ -9,9 +9,15 @@ class MainController extends Controller {
 
     protected $images_base_url;
     protected $files_base_url;
+    protected $edit_base_url;
+    protected $delete_base_url;
+    protected $model;
 
     public function __construct()
     {
+        Asset::add("js/app.js");
+        Asset::add("css/app.css");
+
         if(app()->environment('production')) {
             $this->images_base_url = "https://f001.backblaze.com/file/" . config('b2client.bucket_name');
             $this->files_base_url = "https://f001.backblaze.com/file/" . config('b2client.bucket_name');
@@ -19,15 +25,20 @@ class MainController extends Controller {
             $this->images_base_url = "http://{$_SERVER['HTTP_HOST']}/uploads/";
             $this->files_base_url = "http://{$_SERVER['HTTP_HOST']}/uploads/";
         }
-
-        Asset::add("js/app.js");
-        Asset::add("css/app.css");
     }
 
-    public function index($tableName, Request $request)
+    public function index(Request $request, $table)
     {
+        $model = str_singular(camel_case($table));
+        $this->edit_base_url = "/admin/$model/edit/";
+        $this->delete_base_url = "/admin/$model/delete/";
+        $model = 'App\Models\\' . ucfirst($model);
+        $model::bootstrap($this);
+
         $js_variables = "var IMG_BASE_URL = \"{$this->images_base_url}\";";
         $js_variables .= PHP_EOL . "var FILES_BASE_URL = \"{$this->files_base_url}\";";
+        $js_variables .= PHP_EOL . "var EDIT_BASE_URL = \"{$this->edit_base_url}\";";
+        $js_variables .= PHP_EOL . "var DELETE_BASE_URL = \"{$this->delete_base_url}\";";
         Asset::addScript($js_variables, 'footer');
 
 
@@ -40,19 +51,18 @@ class MainController extends Controller {
             }
         }
 
-        $column = $request->get('column', 'id');
-
         $columns = [];
-        foreach(config('vivify.columns.' . $tableName) as $name) {
+        foreach(config('vivify.columns.' . $table) as $name) {
             $columns[] = ['title' => $name];
         }
 
-        $rows = \DB::table($tableName)->get();
+        $rows = \DB::table($table)->get();
 
         return view('main.index-vue', [
-            'tableName' => $tableName,
+            'tableName' => $table,
             'columns' => $columns,
             'rows' => $rows,
+            'form' => $this->getForm($table),
         ]);
     }
 
@@ -333,9 +343,10 @@ class MainController extends Controller {
         return redirect(config('vivify.prefix') . '/' . $tableName);
     }
 
-    public function prepareFilterValue($sql, $value)
+    public function __set($name, $value)
     {
-        return ($sql == 'LIKE')? '%' . $value . '%' : $value;
+        if(isset($this->$name)) {
+            $this->$name = $value;
+        }
     }
-
 }

@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\BaseModel as Model;
-
-class Propuesta extends Model
+class Propuesta extends BaseModel
 {
     protected $guarded = ['created_at'];
+
 }

@@ -13,8 +13,16 @@ use iansltx\B2Client\Credentials;
 
 class PropuestasController extends AdminController
 {
-    protected $model = 'propuestas';
-    protected $uploadRoute = 'uploadPropuesta';
+    protected $model;
+    public function __construct()
+    {
+        $this->model = 'propuestas';
+        // dd($this->model, __FILE__);
+        parent::__construct();
+        // if(!app()->environment('production')) {
+            // $this->images_base_url = "http://{$_SERVER['HTTP_HOST']}/images/galeria/1/";
+        // }
+    }
 
     protected function createAddAssets() {
         parent::createAddAssets();

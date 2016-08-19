@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\BaseModel as Model;
-
-class GrupoConcepto extends Model
+class GrupoConcepto extends BaseModel
 {
     protected $guarded = ['created_at'];
 
@@ -12,5 +10,10 @@ class GrupoConcepto extends Model
     public function conceptos()
     {
         return $this->hasMany(Concepto::class, 'id', 'grupo_id');
+    }
+
+    public static function bootstrap($controller)
+    {
+
     }
 }

@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\BaseModel as Model;
-
-class Concepto extends Model
+class Concepto extends BaseModel
 {
     protected $guarded = ['created_at'];
 
@@ -13,4 +11,5 @@ class Concepto extends Model
     {
         return $this->belongsTo(GrupoConcepto::class, 'grupo_id');
     }
+
 }

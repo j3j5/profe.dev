@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Examen extends Model
+class Examen extends BaseModel
 {
     protected $guarded = ['created_at'];
-    
+
 }

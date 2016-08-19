@@ -28,4 +28,9 @@ class BaseModel extends Model
             \Log::info("Model deleted, varnish cache deleted");
         });
     }
+
+    public static function bootstrap($controller)
+    {
+
+    }
 }

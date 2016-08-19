@@ -7,6 +7,10 @@
 
 require('./bootstrap');
 
+
+Vue.config.debug = true;
+Vue.config.devtools = true;
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the body of the page. From here, you may begin adding components to
@@ -16,7 +20,7 @@ require('./bootstrap');
 
  Vue.filter('displayMedia', function(value) {
 
-     if(String(value).match(/.*\.(png|jpg|gif)(\?.*)?$/i)) {
+     if(String(value).match(/.*\.(png|jpe?g|gif)(\?.*)?$/i)) {
          return '<img src="' + IMG_BASE_URL + value + '" class="admin-thumb img-responsive">';
      } else if(String(value).match(/.*\.(pdf|doc|docx)(\?.*)?$/i)) {
          return '<a href="' + FILES_BASE_URL + value + '" class="">' + value + '</a>';
@@ -25,19 +29,37 @@ require('./bootstrap');
      }
  });
 
+
+
 import BootstrapTable from './components/BootstrapTable.vue'
-// import myrow from './components/Row.vue'
+import AddItemModal from './components/AddItemModal.vue'
+
+Vue.component('BootstrapTable', BootstrapTable);
+Vue.component('AddItemModal', AddItemModal);
 
 new Vue({
-   el: 'body',
-   components: {
-        BootstrapTable: BootstrapTable
+    el: '#admin',
+    components: {
+        BootstrapTable,
+        AddItemModal,
+   },
+   data: function() {
+       return {
+           showFilter: false,
+           showModal: false,
+       };
    },
    methods: {
-        addItem: function() {
-            var self = this;
-            var item = {};
-            this.values.push(item);
-        }
-    },
+       toggleFilter: function() {
+           this.showFilter = !this.showFilter;
+       },
+       togglePicker: function() {
+           this.showColumnPicker = !this.showColumnPicker;
+       },
+       addItem: function() {
+           var self = this;
+           var item = {};
+           this.values.push(item);
+       }
+   }
  });

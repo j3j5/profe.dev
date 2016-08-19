@@ -9,51 +9,43 @@ use App\Http\Controllers\Controller;
 use iansltx\B2Client\Client;
 use iansltx\B2Client\Credentials;
 
-class AdminController extends Controller
+class AdminController extends MainController
 {
 
     protected $b2client;
+    protected $model;
 
     public function __construct() {
+        // dd($this->model, __FILE__);
         $this->b2client = new Client(new Credentials(config('b2client.account_id'), config('b2client.app_key')));
+        parent::__construct();
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        $parent_view = app()->make(MainController::class)->callAction('index', [$this->model, $request]);
-        return $parent_view;
-    }
-
-    public function create(Request $request)
-    {
-        $this->createAddAssets();
-        $data = app()->make('App\Http\Controllers\Admin\MainController')->callAction('create', [$this->model, $request]);
-        // $data = $parent_view->getData();
-
-        if(isset($this->uploadRoute) && !empty($this->uploadRoute)) {
-            $data = array_merge($data, ['uploadRoute' => $this->uploadRoute]);
-        }
-        // return $parent_view;
-        // dd("admin.{$this->model}.create", $data);
-        // dd(view("admin.{$this->model}.create", $data));
-        return view("admin.{$this->model}.create", $data);
-    }
-
-    public function edit($id, Request $request)
-    {
-        $this->createAddAssets();
-        $parent_view = app()->make('MainController')->callAction('edit', [$this->model, $id]);
-        $data = $parent_view->getData();
-        if(isset($this->uploadRoute) && !empty($this->uploadRoute)) {
-            $data = array_merge($data, ['uploadRoute' => $this->uploadRoute]);
-        }
-        return view("admin.{$this->model}.edit", $data);
-    }
+    // public function create(Request $request)
+    // {
+    //     $this->createAddAssets();
+    //     $data = app()->make('App\Http\Controllers\Admin\MainController')->callAction('create', [$this->model, $request]);
+    //     // $data = $parent_view->getData();
+    //
+    //     if(isset($this->uploadRoute) && !empty($this->uploadRoute)) {
+    //         $data = array_merge($data, ['uploadRoute' => $this->uploadRoute]);
+    //     }
+    //     // return $parent_view;
+    //     // dd("admin.{$this->model}.create", $data);
+    //     // dd(view("admin.{$this->model}.create", $data));
+    //     return view("admin.{$this->model}.create", $data);
+    // }
+    //
+    // public function edit($id, Request $request)
+    // {
+    //     $this->createAddAssets();
+    //     $parent_view = app()->make('MainController')->callAction('edit', [$this->model, $id]);
+    //     $data = $parent_view->getData();
+    //     if(isset($this->uploadRoute) && !empty($this->uploadRoute)) {
+    //         $data = array_merge($data, ['uploadRoute' => $this->uploadRoute]);
+    //     }
+    //     return view("admin.{$this->model}.edit", $data);
+    // }
 
     public function imageUpload(Request $request) {
         $file = array('file' => $request->file('file'));
