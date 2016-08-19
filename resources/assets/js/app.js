@@ -14,9 +14,30 @@ require('./bootstrap');
  */
  // import Vue from `vue`
 import BootstrapTable from './components/BootstrapTable.vue'
-import myrow from './components/Row.vue'
+// import myrow from './components/Row.vue'
+
+
 
 new Vue({
    el: 'body',
-   components: { myrow }
+   components: {
+        BootstrapTable: BootstrapTable
+   },
+   data: {
+        showFilter: true,
+        showPicker: true,
+   },
+   methods: {
+        addItem: function() {
+            var self = this;
+            var item = {};
+            this.values.push(item);
+        },
+        toggleFilter: function() {
+            this.showFilter = !this.showFilter;
+        },
+        togglePicker: function() {
+            this.showPicker = !this.showPicker;
+        }
+    },
  });

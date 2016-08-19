@@ -22,39 +22,20 @@ class MainController extends Controller {
 
         $column = $request->get('column', 'id');
 
+        $columns = [];
+        foreach(config('vivify.columns.' . $tableName) as $name) {
+            $columns[] = ['title' => $name];
+        }
+
+        $rows = \DB::table($tableName)->get();
+
         return view('main.index-vue', [
             'tableName' => $tableName,
-            'columns' => config('vivify.columns.' . $tableName),
-            'rows' => $this->applyFilter($filters, $tableName)->orderBy($column, $direction)->paginate(config('vivify.rowsPerPage')),
-            'filters' => config('vivify.filters.' . $tableName),
-            'filterValue' => $filters,
-            'direction' => $direction,
-            'orderColumn' => $column,
-            'sortHref' => '/' . $request->path() . '?' . http_build_query(array_merge($filters, [ 'direction' => $direction ]))
+            'columns' => $columns,
+            'rows' => $rows,
         ]);
     }
 
-    private function applyFilter(array $filters, $tableName)
-    {
-        $q = \DB::table($tableName);
-        if (empty($filters)) {
-            return $q;
-        }
-
-        $filterOptions = config('vivify.filters.' . $tableName);
-
-        foreach ($filters as $name => $value) {
-            if (!empty($value)) {
-                $filter = @$filterOptions[$name]['compare'];
-                if (!$filter) {
-                    $filter = '=';
-                }
-                $q->where($name, $filter, $this->prepareFilterValue($filter, $value));
-            }
-        }
-
-        return $q;
-    }
 
     public function delete($tableName, $id)
     {

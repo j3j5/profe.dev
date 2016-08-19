@@ -1,7 +1,5 @@
 <template>
     <div @click="closeDropdown" @keyup.esc="closeDropdown">
-        <!--<pre>{{columns | json}}</pre>-->
-        <!--<pre>{{$data | json}}</pre>-->
         <div class="col-sm-6">
             <div v-if="showFilter" style="padding-top: 10px;padding-bottom: 10px;">
                 <div class="input-group">
@@ -91,6 +89,8 @@
                 columnMenuOpen: false,
                 displayCols: [],
             };
+        },
+        created: function() {
         },
         ready: function () {
             this.setSortOrders();
