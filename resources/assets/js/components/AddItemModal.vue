@@ -8,7 +8,7 @@
                 <form method="POST" action="{{ action }}">
                     <div class="form-group" v-for="(name, field) in fields">
                         <label for="{{name}}" class="control-label">{{field.label | capitalize}}</label>
-                        <input class="form-control" name="{{ name }}" type="{{field.type}}" id="{{ name }}">
+                        <input class="form-control" name="{{ name }}" type="{{field.type}}" id="{{ name }}" value="{{ getInputValue(name) }}">
                     </div>
                 </form>
 
@@ -49,6 +49,17 @@ export default {
         fields: {
             required: true,
         },
+        model: {
+            type: Object,
+        },
+    },
+    methods: {
+        getInputValue: function(name) {
+            if(this.model.hasOwnProperty(name)){
+                return this.model[name];
+            }
+            return '';
+        }
     },
     created: function() {
         this.fields = JSON.parse(this.fields);

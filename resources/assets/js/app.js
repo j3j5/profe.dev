@@ -47,6 +47,7 @@ new Vue({
        return {
            showFilter: false,
            showModal: false,
+           selectedModel: {},
        };
    },
    methods: {

@@ -18,6 +18,8 @@
                         :columns="{{ json_encode($columns) }}"
                         :values="{{ json_encode($rows) }}"
                         :show-filter.sync="showFilter"
+                        :selected-model.sync="selectedModel"
+                        :show-modal.sync="showModal"
                 >
                 </bootstrap-table>
             </div>

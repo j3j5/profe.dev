@@ -47,7 +47,7 @@
                         {{{ entry[column.title] | displayMedia }}}
                     </td>
                     <td class="is-icon" colspan="2">
-                        <a class="btn btn-xs btn-info" href="#" @click.prevent="">
+                        <a class="btn btn-xs btn-info" href="#" @click.prevent="editItem(entry)">
                             <i class="fa fa-4 fa-pencil-square-o"></i>
                         </a>
                         <a class="btn btn-xs btn-danger" href="#" @click.prevent="deleteItem(entry.id)">
@@ -88,6 +88,17 @@
                 type: Boolean,
                 required: false,
                 default: true,
+            },
+            selectedModel: {
+                type: Object,
+                twoWay: true,
+                default: {},
+            },
+            showModal: {
+                type: Boolean,
+                twoWay: true,
+                required: false,
+                default: false,
             },
         },
         data: function () {
@@ -194,11 +205,13 @@
             deleteItem: function(id) {
                 this.$http.get(DELETE_BASE_URL + id).then(function(response) {
                     this.values = this.values.filter(function(item) {
-                        // console.log(id);
-                        // console.log(item.id);
                         return item.id !== id;
                     });
                 });
+            },
+            editItem: function(entry) {
+                this.selectedModel = entry;
+                this.showModal = true;
             }
         },
         events: {}
