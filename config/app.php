@@ -161,6 +161,7 @@ return [
         JDare\Acetone\AcetoneServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
     ],
 
     /*

@@ -26,7 +26,8 @@
         "roumen/sitemap": "2.6.*",
         "laravelcollective/html": "dev-master",
         "ademes/acetone": "dev-master",
-        "barryvdh/laravel-debugbar": "^2.2"
+        "barryvdh/laravel-debugbar": "^2.2",
+        "graham-campbell/exceptions": "^9.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -34,7 +35,8 @@
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.1",
         "symfony/dom-crawler": "~3.0",
-        "symfony/css-selector": "~3.0"
+        "symfony/css-selector": "~3.0",
+        "filp/whoops": "^2.1"
     },
     "autoload": {
         "classmap": [
