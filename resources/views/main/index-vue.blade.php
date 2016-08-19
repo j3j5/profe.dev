@@ -9,17 +9,9 @@
             <div class="alert alert-info" role="alert">{{ trans('vivify.no-records') }}</div>
         @else
             <div class="row">
-                <div class="col-sm-12">
-                    <button @click="addItem" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Add an item</button>
-                    <button @click="toggleFilter" class="btn btn-default">Toggle Filter</button>
-                    <button @click="togglePicker" class="btn btn-default">Toggle Column Picker</button>
-                </div>
-                <br/><br/>
                 <bootstrap-table
                         :columns="{{ json_encode($columns) }}"
                         :values="{{ json_encode($rows) }}"
-                        :show-filter="showFilter"
-                        :show-column-picker="showPicker"
                 >
                 </bootstrap-table>
             </div>

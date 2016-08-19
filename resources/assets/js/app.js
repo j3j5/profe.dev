@@ -14,9 +14,12 @@ require('./bootstrap');
  */
  // import Vue from `vue`
 
- Vue.filter('displayThumb', function(value) {
+ Vue.filter('displayMedia', function(value) {
+
      if(String(value).match(/.*\.(png|jpg|gif)(\?.*)?$/i)) {
          return '<img src="' + IMG_BASE_URL + value + '" class="admin-thumb img-responsive">';
+     } else if(String(value).match(/.*\.(pdf|doc|docx)(\?.*)?$/i)) {
+         return '<a href="' + FILES_BASE_URL + value + '" class="">' + value + '</a>';
      } else {
          return value;
      }
@@ -30,21 +33,11 @@ new Vue({
    components: {
         BootstrapTable: BootstrapTable
    },
-   data: {
-        showFilter: true,
-        showPicker: true,
-   },
    methods: {
         addItem: function() {
             var self = this;
             var item = {};
             this.values.push(item);
-        },
-        toggleFilter: function() {
-            this.showFilter = !this.showFilter;
-        },
-        togglePicker: function() {
-            this.showPicker = !this.showPicker;
         }
     },
  });

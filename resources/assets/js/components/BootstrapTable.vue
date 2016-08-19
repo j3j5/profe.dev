@@ -1,4 +1,10 @@
 <template>
+    <div class="col-sm-12">
+        <button @click="addItem" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Añadir nuevo</button>
+        <button @click="toggleFilter" class="btn btn-default">Filtrar</button>
+        <!-- <button @click="togglePicker" class="btn btn-default">Toggle Column Picker</button> -->
+    </div>
+    <br/><br/>
     <div @click="closeDropdown" @keyup.esc="closeDropdown">
         <div class="col-sm-6">
             <div v-if="showFilter" style="padding-top: 10px;padding-bottom: 10px;">
@@ -16,7 +22,7 @@
                     <button @click.stop.prevent="columnMenuOpen = !columnMenuOpen" @keyup.esc="columnMenuOpen = false"
                             type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true">
-                        Columns <span class="caret"></span>
+                        Columnas <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
                         <li v-for="column in displayCols">
@@ -43,7 +49,7 @@
                 <tr v-for="entry in filteredValues | orderBy sortKey sortOrders[sortKey]" track-by="$index">
                     <td v-for="column in displayCols | filterBy true in 'visible'" track-by="$index"
                         v-show="column.visible">
-                        {{{ entry[column.title] | displayThumb }}}
+                        {{{ entry[column.title] | displayMedia }}}
                     </td>
                 </tr>
                 </tbody>
@@ -77,7 +83,7 @@
             showColumnPicker: {
                 type: Boolean,
                 required: false,
-                default: false,
+                default: true,
             },
         },
         data: function () {
@@ -181,6 +187,17 @@
             closeDropdown: function () {
                 this.columnMenuOpen = false;
             },
+            toggleFilter: function() {
+                this.showFilter = !this.showFilter;
+            },
+            togglePicker: function() {
+                this.showColumnPicker = !this.showColumnPicker;
+            },
+            addItem: function() {
+                var self = this;
+                var item = {};
+                this.values.push(item);
+            }
         },
         events: {}
     }
