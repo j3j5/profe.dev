@@ -7,10 +7,25 @@ use Asset;
 
 class MainController extends Controller {
 
+    protected $images_base_url;
+
+    public function __construct()
+    {
+        if(app()->environment('production')) {
+            $this->images_base_url = "https://f001.backblaze.com/file/" . config('b2client.bucket_name');
+        } else {
+            $this->images_base_url = "http://{$_SERVER['HTTP_HOST']}/uploads/";
+        }
+    }
+
     public function index($tableName, Request $request)
     {
         Asset::add("js/app.js");
         Asset::add("css/app.css");
+
+
+        Asset::addScript("var IMG_BASE_URL = \"{$this->images_base_url}\";", 'footer');
+
         $filters = $request->except('page', 'direction', 'column');
 
         $direction = 'asc';

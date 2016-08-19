@@ -43,7 +43,7 @@
                 <tr v-for="entry in filteredValues | orderBy sortKey sortOrders[sortKey]" track-by="$index">
                     <td v-for="column in displayCols | filterBy true in 'visible'" track-by="$index"
                         v-show="column.visible">
-                        {{ entry[column.title] }}
+                        {{{ entry[column.title] | displayThumb }}}
                     </td>
                 </tr>
                 </tbody>
@@ -159,7 +159,6 @@
                         this.sortOrders[key] = this.sortOrders[key] * -1;
                     }
                 }
-                //console.log(JSON.stringify(this.sortOrders));
             },
             getClasses: function (key) {
                 var classes = [];
@@ -197,10 +196,6 @@
         padding-right: 30px !important;
     }
 
-    /*.vue-table th.active {
-        color: red;
-    }*/
-
     .vue-table .arrow {
         opacity: 1;
         position: relative;
@@ -213,33 +208,13 @@
         display: block;
         font-family: 'Glyphicons Halflings';
         content: "\e150";
-        /*
-        display: inline-block;
-        vertical-align: middle;
-        width: 0;
-        height: 0;
-        margin-left: 5px;
-        opacity: 0.66;*/
     }
 
     .vue-table .arrow.asc:after {
         content: "\e155";
-        /*
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-bottom: 4px solid #000;
-        */
     }
 
     .vue-table .arrow.dsc:after {
         content: "\e156";
     }
-
-    /*.vue-table .selected-cell {
-        background-color: #F7C072;
-    }
-
-    .vue-table .selected-row {
-        background-color: #FAE1BE !important;
-    }*/
 </style>
