@@ -3,11 +3,14 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Asset;
 
 class MainController extends Controller {
 
     public function index($tableName, Request $request)
     {
+        Asset::add("js/app.js");
+        Asset::add("css/app.css");
         $filters = $request->except('page', 'direction', 'column');
 
         $direction = 'asc';
@@ -19,7 +22,7 @@ class MainController extends Controller {
 
         $column = $request->get('column', 'id');
 
-        return view('main.index', [
+        return view('main.index-vue', [
             'tableName' => $tableName,
             'columns' => config('vivify.columns.' . $tableName),
             'rows' => $this->applyFilter($filters, $tableName)->orderBy($column, $direction)->paginate(config('vivify.rowsPerPage')),

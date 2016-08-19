@@ -7,3 +7,5 @@ Homestead.json
 *.diff
 resources/views/site/partials/_analytics.blade.php
 public/google*
+public/css/app.css*
+public/js/app.js*
