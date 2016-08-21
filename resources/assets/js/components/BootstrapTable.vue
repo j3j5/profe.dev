@@ -4,7 +4,7 @@
         <button @click="toggleFilter" class="btn btn-default">Filtrar</button>
     </div>
 
-    <div @click="closeEverything" @keyup.esc="closeEverything">
+    <div @click="closeDropdown" @keyup.esc="closeDropdown">
         <div class="col-sm-6">
             <div v-if="showFilter" style="padding-top: 10px;padding-bottom: 10px;">
                 <div class="input-group">
@@ -196,8 +196,7 @@
                 }
                 return classes;
             },
-            closeEverything: function () {
-                // this.showModal = false;
+            closeDropdown: function () {
                 this.columnMenuOpen = false;
             },
             toggleColumn: function (column) {
