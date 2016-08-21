@@ -71,7 +71,11 @@
         :show.sync="showModal"
         :action.sync="modalAction"
         :model.sync="selectedModel"
-    >
+    ></add-item-modal>
+    <alert
+        :show.sync="showAlert"
+        :message="alertMessage"
+    ></alert>
 </template>
 <script>
     export default {
@@ -109,9 +113,12 @@
                 columnMenuOpen: false,
                 displayCols: [],
                 showModal: false,
+                showAlert: false,
                 showFilter: false,
                 selectedModel: {},
                 modalAction: CREATE_BASE_URL,
+                alertMessage: "",
+                deleteId: false,
             };
         },
         created: function() {
@@ -209,11 +216,9 @@
                 this.showColumnPicker = !this.showColumnPicker;
             },
             deleteItem: function(id) {
-                this.$http.get(DELETE_BASE_URL + '/' + id).then(function(response) {
-                    this.values = this.values.filter(function(item) {
-                        return item.id !== id;
-                    });
-                });
+                this.alertMessage = "¿Estás segura de que quieres borrar?";
+                this.showAlert = true;
+                this.deleteId = id;
             },
             editItem: function(entry) {
                 this.showModal = true;
@@ -232,6 +237,20 @@
                 console.log('BootstrapTable event recv');
                 console.log(response);
                 return true;
+            },
+            alertYes: function() {
+                console.log('deleting...');
+                console.log(this.deleteId);
+                var id = this.deleteId;
+                this.$http.get(DELETE_BASE_URL + '/' + this.deleteId).then(function(response) {
+                    this.values = this.values.filter(function(item) {
+                        return item.id !== id;
+                    });
+                });
+                this.deleteId = false;
+            },
+            alertNo: function() {
+                this.deleteId = false;
             },
         }
     }

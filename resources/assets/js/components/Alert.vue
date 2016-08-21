@@ -1,23 +1,37 @@
 <template>
-    <modal :show.sync =
-    <div class="alert alert-dismissable alert-warning clearfix">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <modal :show.sync="show"
+    <div class="">
+        <button @click="no" type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <p>{{ message }}</p>
+        <button @click="yes" type="btn btn-info">Yes</button>
+        <button @click="no" type="btn btn-danger">No</button>
     </div>
 </template>
 
 <script>
 
     export default {
-        data: function() {
-            return {
-                alertMessage: "",
-            }
-        },
         props: {
-            'message': {
+            show: {
+                type: Boolean,
+                required: true,
+            },
+            message: {
                 type: String,
                 required: true,
+            },
+        },
+        methods: {
+            yes: function() {
+                this.$dispatch("alertYes");
+                this.close();
+            },
+            no: function() {
+                this.$dispatch("alertNo");
+                this.close();
+            },
+            close: function() {
+                this.show = false;
             }
         },
     }

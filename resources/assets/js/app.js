@@ -20,7 +20,7 @@ import Alert from './components/Alert.vue'
 Vue.component('BootstrapTable', BootstrapTable);
 Vue.component('Modal', Modal);
 Vue.component('AddItemModal', AddItemModal);
-// Vue.component('alert', Alert);
+Vue.component('alert', Alert);
 
 new Vue({
     el: '#admin',
