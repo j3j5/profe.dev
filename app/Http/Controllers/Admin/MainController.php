@@ -9,6 +9,7 @@ class MainController extends Controller {
 
     protected $images_base_url;
     protected $files_base_url;
+    protected $create_model_url;
     protected $edit_base_url;
     protected $delete_base_url;
     protected $model;
@@ -29,17 +30,18 @@ class MainController extends Controller {
 
     public function index(Request $request, $table)
     {
-        $model = str_singular(camel_case($table));
-        $this->edit_base_url = "/admin/$model/edit/";
-        $this->delete_base_url = "/admin/$model/delete/";
-        $model = 'App\Models\\' . ucfirst($model);
+        $this->create_model_url = route("createModel", $table);
+        $this->edit_base_url = route("updateModel", [$table, '']);
+        $this->delete_base_url = route("deleteModel", [$table, '']);
+        $model = str_singular(ucfirst(camel_case($table)));
+        $model = "App\Models\\$model";
         $model::bootstrap($this);
 
         $js_variables = "var IMG_BASE_URL = \"{$this->images_base_url}\";";
         $js_variables .= PHP_EOL . "var FILES_BASE_URL = \"{$this->files_base_url}\";";
+        $js_variables .= PHP_EOL . "var CREATE_BASE_URL = \"{$this->create_model_url}\";";
         $js_variables .= PHP_EOL . "var EDIT_BASE_URL = \"{$this->edit_base_url}\";";
         $js_variables .= PHP_EOL . "var DELETE_BASE_URL = \"{$this->delete_base_url}\";";
-        Asset::addScript($js_variables, 'footer');
 
 
         $filters = $request->except('page', 'direction', 'column');
@@ -51,21 +53,170 @@ class MainController extends Controller {
             }
         }
 
-        $columns = [];
-        foreach(config('vivify.columns.' . $table) as $name) {
-            $columns[] = ['title' => $name];
-        }
+        $js_variables .= PHP_EOL . "var NAME = \"$model\";";
+        $js_variables .= PHP_EOL . "var FORM = '" . json_encode($this->getForm($table)) . "';";
 
-        $rows = \DB::table($table)->get();
-
+        Asset::addScript($js_variables, 'footer');
         return view('main.index-vue', [
-            'tableName' => $table,
-            'columns' => $columns,
-            'rows' => $rows,
-            'form' => $this->getForm($table),
+            'model' => $table,
         ]);
     }
 
+    public function update($tableName, $id, Request $request)
+    {
+        $this->validate($request, config('vivify.validationRules.' . $tableName));
+
+        // $data = $this->parseInputData($request);
+        //
+        // if (\Schema::hasColumn($tableName, 'updated_at')) {
+        //     $data['updated_at'] = \Carbon\Carbon::now();
+        // }
+        //
+        // $hasMany = null;
+        //
+        // if (@$data['hasMany']) {
+        //     $hasMany = $data['hasMany'];
+        //     unset($data['hasMany']);
+        // }
+        //
+        // $belongsToMany = null;
+        //
+        // if (@$data['belongsToMany']) {
+        //     $belongsToMany = $data['belongsToMany'];
+        //     unset($data['belongsToMany']);
+        // }
+
+        $model = "App\Models\\" . Str::studly(Str::singular($tableName));
+        if (class_exists($model)) {
+            $element = $model::where('id', $id)->first();
+            $element->update($request->input());
+        } else {
+            \DB::table($tableName)->where('id', $id)->update($request->input());
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json($element);
+        } else {
+            return redirect()->back();
+        }
+
+        // $form = $this->getForm($tableName);
+        //
+        // if (isset($form['hasMany'])) {
+        //     foreach ($form['hasMany'] as $table => $options) {
+        //         $model = "App\Models\\" . Str::studly(Str::singular($table));
+        //         if (class_exists($model)) {
+        //             $model::where($options['column'], $id)->first()->update([$options['column'] => null ]);
+        //         } else {
+        //             \DB::table($table)->where($options['column'], $id)->update([$options['column'] => null ]);
+        //         }
+        //
+        //         $ids = $hasMany[$table];
+        //         if ($ids) {
+        //             if (class_exists($model)) {
+        //                 $model::whereIn('id', $ids)->get()->each(function($item, $key) use($options, $id) {
+        //                     $item::update([ $options['column'] => $id ]);
+        //                 });
+        //             } else {
+        //                 \DB::table($table)->whereIn('id', $ids)->update([ $options['column'] => $id ]);
+        //             }
+        //         }
+        //     }
+        // }
+        //
+        // if (isset($form['belongsToMany'])) {
+        //     foreach ($form['belongsToMany'] as $table => $options) {
+        //         $model = "App\Models\\" . Str::studly(Str::singular($options['table']));
+        //         if (class_exists($model)) {
+        //             $model::where($options['column'], $id)->first()->delete();
+        //         } else {
+        //             \DB::table($options['table'])->where($options['column'], $id)->delete();
+        //         }
+        //
+        //         $ids = $belongsToMany[$table];
+        //         if ($ids) {
+        //             foreach ($ids as $pivotId) {
+        //                 if (class_exists($model)) {
+        //                     $model::create([$options['column'] => $id, $options['foreignLabel'] => $pivotId]);
+        //                 } else {
+        //                     \DB::table($options['table'])->insert([$options['column'] => $id, $options['foreignLabel'] => $pivotId]);
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
+        // return redirect(config('vivify.prefix') . '/' . $tableName);
+    }
+
+    public function store($tableName, Request $request)
+    {
+        // dd($tableName, $request->input());
+        $this->validate($request, config('vivify.validationRules.' . $tableName));
+        //
+        // $data = $this->parseInputData($request);
+        //
+        // if (\Schema::hasColumn($tableName, 'created_at')) {
+        //     $data['created_at'] = \Carbon\Carbon::now();
+        //     $data['updated_at'] = $data['created_at'];
+        // }
+        //
+        // $hasMany = null;
+        //
+        // if (@$data['hasMany']) {
+        //     $hasMany = $data['hasMany'];
+        //     unset($data['hasMany']);
+        // }
+        //
+        // $belongsToMany = null;
+        //
+        // if (@$data['belongsToMany']) {
+        //     $belongsToMany = $data['belongsToMany'];
+        //     unset($data['belongsToMany']);
+        // }
+
+        $model = "App\Models\\" . Str::studly(Str::singular($tableName));
+        if (class_exists($model)) {
+            $new = $model::create($request->input());
+            $id = $new->id;
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json($new);
+        } else {
+            return redirect()->back();
+        }
+
+        if ($hasMany) {
+            $form = $this->getForm($tableName);
+            foreach ($hasMany as $table => $ids) {
+                $model = "App\Models\\" . Str::studly(Str::singular($table));
+                if (class_exists($model)) {
+                    $model::whereIn('id', $ids)->get()->each(function($item, $key) use($options, $id) {
+                        $item::update([ $form['hasMany'][$table]['column'] => $id ]);
+                    });
+                } else {
+                    \DB::table($table)->whereIn('id', $ids)->update([ $form['hasMany'][$table]['column'] => $id ]);
+                }
+            }
+        }
+
+        if ($belongsToMany) {
+            $form = $this->getForm($tableName);
+            foreach ($belongsToMany as $table => $ids) {
+                foreach ($ids as $pivotId) {
+                    $model = "App\Models\\" . Str::studly(Str::singular($form['belongsToMany'][$table]['table']));
+                    if (class_exists($model)) {
+                        $model::create([$form['belongsToMany'][$table]['column'] => $id, $form['belongsToMany'][$table]['foreignLabel'] => $pivotId]);
+                    } else {
+                        \DB::table($form['belongsToMany'][$table]['table'])->insert([$form['belongsToMany'][$table]['column'] => $id, $form['belongsToMany'][$table]['foreignLabel'] => $pivotId]);
+                    }
+                }
+            }
+        }
+
+        return redirect(config('vivify.prefix') . '/' . $tableName);
+    }
 
     public function delete($tableName, $id)
     {
@@ -79,18 +230,20 @@ class MainController extends Controller {
         return redirect()->back();
     }
 
-    public function create($tableName, Request $request)
-    {
-        $form = $this->getForm($tableName);
 
-        return [
-            'tableName' => $tableName,
-            'form' => $form,
-            'belongsTo' => $this->getBelongsToColumns($form),
-            'hasMany' => $this->getHasManyColumns($form),
-            'belongsToMany' => $this->getBelongsToManyColumns($form)
-        ];
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private function getForm($tableName)
     {
@@ -172,176 +325,6 @@ class MainController extends Controller {
         return $selectedBelongsToMany;
     }
 
-    public function edit($tableName, $id)
-    {
-        $form = $this->getForm($tableName);
-
-        return view('main.edit', [
-            'entity' => \DB::table($tableName)->where('id', $id)->first(),
-            'tableName' => $tableName,
-            'form' => $form,
-            'belongsTo' => $this->getBelongsToColumns($form),
-            'hasMany' => $this->getHasManyColumns($form),
-            'selectedHasMany' => $this->getSelectedHasManyColumns($form, $id),
-            'belongsToMany' => $this->getBelongsToManyColumns($form),
-            'selectedBelongsToMany' => $this->getSelectedBelongsToManyColumns($form, $id)
-        ]);
-    }
-
-    private function parseInputData($request)
-    {
-        $data = $request->except(['_token', '_method']);
-        foreach ($data as $key => &$value) {
-            if ($value == '') {
-                $value = null;
-            }
-        }
-        return $data;
-    }
-
-    public function update($tableName, $id, Request $request)
-    {
-        $this->validate($request, config('vivify.validationRules.' . $tableName));
-
-        $data = $this->parseInputData($request);
-
-        if (\Schema::hasColumn($tableName, 'updated_at')) {
-            $data['updated_at'] = \Carbon\Carbon::now();
-        }
-
-        $hasMany = null;
-
-        if (@$data['hasMany']) {
-            $hasMany = $data['hasMany'];
-            unset($data['hasMany']);
-        }
-
-        $belongsToMany = null;
-
-        if (@$data['belongsToMany']) {
-            $belongsToMany = $data['belongsToMany'];
-            unset($data['belongsToMany']);
-        }
-
-        $model = "App\Models\\" . Str::studly(Str::singular($tableName));
-        if (class_exists($model)) {
-            $model::where('id', $id)->first()->update($data);
-        } else {
-            \DB::table($tableName)->where('id', $id)->update($data);
-        }
-
-        $form = $this->getForm($tableName);
-
-        if (isset($form['hasMany'])) {
-            foreach ($form['hasMany'] as $table => $options) {
-                $model = "App\Models\\" . Str::studly(Str::singular($table));
-                if (class_exists($model)) {
-                    $model::where($options['column'], $id)->first()->update([$options['column'] => null ]);
-                } else {
-                    \DB::table($table)->where($options['column'], $id)->update([$options['column'] => null ]);
-                }
-
-                $ids = $hasMany[$table];
-                if ($ids) {
-                    if (class_exists($model)) {
-                        $model::whereIn('id', $ids)->get()->each(function($item, $key) use($options, $id) {
-                            $item::update([ $options['column'] => $id ]);
-                        });
-                    } else {
-                        \DB::table($table)->whereIn('id', $ids)->update([ $options['column'] => $id ]);
-                    }
-                }
-            }
-        }
-
-        if (isset($form['belongsToMany'])) {
-            foreach ($form['belongsToMany'] as $table => $options) {
-                $model = "App\Models\\" . Str::studly(Str::singular($options['table']));
-                if (class_exists($model)) {
-                    $model::where($options['column'], $id)->first()->delete();
-                } else {
-                    \DB::table($options['table'])->where($options['column'], $id)->delete();
-                }
-
-                $ids = $belongsToMany[$table];
-                if ($ids) {
-                    foreach ($ids as $pivotId) {
-                        if (class_exists($model)) {
-                            $model::create([$options['column'] => $id, $options['foreignLabel'] => $pivotId]);
-                        } else {
-                            \DB::table($options['table'])->insert([$options['column'] => $id, $options['foreignLabel'] => $pivotId]);
-                        }
-                    }
-                }
-            }
-        }
-
-        return redirect(config('vivify.prefix') . '/' . $tableName);
-    }
-
-    public function store($tableName, Request $request)
-    {
-        $this->validate($request, config('vivify.validationRules.' . $tableName));
-
-        $data = $this->parseInputData($request);
-
-        if (\Schema::hasColumn($tableName, 'created_at')) {
-            $data['created_at'] = \Carbon\Carbon::now();
-            $data['updated_at'] = $data['created_at'];
-        }
-
-        $hasMany = null;
-
-        if (@$data['hasMany']) {
-            $hasMany = $data['hasMany'];
-            unset($data['hasMany']);
-        }
-
-        $belongsToMany = null;
-
-        if (@$data['belongsToMany']) {
-            $belongsToMany = $data['belongsToMany'];
-            unset($data['belongsToMany']);
-        }
-
-        $model = "App\Models\\" . Str::studly(Str::singular($tableName));
-        if (class_exists($model)) {
-            $new = $model::create($data);
-            $id = $new->id;
-        } else {
-            $id = \DB::table($tableName)->insertGetId($data);
-        }
-
-        if ($hasMany) {
-            $form = $this->getForm($tableName);
-            foreach ($hasMany as $table => $ids) {
-                $model = "App\Models\\" . Str::studly(Str::singular($table));
-                if (class_exists($model)) {
-                    $model::whereIn('id', $ids)->get()->each(function($item, $key) use($options, $id) {
-                        $item::update([ $form['hasMany'][$table]['column'] => $id ]);
-                    });
-                } else {
-                    \DB::table($table)->whereIn('id', $ids)->update([ $form['hasMany'][$table]['column'] => $id ]);
-                }
-            }
-        }
-
-        if ($belongsToMany) {
-            $form = $this->getForm($tableName);
-            foreach ($belongsToMany as $table => $ids) {
-                foreach ($ids as $pivotId) {
-                    $model = "App\Models\\" . Str::studly(Str::singular($form['belongsToMany'][$table]['table']));
-                    if (class_exists($model)) {
-                        $model::create([$form['belongsToMany'][$table]['column'] => $id, $form['belongsToMany'][$table]['foreignLabel'] => $pivotId]);
-                    } else {
-                        \DB::table($form['belongsToMany'][$table]['table'])->insert([$form['belongsToMany'][$table]['column'] => $id, $form['belongsToMany'][$table]['foreignLabel'] => $pivotId]);
-                    }
-                }
-            }
-        }
-
-        return redirect(config('vivify.prefix') . '/' . $tableName);
-    }
 
     public function __set($name, $value)
     {

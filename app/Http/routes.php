@@ -96,10 +96,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     //     'as' => 'uploadImage', 'uses' => 'Admin\AdminController@imageUpload'
     // ]);
 
-    Route::get('/{modelName}', 'Admin\AdminController@index');
-    Route::put('/{modelName}/{id}', 'Admin\MainController@update');
-    Route::post('/{modelName}', 'Admin\MainController@store');
-    Route::get('/{modelName}/delete/{id}', 'Admin\MainController@delete');
+    Route::get('/{modelName}', 'Admin\AdminController@index')->name("showModel");
+    Route::get('/api/{modelName}/table', 'Admin\ApiController@getTableValues')->name("getTableValues");
+    Route::post('/{modelName}/create', 'Admin\MainController@store')->name("createModel");
+    Route::post('/{modelName}/update/{id}', 'Admin\MainController@update')->name("updateModel");
+    Route::get('/{modelName}/delete/{id}', 'Admin\MainController@delete')->name("deleteModel");
 
 });
 

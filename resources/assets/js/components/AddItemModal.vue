@@ -5,25 +5,19 @@
 
                 <h2>Nuevo/a {{ name | capitalize}}</h2>
 
-                <form method="POST" action="{{ action }}">
+                <form v-ajax method="POST" action="{{ action }}">
                     <div class="form-group" v-for="(name, field) in fields">
                         <label for="{{name}}" class="control-label">{{field.label | capitalize}}</label>
                         <input class="form-control" name="{{ name }}" type="{{field.type}}" id="{{ name }}" value="{{ getInputValue(name) }}">
                     </div>
+                    <button type='submit' class="btn btn-info">
+                        Guardar
+                    </button>
+                    <button class="btn btn-danger"
+                        @click.stop.prevent="cancel">
+                        Cancelar
+                    </button>
                 </form>
-
-                <div class="modal-footer">
-                    <slot name="footer">
-                        <button class="btn btn-info"
-                            @click="show = false">
-                            Guardar
-                        </button>
-                        <button class="btn btn-danger"
-                            @click="show = false">
-                            Cancelar
-                        </button>
-                    </slot>
-               </div>
             </div>
         </div>
     </div>
@@ -46,12 +40,14 @@ export default {
             type: String,
             required: true,
         },
-        fields: {
-            required: true,
-        },
         model: {
             type: Object,
         },
+    },
+    data: function() {
+        return {
+            fields: JSON.parse(FORM),
+        };
     },
     methods: {
         getInputValue: function(name) {
@@ -59,10 +55,22 @@ export default {
                 return this.model[name];
             }
             return '';
-        }
+        },
+        cancel: function() {
+            this.show = false;
+            this.model = {};
+            this.action = CREATE_BASE_URL;
+        },
+    },
+    events: {
+        formSubmitted: function(response) {
+            console.log('modal event recv');
+            this.model = {};
+            this.show = false;
+            return true;
+        },
     },
     created: function() {
-        this.fields = JSON.parse(this.fields);
     }
 }
 </script>
