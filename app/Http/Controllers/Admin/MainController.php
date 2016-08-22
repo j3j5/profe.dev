@@ -32,7 +32,7 @@ class MainController extends Controller {
     {
         $this->create_model_url = route("createModel", $table);
         $this->edit_base_url = route("updateModel", [$table, '']);
-        $this->delete_base_url = route("deleteModel", [$table, '']);
+        $this->delete_base_url = route("deleteModel", $table);
         $model = str_singular(ucfirst(camel_case($table)));
         $model = "App\Models\\$model";
         $model::bootstrap($this);

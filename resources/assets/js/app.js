@@ -14,13 +14,14 @@ import AdminValues from './components/AdminValues.vue'
 import Modal from './components/Modal.vue'
 import AddItemModal from './components/AddItemModal.vue'
 import Alert from './components/Alert.vue'
-
+import Dropzone from './components/Dropzone.vue';
 
 Vue.component('AdminTable', AdminTable);
 Vue.component('AdminValues', AdminValues);
 Vue.component('Modal', Modal);
 Vue.component('AddItemModal', AddItemModal);
 Vue.component('Alert', Alert);
+Vue.component('vue-dropzone', Dropzone);
 
 require('./components/PropuestasModal.js')
 
@@ -64,8 +65,10 @@ new Vue({
            this.modalAction = EDIT_BASE_URL + '/' + this.selectedModel.id;
        },
        removeItem: function(item) {
-           if(confirm("Estás a punto de borrar " + item.nombre + ".\n¿Estás segura de que deseas eliminarlo/a?\nNo se podrá recuperar.")) {
-               this.tableValues.$remove(item);
+           if(confirm("Estás a punto de borrar " + item.nombre + ".\n¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
+               this.$http.post(DELETE_BASE_URL, {id: item.id}).then(function(response) {
+                   this.tableValues.$remove(item);
+               }).bind(this);
            }
        },
        itemCreated: function(item) {
@@ -73,11 +76,10 @@ new Vue({
            this.closeAndResetModal();
        },
        itemEdited: function(item) {
-           this.tableValues = this.tableValues.filter(function(entry) {
-               return item.id !== entry.id;
-           });
-           this.tableValues.push(item);
-
+            var index = this.tableValues.indexOf(this.selectedModel);
+            if (index !== -1) {
+                this.tableValues.$set(index, item);
+            }
            this.closeAndResetModal();
        },
    },

@@ -16,7 +16,6 @@ class AdminController extends MainController
     protected $model;
 
     public function __construct() {
-        // dd($this->model, __FILE__);
         $this->b2client = new Client(new Credentials(config('b2client.account_id'), config('b2client.app_key')));
         parent::__construct();
     }
@@ -90,9 +89,9 @@ class AdminController extends MainController
     }
 
     protected function createAddAssets() {
-        Asset::add('css/dropzone/dropzone.min.css');
-        Asset::add('//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', 'footer');
-        Asset::add('js/dropzone/dropzone.min.js', 'footer');
+        // Asset::add('css/dropzone/dropzone.min.css');
+        // Asset::add('//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', 'footer');
+        // Asset::add('js/dropzone/dropzone.min.js', 'footer');
     }
 
 }

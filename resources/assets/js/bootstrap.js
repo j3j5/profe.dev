@@ -1,5 +1,5 @@
 
-// window._ = require('lodash');
+window._ = require('lodash');
 window.Cookies = require('js-cookie');
 
 /**
@@ -31,3 +31,5 @@ Vue.http.interceptors.push(function (request, next) {
 
     next();
 });
+
+window.Dropzone = require("dropzone");

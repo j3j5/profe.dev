@@ -91,17 +91,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     //     'as' => 'uploadExamen', 'uses' => 'Admin\ExamenesController@upload'
     // ]);
     //
-    // // Misc
-    // Route::post('/images/upload', [
-    //     'as' => 'uploadImage', 'uses' => 'Admin\AdminController@imageUpload'
-    // ]);
+    // Misc
 
     Route::get('/{modelName}', 'Admin\AdminController@index')->name("showModel");
-    Route::get('/api/{modelName}/table', 'Admin\ApiController@getTableValues')->name("getTableValues");
-    Route::post('/{modelName}/create', 'Admin\MainController@store')->name("createModel");
     Route::post('/{modelName}/update/{id}', 'Admin\MainController@update')->name("updateModel");
-    Route::get('/{modelName}/delete/{id}', 'Admin\MainController@delete')->name("deleteModel");
 
+    // API
+    Route::group(['prefix' => 'api'], function(){
+        Route::get('/{modelName}/table', 'Admin\ApiController@getTableValues')->name("getTableValues");
+        Route::post('/{modelName}/create', 'Admin\ApiController@create')->name("createModel");
+        Route::post('/{modelName}/upload', 'Admin\ApiController@uploads')->name("uploadRoute");
+        Route::post('/thumb/upload', 'Admin\ApiController@thumbUpload')->name("thumbUpload");
+        Route::post('/{modelName}/delete', 'Admin\ApiController@delete')->name("deleteModel");
+    });
 });
 
 // Cursos

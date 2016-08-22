@@ -38,7 +38,23 @@ Vue.component('AddPropuestaModal', {
             }, function(response) {
                 alert(response);
             });
-        }
+        },
     },
-
+    ready: function() {
+        var self = this;
+        Dropzone.options.imagesDropzone = {
+            init: function() {
+                this.on("success", function(file, responseText) {
+                    self.thumbnail = file.name;
+                });
+            }
+        };
+        Dropzone.options.filesDropzone = {
+            init: function() {
+                this.on("success", function(file, responseText) {
+                    self.archivo = file.name;
+                });
+            }
+        };
+    },
 });

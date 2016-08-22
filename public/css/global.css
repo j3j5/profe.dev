@@ -140,14 +140,6 @@ a:hover {
 }
 
 
-/* Propuestas Admin */
-
-.uploadZone {
-    padding: 15px;
-    text-align: center;
-}
-
-
 @media print {
     /* All your print styles go here */
     .body {

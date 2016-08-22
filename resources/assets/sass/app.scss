@@ -1,2 +1,9 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/dropzone/src/basic.scss";
+@import "node_modules/dropzone/src/dropzone.scss";
+// @import "node_modules/dropzone/src";
 
+.uploadZone {
+    padding: 15px;
+    text-align: center;
+}

@@ -11,7 +11,7 @@
         <div class="modal-header-1">
             <h2>Nueva Propuesta</h2>
         </div>
-        <form @submit.prevent.stop="submitForm" method="POST" action="{{ route('createModel', $model) }}">
+        <div class="modal-body">
             <div class="form-group">
                 <label for="nombre" class="control-label">Nombre</label>
                 <input class="form-control" v-model="nombre" name="nombre" type="text" id="nombre" value="@{{ nombre }}">
@@ -28,25 +28,38 @@
             </div>
 
             <div class="form-group">
+                {{-- THUMBNAIL --}}
                 <div class="col-sm-6">
                     <label for="thumbnail" class="control-label">Thumbnail</label>
-                    <input class="form-control" v-model="thumbnail" name="thumbnail" type="text" id="thumbnail" value="@{{ thumbnail }}">
+                    <input class="form-control" v-model="thumbnail" name="thumbnail" type="text" id="thumbnail" value="@{{ thumbnail }}" disabled>
+                    <form id="images-dropzone" action="{{ route("thumbUpload") }}" class="dropzone">
+                        {{ csrf_field() }}
+                        <div class="dz-message">
+                            <span><i class="fa fa-cloud-upload"></i>Pincha o arrastra y suelta un archivo aquí</span>
+                        </div>
+                    </form>
                 </div>
+                {{-- ARCHIVO --}}
                 <div class="col-sm-6">
                     <label for="archivo" class="control-label">Archivo</label>
-                    <input class="form-control" v-model="archivo" name="archivo" type="text" id="archivo" value="@{{ archivo }}">
+                    <input class="form-control" v-model="archivo" name="archivo" type="text" id="archivo" value="@{{ archivo }}" disabled>
+                    <form id="files-dropzone" action="{{ route("uploadRoute", $model) }}" class="dropzone">
+                        {{ csrf_field() }}
+                        <div class="dz-message">
+                            <span><i class="fa fa-cloud-upload"></i>Pincha o arrastra y suelta un archivo aquí</span>
+                        </div>
+                    </form>
                 </div>
             </div>
-
-            <div class="modal-footer-1 text-right">
-                <button type='submit' class="btn btn-info">
-                    Guardar
-                </button>
-                <button class="btn btn-danger"
-                    @click.stop.prevent="close">
-                    Cancelar
-                </button>
-            </div>
-        </form>
+        </div>
+        <div class="modal-footer-1 text-right">
+            <button @click="submitForm" class="btn btn-info">
+                Guardar
+            </button>
+            <button class="btn btn-danger"
+                @click.stop.prevent="close">
+                Cancelar
+            </button>
+        </div>
     </modal>
 </template>

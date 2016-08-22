@@ -37,8 +37,8 @@ class AppServiceProvider extends ServiceProvider
         Asset::add('//fonts.googleapis.com/css?family=Covered+By+Your+Grace');
 
         // JS Files
-        Asset::add('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js');
-        Asset::add('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js');
+        // Asset::add('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js');
+        // Asset::add('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js');
 //         Asset::add('/upup.min.js');
 //         Asset::add('/upup.sw.min.js');
 
@@ -66,11 +66,11 @@ class AppServiceProvider extends ServiceProvider
             "css/global.css",
             "css/home.css",
             "css/cursos.css",
-            "css/propuestas.css",
+            // "css/propuestas.css",
             "css/vendor/bootstrap-image-gallery.min.css",
             "js/vendor/bootstrap-image-gallery.min.js",
-            "css/dropzone/dropzone.min.css",
-            "js/dropzone/dropzone.min.js",
+            // "css/dropzone/dropzone.min.css",
+            // "js/dropzone/dropzone.min.js",
         ];
         $assets = [];
         foreach ($files as $file) {
