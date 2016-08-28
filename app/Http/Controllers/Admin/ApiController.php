@@ -22,9 +22,10 @@ class ApiController extends Controller
 
     public function getTableValues($table)
     {
-        $columns = array_values(array_where(\Schema::getColumnListing($table), function($item, $key) {
+        $columns = array_values(array_where(\Schema::getColumnListing($table), function ($item, $key) {
             return !in_array($item, ['id', 'updated_at']);
         }));
+
         $values = \DB::table($table)->get();
 
         $response = ['columns' => $columns, 'values' => $values];
@@ -32,8 +33,9 @@ class ApiController extends Controller
         return response()->json($response);
     }
 
-    public function create($table, Request $request) {
-        switch($table) {
+    public function create($table, Request $request)
+    {
+        switch ($table) {
             case 'propuestas':
                 return $this->{$table}($request->input());
             default:
@@ -41,22 +43,36 @@ class ApiController extends Controller
         }
     }
 
-    public function delete($table, Request $request)
+    public function delete($table, $id, Request $request)
     {
+        dd($request->input('id'));
         $model = "App\Models\\" . Str::studly(Str::singular($table));
         $model::where('id', $request->input('id'))->first()->delete();
         return response()->json(['result' => 'success']);
     }
 
-    public function thumbUpload() {
+    public function update(Request $request, $tableName, $id)
+    {
+        $model = "App\Models\\" . Str::studly(Str::singular($tableName));
+        if (class_exists($model)) {
+            $element = $model::where('id', $id)->first();
+            $element->update($request->input());
+        } else {
+            \DB::table($tableName)->where('id', $id)->update($request->input());
+        }
+
+        return response()->json($element);
+    }
+
+    public function thumbUpload()
+    {
         $file = array('file' => $request->file('file'));
         $rules = array('file' => 'required|mimes:jpg,jpeg,bmp,png',); //mimes:jpeg,bmp,png and for max size max:10000
         $validator = Validator::make($file, $rules);
         if ($validator->fails()) {
             // send back to the page with the input data and errors
             return response()->json(['validationError' => $validator->errors()], 400);
-        }
-        else {
+        } else {
             // checking file is valid.
             if ($request->file('file')->isValid()) {
                 $this->handleUpload($request);
@@ -116,14 +132,14 @@ class ApiController extends Controller
         $destination_path = 'uploads'; // upload path
         $filename = $request->file('file')->getClientOriginalName();
 
-        if(app()->environment('production')) {
+        if (app()->environment('production')) {
             $response = $this->b2client->uploadContents(
                 config('b2client.bucket_id'),
                 "$destination_path/$filename",
                 file_get_contents($request->file('file')->getRealPath())
                 );
 
-                unlink($request->file('file')->getRealPath());
+            unlink($request->file('file')->getRealPath());
         } else {
             $request->file('file')->move($destination_path, $filename); // uploading file to given path
         }

@@ -15,7 +15,7 @@
         <div class="col-sm-4">
             <div style="padding-top: 10px;padding-bottom: 10px;float:right;">
                 <div class="btn-group" :class="{'open' : columnMenuOpen}">
-                    <button @click="showModal=true" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Añadir nuevo</button>
+                    <button @click="openModal" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Añadir nuevo</button>
                     <button @click="toggleFilter" class="btn btn-warning">Filtrar</button>
                     <button @click.stop.prevent="columnMenuOpen = !columnMenuOpen" @keyup.esc="columnMenuOpen = false"
                             type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
@@ -51,24 +51,19 @@
         name: "AdminTable",
         components: {},
         props: {
-            columns: {
-                type: Array,
-            },
-            values: {
-                type: Array,
-                twoWay: true,
-            },
-            model: {
+            modelName: {
                 type: String,
                 required: false,
-            },
-            showModal: {
-                type: Boolean,
-                default: false,
             }
         },
         data: function () {
             return {
+                getTableUrl: "/admin/api/"+this.modelName+"/table",
+                createModelUrl: '/admin/api/' + this.modelName + '/create',
+                updateModelUrl: '/admin/api/' + this.modelName + '/update/',
+                deleteModelUrl: '/admin/api/' + this.modelName + '/delete/',
+                columns: [],
+                values: [],
                 filteredSize: 0,
                 filterKey: "",
                 sortKey: "",
@@ -87,6 +82,9 @@
                obj.visible = true;
                self.displayCols.push(obj);
            });
+        },
+        ready: function() {
+            this.fetchTable();
         },
         watch: {
             columns: function () {
@@ -119,6 +117,12 @@
             },
         },
         methods: {
+            fetchTable: function() {
+                this.$http.get(this.getTableUrl).then(function(response) {
+                    this.columns = response.data.columns;
+                    this.values = response.data.values;
+                }).bind(this);
+            },
             setSortOrders: function () {
                 this.sortKey = "";
                 var sortOrders = {};
@@ -137,9 +141,33 @@
             toggleFilter: function() {
                 this.showFilter = !this.showFilter;
             },
+            openModal: function() {
+                this.$dispatch('modalOpen', {url: this.createModelUrl});
+            },
+            closeModal: function() {
+                this.$dispatch('modalClosed');
+            },
         },
         events: {
-        }
+            removeItem: function(item) {
+                if(confirm("Estás a punto de borrar " + item.nombre + ".\n¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
+                    this.$http.delete(this.deleteModelUrl + item.id).then(function(response) {
+                        this.values.$remove(item);
+                    }).bind(this);
+                }
+            },
+            itemCreated: function(item) {
+                this.values.push(item);
+                this.closeAndResetModal();
+            },
+            itemEdited: function(item) {
+                 var index = this.values.indexOf(this.selectedModel);
+                 if (index !== -1) {
+                     this.values.$set(index, item);
+                 }
+                this.closeAndResetModal();
+            },
+        },
     }
 </script>
 

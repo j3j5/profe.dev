@@ -21,11 +21,33 @@ Vue.component('AddPropuestaModal', {
             }
         },
     },
+    computed: {
+        thumbBgStyle: function() {
+            return {
+                backgroundSize: 'cover',
+                backgroundImage: this.imageUrl,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+            };
+        },
+        formMsg: function() {
+            return {
+                backgroundColor: "white",
+                opacity: "0.8",
+                width: "30%",
+                margin: "2em auto",
+            }
+        },
+        imageUrl: function() {
+            if(this.thumbnail) {
+                return "url('/uploads/" + this.thumbnail + "')";
+            }
+            return '';
+        }
+    },
     methods: {
         close: function() {
-            this.show = false;
-            this.model = {};
-            this.action = CREATE_BASE_URL;
+            this.$dispatch('closeModal');
         },
         submitForm: function() {
             this.$http.post(this.action, this.$data)

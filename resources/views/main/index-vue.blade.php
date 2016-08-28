@@ -6,10 +6,9 @@
         <h2>{{ ucwords(str_replace('_', ' ', str_plural($model))) }} </h2>
 
         <admin-table
-            model="{{ $model }}"
-            :columns.sync="tableColumns"
-            :values.sync="tableValues"
-            :show-modal.sync="showModal"
+            model-name="{{ $model }}"
+            :columns="tableColumns"
+            :values="tableValues"
         >
         </admin-table>
 

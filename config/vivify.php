@@ -125,23 +125,7 @@ return [
             'email',
             'password',
         ],
-        'propuestas'    => [
-            'nombre' => [
-                'label' => "Nombre",
-                'type'  => "text",
-            ],
-            'contenidos' => [
-                'label' => "Contenidos de la propuesta",
-                'type'  => "text",
-            ],
-            'curso' => [
-                'label' => 'Curso',
-                'type' => 'select',
-                'dropdown' => ['1' => 'Primero', '2'=> 'Segundo',  '3'=> 'Tercero',],
-            ],
-            'thumbnail',
-            'archivo',
-        ],
+
         'images' => [
             'titulo' => [
                 'label' => "Título de la imagen",

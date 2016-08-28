@@ -30,20 +30,14 @@ class MainController extends Controller {
 
     public function index(Request $request, $table)
     {
-        $this->create_model_url = route("createModel", $table);
-        $this->edit_base_url = route("updateModel", [$table, '']);
-        $this->delete_base_url = route("deleteModel", $table);
         $model = str_singular(ucfirst(camel_case($table)));
         $model = "App\Models\\$model";
         $model::bootstrap($this);
 
         $js_variables = "var IMG_BASE_URL = \"{$this->images_base_url}\";";
+
         $js_variables .= PHP_EOL . "var TABLE_ENDPOINT = \"" . route('getTableValues', $table) . "\";";
         $js_variables .= PHP_EOL . "var FILES_BASE_URL = \"{$this->files_base_url}\";";
-        $js_variables .= PHP_EOL . "var CREATE_BASE_URL = \"{$this->create_model_url}\";";
-        $js_variables .= PHP_EOL . "var EDIT_BASE_URL = \"{$this->edit_base_url}\";";
-        $js_variables .= PHP_EOL . "var DELETE_BASE_URL = \"{$this->delete_base_url}\";";
-
 
         $filters = $request->except('page', 'direction', 'column');
 
@@ -55,99 +49,11 @@ class MainController extends Controller {
         }
 
         $js_variables .= PHP_EOL . "var NAME = \"$model\";";
-        $js_variables .= PHP_EOL . "var FORM = '" . json_encode($this->getForm($table)) . "';";
 
         Asset::addScript($js_variables, 'footer');
         return view('main.index-vue', [
             'model' => $table,
         ]);
-    }
-
-    public function update($tableName, $id, Request $request)
-    {
-        $this->validate($request, config('vivify.validationRules.' . $tableName));
-
-        // $data = $this->parseInputData($request);
-        //
-        // if (\Schema::hasColumn($tableName, 'updated_at')) {
-        //     $data['updated_at'] = \Carbon\Carbon::now();
-        // }
-        //
-        // $hasMany = null;
-        //
-        // if (@$data['hasMany']) {
-        //     $hasMany = $data['hasMany'];
-        //     unset($data['hasMany']);
-        // }
-        //
-        // $belongsToMany = null;
-        //
-        // if (@$data['belongsToMany']) {
-        //     $belongsToMany = $data['belongsToMany'];
-        //     unset($data['belongsToMany']);
-        // }
-
-        $model = "App\Models\\" . Str::studly(Str::singular($tableName));
-        if (class_exists($model)) {
-            $element = $model::where('id', $id)->first();
-            $element->update($request->input());
-        } else {
-            \DB::table($tableName)->where('id', $id)->update($request->input());
-        }
-
-        if ($request->expectsJson()) {
-            return response()->json($element);
-        } else {
-            return redirect()->back();
-        }
-
-        // $form = $this->getForm($tableName);
-        //
-        // if (isset($form['hasMany'])) {
-        //     foreach ($form['hasMany'] as $table => $options) {
-        //         $model = "App\Models\\" . Str::studly(Str::singular($table));
-        //         if (class_exists($model)) {
-        //             $model::where($options['column'], $id)->first()->update([$options['column'] => null ]);
-        //         } else {
-        //             \DB::table($table)->where($options['column'], $id)->update([$options['column'] => null ]);
-        //         }
-        //
-        //         $ids = $hasMany[$table];
-        //         if ($ids) {
-        //             if (class_exists($model)) {
-        //                 $model::whereIn('id', $ids)->get()->each(function($item, $key) use($options, $id) {
-        //                     $item::update([ $options['column'] => $id ]);
-        //                 });
-        //             } else {
-        //                 \DB::table($table)->whereIn('id', $ids)->update([ $options['column'] => $id ]);
-        //             }
-        //         }
-        //     }
-        // }
-        //
-        // if (isset($form['belongsToMany'])) {
-        //     foreach ($form['belongsToMany'] as $table => $options) {
-        //         $model = "App\Models\\" . Str::studly(Str::singular($options['table']));
-        //         if (class_exists($model)) {
-        //             $model::where($options['column'], $id)->first()->delete();
-        //         } else {
-        //             \DB::table($options['table'])->where($options['column'], $id)->delete();
-        //         }
-        //
-        //         $ids = $belongsToMany[$table];
-        //         if ($ids) {
-        //             foreach ($ids as $pivotId) {
-        //                 if (class_exists($model)) {
-        //                     $model::create([$options['column'] => $id, $options['foreignLabel'] => $pivotId]);
-        //                 } else {
-        //                     \DB::table($options['table'])->insert([$options['column'] => $id, $options['foreignLabel'] => $pivotId]);
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-        // return redirect(config('vivify.prefix') . '/' . $tableName);
     }
 
     public function store($tableName, Request $request)

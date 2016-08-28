@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-mask" @click="cancel" v-show="show" @keyup.esc="cancel" transition="modal">
+    <div class="modal-mask" v-show="show" @click="cancel" @keyup.esc="cancel" transition="modal">
         <div class="modal-wrapper">
             <div class="modal-container" @click.stop>
                 <slot></slot>
@@ -15,13 +15,11 @@ export default {
         show: {
             type: Boolean,
             required: true,
-            twoWay: true
         },
     },
     methods: {
         cancel: function() {
-            this.show = false;
-            this.$dispatch('modal-closed');
+            this.$dispatch('modalClosed');
         },
     },
 }

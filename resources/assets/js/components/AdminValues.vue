@@ -66,7 +66,8 @@ export default {
             this.$dispatch('removeItem', entry);
         },
         editItem: function(entry) {
-            this.$dispatch("editItem", entry);
+            var data = {entry: entry, url: this.$parent.updateModelUrl}; 
+            this.$dispatch("editItem", data);
         },
     },
 }

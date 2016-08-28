@@ -1,13 +1,13 @@
 <add-propuesta-modal
     name="{{ $model }}"
-    :show.sync="showModal"
+    :show="showModal"
     :action="modalAction"
     :model="selectedModel"
 ></add-propuesta-modal>
 
 
 <template id="propuesta-modal-template">
-    <modal :show.sync="show" v-on:modal-closed="close">
+    <modal :show="show">
         <div class="modal-header-1">
             <h2>Nueva Propuesta</h2>
         </div>
@@ -24,7 +24,11 @@
 
             <div class="form-group">
                 <label for="curso" class="control-label">Curso</label>
-                <input min=1 max=3 class="form-control" v-model="curso" name="curso" type="number" id="curso" value="@{{ curso }}">
+                <select v-model="curso" class="form-control">
+                    <option selected>1º (Primero)</option>
+                    <option>2º (Segundo)</option>
+                    <option>3º (Tercero)</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -32,9 +36,9 @@
                 <div class="col-sm-6">
                     <label for="thumbnail" class="control-label">Thumbnail</label>
                     <input class="form-control" v-model="thumbnail" name="thumbnail" type="text" id="thumbnail" value="@{{ thumbnail }}" disabled>
-                    <form id="images-dropzone" action="{{ route("thumbUpload") }}" class="dropzone">
+                    <form id="images-dropzone" action="{{ route("thumbUpload") }}" class="dropzone" v-bind:style="thumbBgStyle">
                         {{ csrf_field() }}
-                        <div class="dz-message">
+                        <div class="dz-message" v-bind:style="formMsg">
                             <span><i class="fa fa-cloud-upload"></i>Pincha o arrastra y suelta un archivo aquí</span>
                         </div>
                     </form>
@@ -45,7 +49,7 @@
                     <input class="form-control" v-model="archivo" name="archivo" type="text" id="archivo" value="@{{ archivo }}" disabled>
                     <form id="files-dropzone" action="{{ route("uploadRoute", $model) }}" class="dropzone">
                         {{ csrf_field() }}
-                        <div class="dz-message">
+                        <div class="dz-message" v-bind:style="formMsg">
                             <span><i class="fa fa-cloud-upload"></i>Pincha o arrastra y suelta un archivo aquí</span>
                         </div>
                     </form>
