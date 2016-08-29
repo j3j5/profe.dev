@@ -12,7 +12,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="entry in values | orderBy sortKey sortOrders[sortKey]" track-by="id">
+        <tr v-for="entry in filteredValues | orderBy sortKey sortOrders[sortKey]" track-by="id">
             <td v-for="column in columns | filterBy true in 'visible'" track-by="$index"
                 v-show="column.visible">
                 {{{ entry[column.title] | displayMedia }}}
@@ -33,7 +33,7 @@
 <script>
 export default {
     name: 'AdminValues',
-    props: ['columns', 'values', 'sortKey', 'sortOrders'],
+    props: ['columns', 'values', 'sortKey', 'sortOrders', 'filterKey'],
     methods: {
         sortBy: function (key) {
             var self = this;
@@ -66,8 +66,16 @@ export default {
             this.$dispatch('removeItem', entry);
         },
         editItem: function(entry) {
-            var data = {entry: entry, url: this.$parent.updateModelUrl}; 
+            var data = {entry: entry, url: this.$parent.updateModelUrl};
             this.$dispatch("editItem", data);
+        },
+    },
+    computed: {
+        filteredValues: function () {
+            var result = this.$options.filters.filterBy(this.values, this.filterKey);
+            result = this.$options.filters.orderBy(result, this.sortKey, this.sortOrders[this.sortKey]);
+            this.filteredSize = result.length;
+            return result;
         },
     },
 }

@@ -32,8 +32,9 @@
                 {{-- Imagen --}}
                 <label for="image" class="control-label">Archivo</label>
                 <input class="form-control" v-model="image" name="image" type="text" id="image" value="@{{ image }}" disabled>
-                <form id="files-dropzone" action="{{ route("uploadRoute", $model) }}" class="dropzone" v-bind:style="formBgStyle">
+                <form id="files-dropzone" action="{{ route("galleryUpload") }}" class="dropzone" v-bind:style="formBgStyle">
                     {{ csrf_field() }}
+                    <input hidden name="curso" value="1">
                     <div class="dz-message" v-bind:style="formMsg">
                         <span><i class="fa fa-cloud-upload"></i>Pincha o arrastra y suelta una imagen aquí</span>
                     </div>

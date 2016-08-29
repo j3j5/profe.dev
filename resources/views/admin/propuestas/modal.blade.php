@@ -25,9 +25,7 @@
             <div class="form-group">
                 <label for="curso" class="control-label">Curso</label>
                 <select v-model="curso" class="form-control">
-                    <option selected>1º (Primero)</option>
-                    <option>2º (Segundo)</option>
-                    <option>3º (Tercero)</option>
+                    <option v-for="n in 3" value=@{{n+1}}>@{{ n+1 | parseCurso }}</option>
                 </select>
             </div>
 

@@ -23,6 +23,7 @@ Vue.component('vue-dropzone', Dropzone);
 
 require('./modals/PropuestasModal.js')
 require('./modals/ImagesModal.js')
+require('./modals/ConceptosModal.js')
 
 new Vue({
     el: '#admin',
@@ -42,20 +43,29 @@ new Vue({
         closeAndResetModal: function() {
             this.selectedModel = {};
             this.showModal = false;
-        }
+        },
     },
     events : {
-        modalOpen: function(data) {
+        openModal: function(data) {
             this.showModal = true;
             this.modalAction = data.url;
         },
-        modalClosed: function(data) {
+        closeModal: function(data) {
             this.closeAndResetModal();
         },
         editItem: function(data) {
             this.selectedModel = data.entry;
             this.modalAction = data.url + this.selectedModel.id;
             this.showModal = true;
+        },
+        itemCreated: function(item) {
+            this.$broadcast('itemCreated', item);
+            this.closeAndResetModal();
+        },
+        itemEdited: function(item) {
+            var info = {old: this.selectedModel, new: item};
+            this.$broadcast('itemEdited', info);
+            this.closeAndResetModal();
         },
     },
  });

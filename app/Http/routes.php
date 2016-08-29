@@ -38,8 +38,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::post('/{modelName}/update/{id}', 'Admin\ApiController@update')->name("updateModel");
         Route::delete('/{modelName}/delete/{id}', 'Admin\ApiController@delete')->name("deleteModel");
 
-        Route::post('/{modelName}/upload', 'Admin\ApiController@uploads')->name("uploadRoute");
         Route::post('/thumb/upload', 'Admin\ApiController@thumbUpload')->name("thumbUpload");
+        Route::post('/gallery/upload', 'Admin\ApiController@galleryUpload')->name("galleryUpload");
+        Route::post('/{modelName}/upload', 'Admin\ApiController@uploads')->name("uploadRoute");
     });
 });
 

@@ -37,9 +37,16 @@ class ApiController extends Controller
     {
         switch ($table) {
             case 'propuestas':
-                return $this->{$table}($request->input());
+            case 'images':
             default:
+                $model_name = "App\Models\\".Str::studly(Str::singular($table));
+                $new = $model_name::validateAndCreate($request->input());
                 break;
+        }
+        if(!isset($new['error'])) {
+            return response()->json($new);
+        } else {
+            return response()->json($new, 400);
         }
     }
 
@@ -64,10 +71,10 @@ class ApiController extends Controller
         return response()->json($element);
     }
 
-    public function thumbUpload()
+    public function thumbUpload(Request $request)
     {
         $file = array('file' => $request->file('file'));
-        $rules = array('file' => 'required|mimes:jpg,jpeg,bmp,png',); //mimes:jpeg,bmp,png and for max size max:10000
+        $rules = array('file' => 'required|mimes:JPG,jpg,JPEG,jpeg,bmp,png',); //mimes:jpeg,bmp,png and for max size max:10000
         $validator = Validator::make($file, $rules);
         if ($validator->fails()) {
             // send back to the page with the input data and errors
@@ -76,6 +83,27 @@ class ApiController extends Controller
             // checking file is valid.
             if ($request->file('file')->isValid()) {
                 $this->handleUpload($request);
+                // sending back with message
+                return response()->json(['result' => 'success']);
+            } else {
+                // sending back with error message.
+                return response()->json(['error' => 'Not a valid file.'], 400);
+            }
+        }
+    }
+
+    public function galleryUpload(Request $request)
+    {
+        $file = array('file' => $request->file('file'));
+        $rules = array('file' => 'required|mimes:JPG,jpg,JPEG,jpeg,bmp,png',); //mimes:jpeg,bmp,png and for max size max:10000
+        $validator = Validator::make($file, $rules);
+        if ($validator->fails()) {
+        //     // send back to the page with the input data and errors
+            return response()->json(['validationError' => $validator->errors()], 400);
+        } else {
+            // checking file is valid.
+            if ($request->file('file')->isValid()) {
+                $this->handleUpload($request, true);
                 // sending back with message
                 return response()->json(['result' => 'success']);
             } else {
@@ -107,29 +135,13 @@ class ApiController extends Controller
         }
     }
 
-    private function propuestas($input)
+    private function handleUpload(Request $request, $gallery = false)
     {
-        $rules = [
-            'nombre'        => 'required|string',
-            'contenidos'    => 'string',
-            'curso'         => 'integer|min:1|max:3',
-            'thumbnail'     => 'string',
-            'archivo'       => 'string',
-        ];
-        $validator = Validator::make($input, $rules);
-
-        if ($validator->fails()) {
-            // send back to the page with the input data and errors
-            return response()->json(['error' => $validator->errors()], 400);
+        if ($gallery) {
+            $destination_path = 'images/galeria/' . $request->input("curso"); // upload path
         } else {
-            $new = Propuesta::create($input);
-            return response()->json($new);
+            $destination_path = 'uploads'; // upload path
         }
-    }
-
-    private function handleUpload(Request $request)
-    {
-        $destination_path = 'uploads'; // upload path
         $filename = $request->file('file')->getClientOriginalName();
 
         if (app()->environment('production')) {
@@ -137,8 +149,8 @@ class ApiController extends Controller
                 config('b2client.bucket_id'),
                 "$destination_path/$filename",
                 file_get_contents($request->file('file')->getRealPath())
-                );
-
+            );
+            // Delete the file from the server
             unlink($request->file('file')->getRealPath());
         } else {
             $request->file('file')->move($destination_path, $filename); // uploading file to given path

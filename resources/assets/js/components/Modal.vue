@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         cancel: function() {
-            this.$dispatch('modalClosed');
+            this.$dispatch('closeModal');
         },
     },
 }

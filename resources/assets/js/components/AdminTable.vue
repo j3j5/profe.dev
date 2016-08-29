@@ -37,10 +37,11 @@
         <div class="col-sm-12">
             <admin-values
                 v-if="values.length > 0"
-                :columns.sync="displayCols"
-                :values.sync="filteredValues"
-                :sort-key.sync="sortKey"
-                :sort-orders.sync="sortOrders">
+                :columns="displayCols"
+                :values="values"
+                :sort-key="sortKey"
+                :sort-orders="sortOrders"
+                :filter-key="filterKey">
             </admin-values>
             <div v-else class="alert alert-info" role="alert">No hay nada todavía</div>
         </div>
@@ -108,14 +109,6 @@
                 });
             }
         },
-        computed: {
-            filteredValues: function () {
-                var result = this.$options.filters.filterBy(this.values, this.filterKey);
-                result = this.$options.filters.orderBy(result, this.sortKey, this.sortOrders[this.sortKey]);
-                this.filteredSize = result.length;
-                return result;
-            },
-        },
         methods: {
             fetchTable: function() {
                 this.$http.get(this.getTableUrl).then(function(response) {
@@ -142,10 +135,10 @@
                 this.showFilter = !this.showFilter;
             },
             openModal: function() {
-                this.$dispatch('modalOpen', {url: this.createModelUrl});
+                this.$dispatch('openModal', {url: this.createModelUrl});
             },
             closeModal: function() {
-                this.$dispatch('modalClosed');
+                this.$dispatch('closeModal');
             },
         },
         events: {
@@ -158,14 +151,16 @@
             },
             itemCreated: function(item) {
                 this.values.push(item);
-                this.closeAndResetModal();
             },
             itemEdited: function(item) {
-                 var index = this.values.indexOf(this.selectedModel);
+                 var index = this.values.indexOf(item.old);
                  if (index !== -1) {
-                     this.values.$set(index, item);
+                     this.values.$set(index, item.new);
+                 } else {
+                     console.log('WTF!!! index = ' + index);
+                     console.log(item);
+                     console.log(this.values);
                  }
-                this.closeAndResetModal();
             },
         },
     }

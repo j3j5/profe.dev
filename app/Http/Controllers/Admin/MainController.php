@@ -35,9 +35,9 @@ class MainController extends Controller {
         $model::bootstrap($this);
 
         $js_variables = "var IMG_BASE_URL = \"{$this->images_base_url}\";";
-
-        $js_variables .= PHP_EOL . "var TABLE_ENDPOINT = \"" . route('getTableValues', $table) . "\";";
         $js_variables .= PHP_EOL . "var FILES_BASE_URL = \"{$this->files_base_url}\";";
+
+        // $js_variables .= PHP_EOL . "var TABLE_ENDPOINT = \"" . route('getTableValues', $table) . "\";";
 
         $filters = $request->except('page', 'direction', 'column');
 
