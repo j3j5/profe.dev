@@ -32,7 +32,7 @@ class MainController extends Controller {
     {
         $model = str_singular(ucfirst(camel_case($table)));
         $model = "App\Models\\$model";
-        $model::bootstrap($this);
+        // $model::bootstrap($this);
 
         $js_variables = "var IMG_BASE_URL = \"{$this->images_base_url}\";";
         $js_variables .= PHP_EOL . "var FILES_BASE_URL = \"{$this->files_base_url}\";";

@@ -1,5 +1,5 @@
 <template>
-    <table class="table table-bordered table-hover table-condensed table-striped vue-table">
+    <table class="table table-bordered table-hover table-striped vue-table">
         <thead>
         <tr>
             <th v-for="column in columns | filterBy true in 'visible'"
@@ -18,11 +18,11 @@
                 {{{ entry[column.title] | displayMedia }}}
             </td>
             <td class="is-icon" colspan="2">
-                <a class="btn btn-xs btn-info" href="#" @click.prevent="editItem(entry)">
+                <a class="btn btn-sm btn-info" href="#" @click.prevent="editItem(entry)">
                     <i class="fa fa-4 fa-pencil-square-o"></i>
                 </a>
-                <a class="btn btn-xs btn-danger" href="#" @click.prevent="deleteItem(entry)">
-                    <i class="fa fa-1 fa-trash-o"></i>
+                <a class="btn btn-sm btn-danger" href="#" @click.prevent="deleteItem(entry)">
+                    <i class="fa fa-4 fa-trash-o"></i>
                 </a>
             </td>
         </tr>
@@ -99,5 +99,10 @@ export default {
     }
     .vue-table .arrow.dsc:after {
         content: "\e156";
+    }
+
+    .vue-table td {
+        /*width: 100px;*/
+        max-width: 500px;
     }
 </style>

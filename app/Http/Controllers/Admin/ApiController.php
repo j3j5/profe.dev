@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Propuesta;
+use App\Models\GrupoConcepto;
 use iansltx\B2Client\Client;
 use iansltx\B2Client\Credentials;
 
@@ -39,7 +40,7 @@ class ApiController extends Controller
             case 'propuestas':
             case 'images':
             default:
-                $model_name = "App\Models\\".Str::studly(Str::singular($table));
+                $model_name = $this->getModelName($table);
                 $new = $model_name::validateAndCreate($request->input());
                 break;
         }
@@ -52,8 +53,7 @@ class ApiController extends Controller
 
     public function delete($table, $id, Request $request)
     {
-        dd($request->input('id'));
-        $model = "App\Models\\" . Str::studly(Str::singular($table));
+        $model = $this->getModelName($table);
         $model::where('id', $request->input('id'))->first()->delete();
         return response()->json(['result' => 'success']);
     }
@@ -135,6 +135,11 @@ class ApiController extends Controller
         }
     }
 
+    public function getGrupoConceptos()
+    {
+        return response()->json(['grupos' => GrupoConcepto::all()]);
+    }
+
     private function handleUpload(Request $request, $gallery = false)
     {
         if ($gallery) {
@@ -155,5 +160,9 @@ class ApiController extends Controller
         } else {
             $request->file('file')->move($destination_path, $filename); // uploading file to given path
         }
+    }
+
+    private function getModelName($table) {
+        return "App\Models\\".Str::studly(Str::singular($table));
     }
 }
