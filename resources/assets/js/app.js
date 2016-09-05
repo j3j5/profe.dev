@@ -12,14 +12,18 @@ require('./extras');
 import AdminTable from './components/AdminTable.vue'
 import AdminValues from './components/AdminValues.vue'
 import Modal from './components/Modal.vue'
-import Alert from './components/Alert.vue'
+import AdminGallery from './components/AdminGallery.vue'
+import AdminGalleryImages from './components/AdminGalleryImages.vue'
 import Dropzone from './components/Dropzone.vue';
+import Notification from './components/Notification.vue';
 
 Vue.component('AdminTable', AdminTable);
 Vue.component('AdminValues', AdminValues);
 Vue.component('Modal', Modal);
-Vue.component('Alert', Alert);
+Vue.component('AdminGallery', AdminGallery);
+Vue.component('AdminGalleryImages', AdminGalleryImages);
 Vue.component('vue-dropzone', Dropzone);
+Vue.component('notification', Notification);
 
 require('./modals/PropuestasModal.js')
 require('./modals/ImagesModal.js')
@@ -27,9 +31,6 @@ require('./modals/ConceptosModal.js')
 
 new Vue({
     el: '#admin',
-    components: {
-        AdminTable,
-    },
     data: function() {
         return {
             selectedModel: {},
@@ -43,6 +44,13 @@ new Vue({
         closeAndResetModal: function() {
             this.selectedModel = {};
             this.showModal = false;
+        },
+        openNotificationWithType (noti) {
+            openNotification({
+                title: noti.title,
+                message: noti.message,
+                type: noti.type
+            });
         },
     },
     events : {
@@ -61,11 +69,31 @@ new Vue({
         itemCreated: function(item) {
             this.$broadcast('itemCreated', item);
             this.closeAndResetModal();
+            var notification = {message: 'Yaaay, ¡se guardó!', type: 'info'};
+            this.openNotificationWithType(notification);
         },
         itemEdited: function(item) {
             var info = {old: this.selectedModel, new: item};
             this.$broadcast('itemEdited', info);
             this.closeAndResetModal();
+            var notification = {message: 'Yaaay, ¡se guardó!', type: 'info'};
+            this.openNotificationWithType(notification);
         },
     },
  });
+
+const NotificationComponent = Vue.extend(Notification);
+
+const openNotification = (propsData = {
+  title: '',
+  message: '',
+  type: '',
+  direction: '',
+  duration: 4500,
+  container: '.notifications'
+}) => {
+  return new NotificationComponent({
+    el: document.createElement('div'),
+    propsData
+  })
+};
