@@ -1,5 +1,5 @@
 <template>
-    <table class="table table-bordered table-hover table-striped vue-table">
+    <table class="table table-bordered table-hover table-striped admin-table">
         <thead>
         <tr>
             <th v-for="column in columns | filterBy true in 'visible'"
@@ -82,11 +82,11 @@ export default {
 </script>
 
 <style>
-    .vue-table .arrow {
+    .admin-table .arrow {
         opacity: 1;
         position: relative;
     }
-    .vue-table .arrow:after {
+    .admin-table .arrow:after {
         position: absolute;
         bottom: 8px;
         right: 8px;
@@ -94,14 +94,14 @@ export default {
         font-family: 'Glyphicons Halflings';
         content: "\e150";
     }
-    .vue-table .arrow.asc:after {
+    .admin-table .arrow.asc:after {
         content: "\e155";
     }
-    .vue-table .arrow.dsc:after {
+    .admin-table .arrow.dsc:after {
         content: "\e156";
     }
 
-    .vue-table td {
+    .admin-table td {
         /*width: 100px;*/
         max-width: 500px;
     }
