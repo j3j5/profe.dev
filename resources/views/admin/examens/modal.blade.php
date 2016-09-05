@@ -9,7 +9,7 @@
 <template id="image-modal-template">
     <modal :show="show">
         <div class="modal-header-1">
-            <h2>Nuevo Me Gusta</h2>
+            <h2>Nuevo Exámen</h2>
         </div>
 
         <div class="modal-body">

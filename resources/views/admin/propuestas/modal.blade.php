@@ -28,8 +28,7 @@
                     <option v-for="n in 3" value=@{{n+1}}>@{{ n+1 | parseCurso }}</option>
                 </select>
             </div>
-
-            <div class="form-group">
+            <div class="container">
                 {{-- THUMBNAIL --}}
                 <div class="col-sm-6">
                     <label for="thumbnail" class="control-label">Thumbnail</label>

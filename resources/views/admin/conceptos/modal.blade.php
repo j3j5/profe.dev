@@ -16,15 +16,18 @@
 
             <div class="form-group form-group-lg">
                 <label for="grupoConceptos" class="control-label">Grupo de Conceptos</label>
-
-                <button class="btn btn-success" @click="showGrupo = true" v-show="!showGrupo">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Crear Grupo Nuevo
-                </button>
+                <span class="">
+                    <button class="btn btn-success btn-sm" @click="showGrupo = true" v-show="!showGrupo">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Crear Grupo Nuevo
+                    </button>
+                </span>
                 <div v-show="showGrupo">
                     <input type="text" class="form-control" placeholder="Nuevo grupo de conceptos" v-model="grupoConcepto">
-                    <button class="btn btn-success" @click="createNewGrupo"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>Guardar</button>
+                    <button class="btn btn-success" @click="createNewGrupo"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Guardar</button>
+                    <button class="btn btn-warning" @click="showGrupo = false"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Cancelar</button>
                 </div>
                 <select v-show="!showGrupo" v-model="grupo_id" class="form-control">
+                    <option value="" disabled selected hidden>Selecciona un grupo de conceptos</option>
                     <option v-for="grupo in grupos " value=@{{grupo.id}}>@{{ grupo.nombre }}</option>
                 </select>
             </div>
