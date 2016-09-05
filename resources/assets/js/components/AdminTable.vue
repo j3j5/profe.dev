@@ -156,10 +156,6 @@
                  var index = this.values.indexOf(item.old);
                  if (index !== -1) {
                      this.values.$set(index, item.new);
-                 } else {
-                     console.log('WTF!!! index = ' + index);
-                     console.log(item);
-                     console.log(this.values);
                  }
             },
         },
@@ -170,7 +166,8 @@
     .vue-table td {
         vertical-align: middle !important;
     }
-    .admin-thumb {
+
+    .vue-table .admin-thumb {
         max-height: 90px;
         margin: auto;
     }

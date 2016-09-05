@@ -12,8 +12,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="entry in filteredValues | orderBy sortKey sortOrders[sortKey]" track-by="id">
-            <td v-for="column in columns | filterBy true in 'visible'" track-by="$index"
+        <tr v-for="entry in filteredValues | orderBy sortKey sortOrders[sortKey]" track-by="id" @click="editItem(entry)">
+            <td v-for="column in columns | filterBy true in 'visible'" track-by="id"
                 v-show="column.visible">
                 {{{ entry[column.title] | displayMedia }}}
             </td>

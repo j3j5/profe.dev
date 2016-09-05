@@ -2,6 +2,7 @@
     <div class="modal-mask" v-show="show" @click="cancel" @keyup.esc="cancel" transition="modal">
         <div class="modal-wrapper">
             <div class="modal-container" @click.stop>
+                <button @click="cancel" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <slot></slot>
             </div>
         </div>
