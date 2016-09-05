@@ -23,13 +23,17 @@ class ApiController extends Controller
 
     public function getTableValues($table)
     {
-        $columns = array_values(array_where(\Schema::getColumnListing($table), function ($item, $key) {
-            return !in_array($item, ['id', 'updated_at']);
-        }));
+        switch ($table) {
+            case 'propuestas':
+            case 'images':
+            case 'grupo_conceptos':
+            case 'conceptos':
+            default:
+                $model_name = $this->getModelName($table);
+                break;
+        }
 
-        $values = \DB::table($table)->get();
-
-        $response = ['columns' => $columns, 'values' => $values];
+        $response = ['columns' => $model_name::getVisibleColumns(), 'values' => $model_name::all()];
 
         return response()->json($response);
     }
@@ -39,6 +43,8 @@ class ApiController extends Controller
         switch ($table) {
             case 'propuestas':
             case 'images':
+            case 'grupo_conceptos':
+            case 'conceptos':
             default:
                 $model_name = $this->getModelName($table);
                 $new = $model_name::validateAndCreate($request->input());
@@ -54,7 +60,7 @@ class ApiController extends Controller
     public function delete($table, $id, Request $request)
     {
         $model = $this->getModelName($table);
-        $model::where('id', $request->input('id'))->first()->delete();
+        $model::where('id', $id)->first()->delete();
         return response()->json(['result' => 'success']);
     }
 
