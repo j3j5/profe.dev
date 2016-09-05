@@ -13,13 +13,10 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-            @foreach(config('vivify.tables') as $table)
-                @if(request()->is("admin/$table*"))
-                <li class="active">
-                @else
-                <li>
-                @endif
-                <a href="/{{ config('vivify.prefix') }}/{{ $table }}">{{ ucwords(str_replace('_', ' ', $table)) }}</a></li>
+            @foreach($models as $model => $name)
+                <li @if(request()->is("admin/$model"))class="active"@endif >
+                    <a href="{{route('showModel', [$model])}}">{{ ucwords($name) }}</a>
+                </li>
             @endforeach
             </ul>
 
