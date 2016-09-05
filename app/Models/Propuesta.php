@@ -8,7 +8,7 @@ class Propuesta extends BaseModel
 {
     protected $guarded = ['created_at'];
 
-    protected static $rules = [
+    public static $rules = [
         'nombre'        => 'required|string',
         'contenidos'    => 'string',
         'curso'         => 'integer|min:1|max:3',

@@ -37,4 +37,9 @@ class Image extends Model
             return self::create($input);
         }
     }
+
+    public static function getVisibleColumns()
+    {
+        return ['titulo', 'artista', 'año', 'nombre-archivo'];
+    }
 }
