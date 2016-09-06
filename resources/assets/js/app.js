@@ -14,7 +14,7 @@ import AdminValues from './components/AdminValues.vue'
 import Modal from './components/Modal.vue'
 import AdminGallery from './components/AdminGallery.vue'
 import AdminGalleryImages from './components/AdminGalleryImages.vue'
-import Dropzone from './components/Dropzone.vue';
+// import Dropzone from './components/Dropzone.vue';
 import Notification from './components/Notification.vue';
 
 Vue.component('AdminTable', AdminTable);
@@ -22,7 +22,7 @@ Vue.component('AdminValues', AdminValues);
 Vue.component('Modal', Modal);
 Vue.component('AdminGallery', AdminGallery);
 Vue.component('AdminGalleryImages', AdminGalleryImages);
-Vue.component('vue-dropzone', Dropzone);
+// Vue.component('vue-dropzone', Dropzone);
 Vue.component('notification', Notification);
 
 require('./modals/PropuestasModal.js')

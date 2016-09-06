@@ -101,8 +101,28 @@ export default {
         content: "\e156";
     }
 
+    .admin-table th {
+        vertical-align: middle !important;
+        font-size: 2em;
+        font-weight: bold;
+        text-align: center;
+        min-width: 150px;
+    }
+
     .admin-table td {
         /*width: 100px;*/
         max-width: 500px;
+        vertical-align: middle !important;
+        font-size: 1.8em;
+        text-align: center;
+    }
+
+    .vue-table .admin-thumb {
+        max-height: 90px;
+        margin: auto;
+    }
+
+    .is-icon {
+        text-align: center;
     }
 </style>

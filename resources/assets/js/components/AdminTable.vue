@@ -137,9 +137,6 @@
             openModal: function() {
                 this.$dispatch('openModal', {url: this.createModelUrl});
             },
-            closeModal: function() {
-                this.$dispatch('closeModal');
-            },
         },
         events: {
             removeItem: function(item) {
@@ -163,16 +160,4 @@
 </script>
 
 <style>
-    .vue-table td {
-        vertical-align: middle !important;
-    }
-
-    .vue-table .admin-thumb {
-        max-height: 90px;
-        margin: auto;
-    }
-
-    .is-icon {
-        text-align: center;
-    }
 </style>
