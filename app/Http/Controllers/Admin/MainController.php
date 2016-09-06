@@ -43,6 +43,7 @@ class MainController extends Controller {
 
         $js_variables = "var IMG_BASE_URL = \"{$this->images_base_url}\";";
         $js_variables .= PHP_EOL . "var FILES_BASE_URL = \"{$this->files_base_url}\";";
+        $js_variables .= PHP_EOL . 'var BASE_URL = "'. url('') . '";';
         Asset::addScript($js_variables, 'footer');
 
         switch ($table) {

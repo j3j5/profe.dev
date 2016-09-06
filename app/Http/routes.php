@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
         Route::post('/thumb/upload', 'ApiController@thumbUpload')->name("thumbUpload");
         Route::post('/gallery/upload', 'ApiController@galleryUpload')->name("galleryUpload");
         Route::post('/{modelName}/upload', 'ApiController@uploads')->name("uploadRoute");
+        Route::post('/{modelName}/bulkUpload', 'ApiController@bulkUpload')->name("bulkUpload");
 
         Route::get('/grupos', 'ApiController@getGrupoConceptos')->name('getGrupoConceptos');
     });

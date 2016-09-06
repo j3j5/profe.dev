@@ -1,12 +1,12 @@
-<add-image-modal
+<add-megusta-modal
     name="{{ $model }}"
     :show="showModal"
     :action="modalAction"
     :model="selectedModel"
-></add-image-modal>
+></add-megusta-modal>
 
 
-<template id="image-modal-template">
+<template id="megusta-modal-template">
     <modal :show="show">
         <div class="modal-header-1">
             <h2>Nuevo Me Gusta</h2>
@@ -19,20 +19,22 @@
             </div>
 
             <div class="form-group">
-                <label for="artista" class="control-label">Artista</label>
-                <input class="form-control" v-model="artista" name="artista" type="text" id="artista" value="@{{ artista }}">
+                <label for="autor" class="control-label">Autor</label>
+                <input class="form-control" v-model="autor" name="autor" type="text" id="autor" value="@{{ autor }}">
             </div>
 
             <div class="form-group">
-                <label for="anho" class="control-label">Año</label>
-                <input class="form-control" v-model="anho" name="anho" type="number" id="anho" value="@{{ anho }}">
+                <label for="curso" class="control-label">Curso</label>
+                <select v-model="curso" class="form-control">
+                    <option v-for="n in 3" value=@{{n+1}}>@{{ n+1 | parseCurso }}</option>
+                </select>
             </div>
 
             <div class="form-group">
                 {{-- Imagen --}}
-                <label for="image" class="control-label">Archivo</label>
-                <input class="form-control" v-model="image" name="image" type="text" id="image" value="@{{ image }}" disabled>
-                <form id="files-dropzone" action="{{ route("galleryUpload") }}" class="dropzone" v-bind:style="formBgStyle">
+                <label for="imagen" class="control-label">Imagen</label>
+                <input class="form-control" v-model="imagen" name="imagen" type="text" id="imagen" value="@{{ imagen }}" disabled>
+                <form id="files-dropzone" action="{{ route("uploadRoute", [$model]) }}" class="dropzone" v-bind:style="formBgStyle">
                     {{ csrf_field() }}
                     <input hidden name="curso" value="1">
                     <div class="dz-message" v-bind:style="formMsg">

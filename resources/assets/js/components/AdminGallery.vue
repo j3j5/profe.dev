@@ -1,6 +1,6 @@
 <template>
-    <!-- FILTER -->
     <div @click="" @keyup.esc="">
+        <!-- FILTER -->
         <div class="col-sm-8">
             <div v-if="showFilter" style="padding-top: 10px;padding-bottom: 10px;">
                 <div class="input-group">
@@ -39,6 +39,7 @@ export default {
             getTableUrl: "/admin/api/"+this.modelName+"/table",
             createModelUrl: '/admin/api/' + this.modelName + '/create',
             updateModelUrl: '/admin/api/' + this.modelName + '/update/',
+            bulkUploadUrl: BASE_URL + '/admin/api/' + this.modelName + '/bulkUpload',
             deleteModelUrl: '/admin/api/' + this.modelName + '/delete/',
             values: [],
             filteredSize: 0,
@@ -65,7 +66,13 @@ export default {
             }
         },
         itemEdited: function(item) {
-            
+            var index = this.values.indexOf(item.old);
+            if (index !== -1) {
+                this.values.$set(index, item.new);
+            }
+        },
+        itemCreated: function(item) {
+            this.values.push(item);
         },
     },
 }

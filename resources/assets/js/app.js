@@ -28,6 +28,7 @@ Vue.component('notification', Notification);
 require('./modals/PropuestasModal.js')
 require('./modals/ImagesModal.js')
 require('./modals/ConceptosModal.js')
+require('./modals/MegustaModal.js')
 
 new Vue({
     el: '#admin',

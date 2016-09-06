@@ -141,6 +141,31 @@ class ApiController extends Controller
         }
     }
 
+    public function bulkUpload($table, Request $request) {
+        $file = array('file' => $request->file('file'));
+        $rules = array('file' => 'required',); //mimes:jpeg,bmp,png and for max size max:10000
+        $validator = Validator::make($file, $rules);
+        if ($validator->fails()) {
+            // send back to the page with the input data and errors
+            return Response::json(['error' => $validator->errors()], 400);
+        } else {
+            // checking file is valid.
+            if ($request->file('file')->isValid()) {
+                $this->handleUpload($request);
+
+                $model = ['imagen' => $request->file('file')->getClientOriginalName()];
+                $model_name = $this->getModelName($table);
+                $new = $model_name::validateAndCreate($model);
+
+                // sending back with message
+                return response()->json($new);
+            } else {
+                // sending back with error message.
+                return Response::json(['error' => 'Not a valid file.'], 400);
+            }
+        }
+    }
+
     public function getGrupoConceptos()
     {
         return response()->json(['grupos' => GrupoConcepto::all()]);
