@@ -21,7 +21,7 @@
                 <a class="btn btn-sm btn-info" href="#" @click.prevent="editItem(entry)">
                     <i class="fa fa-4 fa-pencil-square-o"></i>
                 </a>
-                <a class="btn btn-sm btn-danger" href="#" @click.prevent="deleteItem(entry)">
+                <a class="btn btn-sm btn-danger" href="#" @click.stop="deleteItem(entry)">
                     <i class="fa fa-4 fa-trash-o"></i>
                 </a>
             </td>
