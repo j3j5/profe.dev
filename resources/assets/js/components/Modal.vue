@@ -1,8 +1,8 @@
 <template>
-    <div class="modal-mask" v-show="show" @click="cancel" @keyup.esc="cancel" transition="modal">
+    <div class="modal-mask" v-show="show" @click="close" transition="modal">
         <div class="modal-wrapper">
             <div class="modal-container" @click.stop>
-                <button @click="cancel" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button @click="close" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <slot></slot>
             </div>
         </div>
@@ -19,10 +19,17 @@ export default {
         },
     },
     methods: {
-        cancel: function() {
+        close: function() {
             this.$dispatch('closeModal');
         },
     },
+    ready: function () {
+        document.addEventListener("keydown", (e) => {
+            if (this.show && e.keyCode == 27) {
+                this.close();
+            }
+        });
+    }
 }
 </script>
 
