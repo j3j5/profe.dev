@@ -26,7 +26,7 @@
         @endif
     </head>
 
-    <body class="">
+    <body class="{{$body_class or ""}}">
 
         @if(request()->is('admin/*'))
             @include('admin.layouts.admin-navigation')

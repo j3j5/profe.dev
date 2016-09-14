@@ -30,6 +30,7 @@ class MainController extends Controller {
         $this->files_base_url = $this->getUploadsBaseUrl().'uploads/';
 
         view()->share('models', $this->available_models);
+        view()->share('body_class', "admin");
     }
 
     public function index(Request $request, $table)

@@ -1,9 +1,9 @@
 Vue.filter('displayMedia', function(value) {
 
      if(String(value).match(/.*\.(png|jpe?g|gif)(\?.*)?$/i)) {
-         return '<img src="' + IMG_BASE_URL + value + '" class="admin-thumb img-responsive">';
+         return '<img src="' + IMG_BASE_URL + value + '" alt="' + value + '" class="admin-thumb img-responsive">';
      } else if(String(value).match(/.*\.(pdf|doc|docx)(\?.*)?$/i)) {
-         return '<a href="' + FILES_BASE_URL + value + '" class="">' + value + '</a>';
+         return '<a target="_blank" href="' + FILES_BASE_URL + value + '" class="">' + value + '</a>';
      } else {
          return value;
      }

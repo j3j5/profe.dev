@@ -1,5 +1,5 @@
 <template>
-    <table class="table table-bordered table-hover table-striped admin-table">
+    <table class="table admin-table">
         <thead>
         <tr>
             <th v-for="column in columns | filterBy true in 'visible'"
@@ -8,7 +8,6 @@
                 :class="getClasses(column.title)">
                 {{ column.title | capitalize }}
             </th>
-            <th colspan="2" class="is-icon"> Acciones </th>
         </tr>
         </thead>
         <tbody>
@@ -17,13 +16,10 @@
                 v-show="column.visible">
                 {{{ entry[column.title] | displayMedia }}}
             </td>
-            <td class="is-icon" colspan="2">
-                <a class="btn btn-sm btn-info" href="#" @click.prevent="editItem(entry)">
-                    <i class="fa fa-4 fa-pencil-square-o"></i>
-                </a>
-                <a class="btn btn-sm btn-danger" href="#" @click.stop="deleteItem(entry)">
-                    <i class="fa fa-4 fa-trash-o"></i>
-                </a>
+            <td>
+                <button class="btn btn-sm btn-danger" href="#" @click.stop="deleteItem(entry)">
+                    <i class="fa fa-2x fa-trash-o"></i>
+                </button>
             </td>
         </tr>
         </tbody>
@@ -81,48 +77,61 @@ export default {
 }
 </script>
 
-<style>
-    .admin-table .arrow {
-        opacity: 1;
-        position: relative;
-    }
-    .admin-table .arrow:after {
-        position: absolute;
-        bottom: 8px;
-        right: 8px;
-        display: block;
-        font-family: 'Glyphicons Halflings';
-        content: "\e150";
-    }
-    .admin-table .arrow.asc:after {
-        content: "\e155";
-    }
-    .admin-table .arrow.dsc:after {
-        content: "\e156";
-    }
+<style lang="sass">
+    .admin-table {
 
-    .admin-table th {
-        vertical-align: middle !important;
-        font-size: 2em;
-        font-weight: bold;
-        text-align: center;
-        min-width: 150px;
-    }
+        thead {
+            // background-color: rgba(255, 214, 175, 0.55);
+            background-color: rgba(220, 236, 239, 0.55);
+            border-top: 3px solid #ddd;
+            border: 3px solid rgb(220, 236, 239);
+            th {
+                vertical-align: middle !important;
+                font-size: 2em;
+                font-weight: bold;
+                text-align: center;
+                min-width: 150px;
+                border: 3px solid #ddd;
+            }
+        }
 
-    .admin-table td {
-        /*width: 100px;*/
-        max-width: 500px;
-        vertical-align: middle !important;
-        font-size: 1.8em;
-        text-align: center;
-    }
 
-    .vue-table .admin-thumb {
-        max-height: 90px;
-        margin: auto;
-    }
 
-    .is-icon {
-        text-align: center;
+        td {
+            max-width: 300px;
+            font-size: 1.2em;
+            text-align: center;
+            vertical-align: middle !important;
+            border: 3px solid #ddd !important;
+        }
+
+        tbody {
+            tr:hover {
+                background-color: rgba(249, 249, 249, 0.8);
+            }
+        }
+        .admin-thumb {
+            max-height: 90px;
+            margin: auto;
+        }
+
+        .arrow {
+            opacity: 1;
+            position: relative;
+        }
+        .arrow:after {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            display: block;
+            font-family: 'Glyphicons Halflings';
+            content: "\e150";
+        }
+        .arrow.asc:after {
+            content: "\e155";
+        }
+        .arrow.dsc:after {
+            content: "\e156";
+        }
     }
 </style>

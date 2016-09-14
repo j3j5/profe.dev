@@ -128,6 +128,7 @@ export default {
     height: 220px;
     position: relative;
     margin: 5px;
+    background-color: rgba(220, 236, 239, 0.7);
 }
 .gallery-image {
 }
