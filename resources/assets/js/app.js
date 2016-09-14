@@ -22,13 +22,13 @@ Vue.component('AdminValues', AdminValues);
 Vue.component('Modal', Modal);
 Vue.component('AdminGallery', AdminGallery);
 Vue.component('AdminGalleryImages', AdminGalleryImages);
-// Vue.component('vue-dropzone', Dropzone);
 Vue.component('notification', Notification);
 
 require('./modals/PropuestasModal.js')
 require('./modals/ImagesModal.js')
 require('./modals/ConceptosModal.js')
 require('./modals/MegustaModal.js')
+require('./modals/ExamenModal.js')
 
 new Vue({
     el: '#admin',
