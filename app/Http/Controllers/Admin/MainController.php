@@ -63,7 +63,7 @@ class MainController extends Controller {
     private function getUploadsBaseUrl()
     {
         if(app()->environment('production')) {
-            return "https://f001.backblaze.com/file/" . config('b2client.bucket_name');
+            return "https://f001.backblaze.com/file/" . config('b2client.bucket_name') .  '/';
         } else {
             return "http://{$_SERVER['HTTP_HOST']}/";
         }
