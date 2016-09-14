@@ -1,7 +1,9 @@
 {
   "private": true,
   "devDependencies": {
-    "gulp": "^3.8.8"
+    "gulp": "^3.8.8",
+    "node-sass": "^3.9.3",
+    "sass-loader": "^4.0.2"
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
