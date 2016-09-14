@@ -70,14 +70,14 @@ new Vue({
         itemCreated: function(item) {
             this.$broadcast('itemCreated', item);
             this.closeAndResetModal();
-            var notification = {message: 'Yaaay, ¡se guardó!', type: 'info'};
+            var notification = {message: 'Yaaay, ¡el nuevo elemento se guardó correctamente!', type: 'info'};
             this.openNotificationWithType(notification);
         },
         itemEdited: function(item) {
             var info = {old: this.selectedModel, new: item};
             this.$broadcast('itemEdited', info);
             this.closeAndResetModal();
-            var notification = {message: 'Yaaay, ¡se guardó!', type: 'info'};
+            var notification = {message: 'Yaaay, ¡los cambios se guardaron correctamente!', type: 'info'};
             this.openNotificationWithType(notification);
         },
     },
