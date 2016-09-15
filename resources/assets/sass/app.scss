@@ -1,31 +1,149 @@
-@import "node_modules/dropzone/src/basic.scss";
-@import "node_modules/dropzone/src/dropzone.scss";
+@import "basics/colors.scss";
+@import "basics/fonts.scss";
+@import "admin.scss";
+@import "login.scss";
+@import "home.scss";
 
-.uploadZone {
-    padding: 15px;
-    text-align: center;
+/* Sticky footer with navbar
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
 }
 
-.admin {
-    background-color: #E1F5E5;
-    background-image: url("/images/ignasi_pattern.png");
-    background-repeat: repeat;
-    background-attachment: scroll;
-    background-position: 0% 0%;
-    background-clip: border-box;
-    background-origin: padding-box;
-    background-size: auto auto;
+body {
+    margin-top: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: $general-font;
+    background-color: $light-leaf;
+    background-image: url('/images/patterns/swirl_pattern.png');
 }
 
-#admin h2 {
-    font-size: 3em;
+a {
+    color: $rain;
 }
 
-.modal-body .form-group label {
-    font-weight: 600;
-    font-size: 1.5em;
+a:hover {
+    color: $darker-rain;
+    text-decoration: none;
 }
 
-.modal-body .btn {
-    margin: 5px;
+.navbar-default {
+    background-color: $leaf; /* leaf */
+    font-family: $tough-handwritten;
+    font-size: 2em;
+    border: none;
+}
+
+.admin-navbar {
+    font-family: $general-font ;
+    font-size: 15px;
+}
+
+.navbar-default {
+    .navbar-brand img {
+        max-height: 300%;
+    }
+
+    .navbar-brand:hover {
+        color: gray;
+    }
+
+    .navbar-nav > li > a {
+        color: white;
+    }
+    .navbar-nav > li > a:hover {
+        color: gray;
+    }
+}
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: $leaf; /* leaf */
+    left: 0;
+}
+
+.footer .container .text-muted {
+    margin: 20px 0;
+}
+
+.footer .text-muted {
+    color: white;
+}
+
+.btn-primary, .btn-primary:hover {
+    background-image: none;
+    background-color: $rain;
+    color: $pioletongo;
+    border: 1px solid black; /* rain */
+    /*text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;*/
+}
+
+.admin-row {
+    vertical-align: middle !important;
+
+    &-thumb {
+        text-align: center;
+    }
+}
+
+
+
+@media print {
+    /* All your print styles go here */
+    .body {
+        color: #000;
+        background: #fff;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    @page {
+        margin: 0cm 1.5cm;
+        size: auto;   /* auto is the initial value */
+    }
+
+    h2, h3 {
+        page-break-after: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    ul, img, .row {
+        page-break-inside: avoid;
+    }
+
+    a {
+        font-weight: bolder;
+        text-decoration: none;
+    }
+
+    .seccion {
+        border: none;
+        text-decoration: underline;
+        font-size: 17px;
+    }
+
+    .palabra {
+        border: none;
+        text-decoration: underline;
+        font-size: 15px;
+    }
+
+    .navbar, .footer, .page-header {
+        display: none !important;
+    }
 }
