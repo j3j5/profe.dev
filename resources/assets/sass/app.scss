@@ -3,6 +3,7 @@
 @import "admin.scss";
 @import "login.scss";
 @import "home.scss";
+@import "cursos.scss";
 
 /* Sticky footer with navbar
 -------------------------------------------------- */
@@ -17,7 +18,7 @@ body {
     margin-bottom: 60px;
     font-family: $general-font;
     background-color: $light-leaf;
-    background-image: url('/images/patterns/swirl_pattern.png');
+    background-image: url('/images/patterns/ignasi.png');
 }
 
 a {
@@ -29,16 +30,16 @@ a:hover {
     text-decoration: none;
 }
 
+h2 {
+    color: $blackish;
+}
+
 .navbar-default {
-    background-color: $leaf; /* leaf */
+    background-color: $leaf;
+    background-image: url('/images/patterns/brickwall.png');
     font-family: $tough-handwritten;
     font-size: 2em;
     border: none;
-}
-
-.admin-navbar {
-    font-family: $general-font ;
-    font-size: 15px;
 }
 
 .navbar-default {
@@ -65,23 +66,22 @@ a:hover {
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 60px;
-    background-color: $leaf; /* leaf */
+    background-color: $leaf;
+    background-image: url('/images/patterns/brickwall.png');
     left: 0;
-}
 
-.footer .container .text-muted {
-    margin: 20px 0;
-}
+    .text-muted {
+        margin: 20px 0;
+        color: white;
+    }
 
-.footer .text-muted {
-    color: white;
 }
 
 .btn-primary, .btn-primary:hover {
     background-image: none;
     background-color: $rain;
     color: $pioletongo;
-    border: 1px solid black; /* rain */
+    border: 1px solid $blackish;
     /*text-shadow:
         -1px -1px 0 black,
         1px -1px 0 black,

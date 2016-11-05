@@ -18,7 +18,6 @@ class CursosController extends Controller
     public function __construct(Request $request)
     {
         parent::__construct();
-        Asset::addStyle(file_get_contents(public_path('css/cursos.css')));
     }
 
     public function getCurso($curso)
@@ -35,7 +34,6 @@ class CursosController extends Controller
     {
         view()->share('title', "Propuestas de " . ucfirst($curso));
 
-        Asset::add('css/propuestas.css');
         $propuestas = Propuesta::whereCurso($this->fromNameToNumber($curso))->get();
 
         foreach ($propuestas as &$propuesta) {
@@ -104,7 +102,6 @@ class CursosController extends Controller
     {
         view()->share('title', "Examenes de " . ucfirst($curso));
 
-        Asset::add('css/propuestas.css');
         $examenes = Examen::whereCurso($this->fromNameToNumber($curso))->get();
 
 //         foreach ($examenes as &$examen) {

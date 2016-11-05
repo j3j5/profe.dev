@@ -1,0 +1,145 @@
+.page-header {
+    margin: 0px 0px 20px 0px;
+    font-family: $tough-handwritten, bold;
+    font-size: 5em;
+    border-bottom: 2px solid rgba(235,235,235,.5);
+}
+
+.breadcrumb {
+    background-color: transparent;
+    font-size: 0.5em;
+    padding: 0px 0px 0px 20px;
+    margin: 0px;
+
+    a {
+        color: $rain;
+    }
+
+    a:hover {
+        color: lighten( $rain, 5% );
+    }
+
+    > li + li::before {
+        content: "/";
+        color: lighten($rain, 5%);
+    }
+
+    li:nth-child(2) a       { color: lighten($rain, 5%); }
+    li:nth-child(2) a:hover { color: $rain; }
+    li:nth-child(3) a       { color: lighten($rain, 7%); }
+    li:nth-child(3) a:hover { color: lighten($rain, 5%); }
+    li:nth-child(4) a       { color: lighten($rain, 9%); }
+    li:nth-child(4) a:hover { color: lighten($rain, 7%); }
+    li:last-child a {
+        background: transparent !important;
+        pointer-events: none;
+        cursor: default;
+        text-decoration: underline;
+    }
+}
+
+.curso-seccion {
+    font-family: $marker;
+    font-size: 2.6em;
+    border-radius: 15px;
+    height: 100%;
+    margin: 15px;
+    // background-image: url("/images/patterns/congruent.png");
+    // background-repeat: repeat;
+    background-color: $buttermilk;
+    // background-color: rgba($buttermilk, .6);
+    border: 1px solid black;
+}
+
+.curso-seccion p {
+    padding: 0.3em;
+    color: $blackish; /* blackish */
+}
+
+
+/* Galeria */
+.image-gallery {
+    height:100px;
+    margin: 5px 0px;
+    display: inline-block;
+}
+
+.image-gallery img {
+    max-height:100%;
+}
+
+.slides .modal-content {
+    background-color: $light-leaf; /* light-leaf */
+}
+
+#blueimp-gallery .modal-body img {
+    border-radius: 2px;
+}
+
+/* Propuestas */
+.container .contenidos {
+    margin: 5px 0;
+    font-size: small;
+    font-weight: bold;
+    color: $blackish;
+}
+
+.contenido {
+    padding: 0 2px 0 2px;
+}
+
+.propuesta {
+    margin: 5px 10px;
+    max-width: 30%;
+    /*min-height: 40%;*/
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: $buttermilk; /* buttermilk */
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+
+    &-nombre {
+        font-family: $marker;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        color: $pioletongo; /* pioletongo */
+    }
+}
+
+
+.thumb {
+    max-width: 120px;
+}
+
+.img-thumbnail {
+    width: 100%;
+}
+
+.seccion {
+    background-color: $leaf;
+    font-family: $general-font;
+    font-weight: 700;
+}
+
+.palabra {
+    font-family: $general-font, bold, sans-serif;
+    text-decoration: underline;
+    background-color: transparent;
+    color: $rain;
+    padding: 0;
+}
+
+.concepto-thumb {
+    padding: 0 0 0 15px;
+}
+
+.megusta-gallery {
+    height:200px;
+    margin: 5px 0px;
+    display: inline-block;
+
+    img {
+        max-height:100%;
+    }
+}

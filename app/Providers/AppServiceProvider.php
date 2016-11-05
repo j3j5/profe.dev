@@ -30,15 +30,13 @@ class AppServiceProvider extends ServiceProvider
 
         // CSS Files
         Asset::add('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
-        Asset::add('css/vendor/bootstrap.min.simplex.css');
-        Asset::addStyle(file_get_contents(public_path('css/global.css')));
 
-        Asset::add('//fonts.googleapis.com/css?family=Oxygen:400,700');
-        Asset::add('//fonts.googleapis.com/css?family=Covered+By+Your+Grace');
+        // Asset::add('css/vendor/bootstrap.min.simplex.css');
+        Asset::add("//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+        Asset::add("css/app.css");
+
 
         // JS Files
-        // Asset::add('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js');
-        // Asset::add('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js');
 //         Asset::add('/upup.min.js');
 //         Asset::add('/upup.sw.min.js');
 
@@ -62,15 +60,8 @@ class AppServiceProvider extends ServiceProvider
     private function buildCacheBuster()
     {
         $files = [
-            "css/vendor/bootstrap.min.simplex.css",
-            "css/global.css",
-            "css/home.css",
-            "css/cursos.css",
-            // "css/propuestas.css",
-            "css/vendor/bootstrap-image-gallery.min.css",
-            "js/vendor/bootstrap-image-gallery.min.js",
-            // "css/dropzone/dropzone.min.css",
-            // "js/dropzone/dropzone.min.js",
+            "css/app.css",
+            "js/app.js",
         ];
         $assets = [];
         foreach ($files as $file) {

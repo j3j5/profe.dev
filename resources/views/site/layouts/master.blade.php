@@ -37,7 +37,7 @@
         @yield('content')
 
         <footer class="footer">
-            <div class="container">
+            <div class="container-fluid">
                 <p class="text-muted pull-right">
                 <strong>
                     Hecho con <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> por J&amp;M

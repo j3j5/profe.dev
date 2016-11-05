@@ -8,13 +8,18 @@
 
 .admin {
     background-color: $light-leaf;
-    background-image: url("/images/patterns/ignasi_pattern.png");
+    background-image: url("/images/patterns/ignasi.png");
     background-repeat: repeat;
     background-attachment: scroll;
     background-position: 0% 0%;
     background-clip: border-box;
     background-origin: padding-box;
     background-size: auto auto;
+}
+
+.admin-navbar {
+    font-family: $general-font ;
+    font-size: 15px;
 }
 
 #admin h2 {

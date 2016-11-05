@@ -18,9 +18,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Asset::addStyle(file_get_contents(public_path('css/home.css')));
-        Asset::add("//fonts.googleapis.com/css?family=Gloria+Hallelujah");
-
         return view('site.home');
     }
 }

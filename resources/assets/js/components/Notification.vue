@@ -42,14 +42,14 @@ export default {
         if (!$parent) {
             let parent = document.querySelector(this.container)
             if (!parent) {
-            // Lazy creating `div.notifications` container.
-            parent = document.createElement('div')
-            parent.classList.add(this.container.replace('.', ''))
+                // Lazy creating `div.notifications` container.
+                parent = document.createElement('div')
+                parent.classList.add(this.container.replace('.', ''))
+            }
             const Notifications = Vue.extend()
             $parent = new Notifications({
                 el: parent
             }).$appendTo(document.body)
-        }
             // Hacked.
             this.$_parent_ = parent.__vue__
         }
