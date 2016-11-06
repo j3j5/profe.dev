@@ -65,7 +65,9 @@ class AppServiceProvider extends ServiceProvider
         ];
         $assets = [];
         foreach ($files as $file) {
-            $assets[$file] = md5(file_get_contents(public_path($file)));
+            if (is_readable(public_path($file))) {
+                $assets[$file] = md5(file_get_contents(public_path($file)));
+            }
         }
         $files = NULL;
 
