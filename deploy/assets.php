@@ -10,11 +10,11 @@ task('npm:install', function () {
         run('cd {{deploy_path}}/current; {{bin/npm}} install');
         run('mv {{deploy_path}}/current/node_modules  {{deploy_path}}/shared');
     }
-    run('ln -s {{deploy_path}}/shared/node_modules {{deploy_path}}/current');
+    run('ln -s {{deploy_path}}/shared/node_modules {{deploy_path}}/current/node_modules');
 })->desc('Execute npm install');
 
 task('assets:generate', function () {
-    run('cd {{deploy_path}}/current; gulp --prod');
+    run('cd {{deploy_path}}/current; gulp --production');
 })->desc('Generating assets');
 
 task('env:link', function () {
