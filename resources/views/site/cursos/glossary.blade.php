@@ -14,7 +14,7 @@
                 <h3><span class="label label-info palabra">{{ $concepto->palabra }}</span></h3>
                 <span class="definicion"> @newlinesToBr($concepto->definicion) </span>
                 @if($concepto->thumbnail)
-                <span class="concepto-thumb"> <img style="max-height:120px;" class="" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $concepto->thumbnail}}"></span>
+                <span class="concepto-thumb"> <img style="max-height:120px;" class="" src="@imageHost()/uploads/{{ $concepto->thumbnail}}"></span>
                 @endif
             </div>
             @endforeach

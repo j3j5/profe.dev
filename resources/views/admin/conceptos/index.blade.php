@@ -53,7 +53,7 @@
                     <tr>
                         @foreach($columns as $col)
                             @if($col == 'thumbnail')
-                            <td class="admin-row-thumb">@if($row->$col)<img class="admin-thumb" src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $row->$col}}">@endif</td>
+                            <td class="admin-row-thumb">@if($row->$col)<img class="admin-thumb" src="@imageHost()/uploads/{{ $row->$col}}">@endif</td>
                             @elseif($col == 'grupo')
                             <?php $text = App\Models\Concepto::find($row->id)->grupo->nombre; ?>
                             <td class="admin-row">{{ str_limit($text, 35) }}</td>

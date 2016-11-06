@@ -21,7 +21,7 @@
         <!-- js scripts (header) -->
         {{ Asset::scripts('header') }}
 
-        @include(config('app.analytics_template'))
+        @include("site.partials._analytics")
     </head>
 
     <body class="{{$body_class or ""}}">

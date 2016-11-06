@@ -12,8 +12,8 @@
                 <?php $title_likes = $likes->where('titulo', $titulo->titulo ); ?>
                 @foreach($title_likes as $like)
                 <div class="megusta-gallery">
-                <a href="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $like->imagen }}" title="{{ $like->autor }}" data-author="{{ $like->autor }}" data-gallery>
-                        <img src="@if(app()->environment('production'))https://f001.backblaze.com/file/{{ config('b2client.bucket_name') }}@endif/uploads/{{ $like->imagen}}" alt="">
+                <a href="@imageHost()/uploads/{{ $like->imagen }}" title="{{ $like->autor }}" data-author="{{ $like->autor }}" data-gallery>
+                        <img src="@imageHost()/uploads/{{ $like->imagen}}" alt="">
                     </a>
                 </div>
                 @endforeach
