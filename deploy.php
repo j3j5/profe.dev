@@ -52,7 +52,6 @@ task('deploy', [
     'npm:install',
     'assets:generate',
     'log:set-permissions',
-    'supervisor:restart',
     'cleanup',
 ])->desc('Deploy your project');
 
