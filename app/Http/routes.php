@@ -57,8 +57,6 @@ Route::group(['prefix' => 'curso/{curso}'], function () {
     Route::get('/glosario', ['as' => 'Glossary', 'uses' => 'CursosController@getGlosario']);
     Route::get('/megusta', ['as' => 'Megustas', 'uses' => 'CursosController@getLikes']);
     Route::get('/examenes', ['as' => 'Examenes', 'uses' => 'CursosController@getExamenes']);
-    Route::get('/acreditaciones', ['as' => 'acreditaciones', function() {
-         return view('site.cursos.acreditaciones', ['curso' => 'segundo']);
-    }]);
+    Route::get('/acreditaciones', ['as' => 'acreditaciones', 'uses' => 'CursosController@getAcreditaciones']);
 });
 // Tests

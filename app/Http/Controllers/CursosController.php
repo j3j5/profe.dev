@@ -113,6 +113,11 @@ class CursosController extends Controller
         ]);
     }
 
+    public function getAcreditaciones($curso)
+    {
+        return view('site.cursos.acreditaciones', ['curso' => 'segundo']);
+    }
+
     private function fromNumberToName($curso)
     {
         switch ($curso) {
