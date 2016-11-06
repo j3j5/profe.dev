@@ -16,14 +16,14 @@ server('production', '173.230.150.126', 213)
     ->user('j3j5')
     ->forwardAgent() // You can use identity key, ssh config, or username/password to auth on the server.
     ->stage('production')
-    ->env('deploy_path', '/webservers/dep/profemariana.com'); // Define the base path to deploy your project to.
+    ->env('deploy_path', '/webservers/profemariana.com'); // Define the base path to deploy your project to.
 
 
 server('beta', '173.230.150.126', 213)
         ->user('j3j5')
         ->forwardAgent() // You can use identity key, ssh config, or username/password to auth on the server.
         ->stage('beta')
-        ->env('deploy_path', '/webservers/dep/beta.profemariana.com'); // Define the base path to deploy your project to.
+        ->env('deploy_path', '/webservers/beta.profemariana.com'); // Define the base path to deploy your project to.
 
 // Laravel shared dirs
 set('shared_dirs', [
