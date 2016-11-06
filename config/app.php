@@ -2,8 +2,6 @@
 
 return [
 
-    'analytics_template' => env('ANALYTICS_TEMPLATE', ''),
-
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
@@ -154,8 +152,13 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+        App\Providers\BladeServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /**
+         * Vendor providers
+         */
         Roumen\Asset\AssetServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
         JDare\Acetone\AcetoneServiceProvider::class,
