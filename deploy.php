@@ -34,6 +34,7 @@ set('shared_dirs', [
     'storage/logs',
 ]);
 
+set('default_stage', 'production');
 
 /**
  * Main task
