@@ -19,4 +19,8 @@ class AdminController extends MainController
         $this->b2client = new Client(new Credentials(config('b2client.account_id'), config('b2client.app_key')));
         parent::__construct();
     }
+
+    public function defaultAdmin() {
+        return redirect(url('/admin/propuestas'));
+    }
 }

@@ -20,4 +20,9 @@ class HomeController extends Controller
     {
         return view('site.home');
     }
+
+    public function redirectHome()
+    {
+        return redirect('/', 301);
+    }
 }

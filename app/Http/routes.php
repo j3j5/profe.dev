@@ -13,9 +13,7 @@
 
 Route::get('/', ['as' => 'Home', 'uses' => 'HomeController@index']);
 
-Route::get('/home', function () {
-    return redirect('/');
-});
+Route::get('/home', 'HomeController@redirectHome');
 
 // Authentication routes...
 Route::auth();
@@ -25,9 +23,7 @@ Route::get('sitemap/{format}', ['as' => 'sitemap', 'uses' => 'CursosController@s
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin'], function () {
     // Admin main page
-    Route::get('/', ['as' => 'adminPanel', 'middleware' => 'auth', function () {
-        return redirect(url('/admin/propuestas'));
-    }]);
+    Route::get('/', ['as' => 'adminPanel', 'middleware' => 'auth', 'uses' => 'AdminController@defaultAdmin']);
 
     Route::get('/{modelName}', 'AdminController@index')->name("showModel");
 
