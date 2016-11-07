@@ -35,8 +35,8 @@ class AppServiceProvider extends ServiceProvider
         Asset::add("//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
         Asset::add("css/app.css");
 
-
         // JS Files
+        Asset::add("js/app.js");
 //         Asset::add('/upup.min.js');
 //         Asset::add('/upup.sw.min.js');
 

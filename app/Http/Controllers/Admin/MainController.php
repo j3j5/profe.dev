@@ -23,9 +23,6 @@ class MainController extends Controller {
 
     public function __construct()
     {
-        Asset::add("js/app.js");
-        Asset::add("css/app.css");
-
         $this->images_base_url = $this->getUploadsBaseUrl().'uploads/';
         $this->files_base_url = $this->getUploadsBaseUrl().'uploads/';
 
