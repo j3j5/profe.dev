@@ -44,11 +44,11 @@
             </div>
         </footer>
 
-        <!-- js scripts -->
-        {{ Asset::scripts('footer') }}
         <!-- js files -->
         {{ Asset::js() }}
         <!-- jquery scripts -->
         {{ Asset::scripts('ready') }}
+        <!-- js scripts -->
+        {{ Asset::scripts('footer') }}
     </body>
 </html>

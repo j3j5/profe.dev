@@ -156,10 +156,9 @@ class CursosController extends Controller
 
     private function addGalleryAssets()
     {
-        Asset::add("//blueimp.github.io/Gallery/css/blueimp-gallery.min.css");
-        Asset::add("css/vendor/bootstrap-image-gallery.min.css");
-        Asset::add("//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js");
-        Asset::add("js/vendor/bootstrap-image-gallery.min.js");
+        Asset::add("css/vendor/blueimp-gallery.min.css");
+        Asset::add("js/vendor/blueimp-gallery.min.js");
+
         Asset::addScript(file_get_contents(public_path("js/gallery.js")));
     }
 }
