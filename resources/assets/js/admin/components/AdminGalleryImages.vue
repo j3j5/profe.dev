@@ -1,33 +1,35 @@
 <template>
-<div class="col-sm-4 col-md-2">
-    <div class="new add-item thumbnail text-center" @click.stop="openModal">
-        <i class="fa fa-5x fa-plus-circle"></i>
-    </div>
-    <div class="new thumbnail text-center">
-        <form id="fileUpload" v-bind:action="createUrl">
-            <input type="hidden" name="_token" v-bind:value="csrf_token">
-            <div class="dz-message" v-bind:style="formMsg">
-                <i class="fa fa-4x fa-plus-circle"></i>
-                <i class="fa fa-4x fa-upload"></i>
-            </div>
-        </form>
-    </div>
-</div>
-<div @click="editItem(model)" class="col-sm-4 col-md-2" v-for="model in values" v-bind:key="model.id">
-    <div class="thumbnail gallery-item">
-    <button class="btn btn-danger btn-sm featured-button" href="#" @click.prevent.stop="toggleFeatured(model)">
-        <i class="fa fa-2x" v-bind:class="{ 'fa-star': model.featured, 'fa-star-o': !model.featured }"></i>
-    </button>
-    <button class="btn btn-danger btn-sm delete-button" href="#" @click.prevent.stop="deleteItem(model)">
-        <i class="fa fa-2x fa-trash-o"></i>
-    </button>
-    <div class="gallery-image">
-        <div v-html="model.imagen | displayMedia"></div>
-        <div class="caption">
-            <span v-if="model.titulo || model.autor" class="text-center"><strong>{{ model.titulo }}</strong> por {{ model.autor }}
-        </span>
+<div>
+    <div class="col-sm-4 col-md-2">
+        <div class="new add-item thumbnail text-center" @click.stop="openModal">
+            <i class="fa fa-5x fa-plus-circle"></i>
+        </div>
+        <div class="new thumbnail text-center">
+            <form id="fileUpload" v-bind:action="createUrl">
+                <input type="hidden" name="_token" v-bind:value="csrf_token">
+                <div class="dz-message" v-bind:style="formMsg">
+                    <i class="fa fa-4x fa-plus-circle"></i>
+                    <i class="fa fa-4x fa-upload"></i>
+                </div>
+            </form>
         </div>
     </div>
+    <div @click="editItem(model)" class="col-sm-4 col-md-2" v-for="model in values" v-bind:key="model.id">
+        <div class="thumbnail gallery-item">
+        <button class="btn btn-danger btn-sm featured-button" href="#" @click.prevent.stop="toggleFeatured(model)">
+            <i class="fa fa-2x" v-bind:class="{ 'fa-star': model.featured, 'fa-star-o': !model.featured }"></i>
+        </button>
+        <button class="btn btn-danger btn-sm delete-button" href="#" @click.prevent.stop="deleteItem(model)">
+            <i class="fa fa-2x fa-trash-o"></i>
+        </button>
+        <div class="gallery-image">
+            <div v-html="displayMedia(model.imagen)"></div>
+            <div class="caption">
+                <span v-if="model.titulo || model.autor" class="text-center"><strong>{{ model.titulo }}</strong> por {{ model.autor }}
+            </span>
+            </div>
+        </div>
+        </div>
     </div>
 </div>
 </template>
@@ -65,6 +67,15 @@ export default {
         },
         closeModal: function() {
             this.$dispatch('closeModal');
+        },
+        displayMedia: function(value) {
+            if(String(value).match(/.*\.(png|jpe?g|gif)(\?.*)?$/i)) {
+                return '<img src="' + IMG_BASE_URL + value + '" alt="' + value + '" class="admin-thumb img-responsive">';
+            } else if(String(value).match(/.*\.(pdf|doc|docx)(\?.*)?$/i)) {
+                return '<a target="_blank" href="' + FILES_BASE_URL + value + '" class="">' + value + '</a>';
+            } else {
+                return value;
+            }
         },
     },
     computed: {

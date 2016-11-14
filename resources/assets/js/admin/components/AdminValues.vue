@@ -29,10 +29,15 @@
 export default {
     name: 'AdminValues',
     props: ['columns', 'values', 'sortKey', 'sortOrders', 'filterKey'],
+    data: function() {
+        return {
+            sortingKey: this.sortKey,
+        };
+    },
     methods: {
         sortBy: function (key) {
             var self = this;
-            this.sortKey = key;
+            this.sortingKey = key;
             this.columns.forEach(function (column) {
                 if (column.title !== key) {
                     self.sortOrders[column.title] = 0;
@@ -47,7 +52,7 @@ export default {
         getClasses: function (key) {
             var classes = [];
             classes.push("arrow");
-            if (this.sortKey === key) {
+            if (this.sortingKey === key) {
                 classes.push("active");
             }
             if (this.sortOrders[key] === 1) {
@@ -85,12 +90,21 @@ export default {
         },
 
         filteredValues: function () {
-            var result = this.$options.filters.filterBy(this.values, this.filterKey);
-            result = this.$options.filters.orderBy(result, this.sortKey, this.sortOrders[this.sortKey]);
-            this.filteredSize = result.length;
-            return result;
-        },
+            var that = this;
+            var search = new RegExp(this.filterKey, 'i');
 
+            var result = this.values.filter(function(value) {
+                var keys = Object.keys(value);
+                for (var i = 0; i < keys.length; i++) {
+                    if(String(value[keys[i]]).match(search)) {
+                        return value;
+                    }
+                }
+            });
+
+            this.filteredSize = result.length;
+            return _.orderBy(result, this.sortingKey, this.sortOrders[this.sortingKey]);
+        },
     },
 }
 </script>
