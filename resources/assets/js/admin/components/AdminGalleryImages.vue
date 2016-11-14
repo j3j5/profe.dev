@@ -22,7 +22,7 @@
         <i class="fa fa-2x fa-trash-o"></i>
     </button>
     <div class="gallery-image">
-        {{{model.imagen | displayMedia"}}}
+        {{{model.imagen | displayMedia}}}
         <div class="caption">
             <span v-if="model.titulo || model.autor" class="text-center"><strong>{{model.titulo}}</strong> por {{model.autor}}
         </span>
