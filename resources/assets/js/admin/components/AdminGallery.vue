@@ -61,14 +61,14 @@ export default {
         removeItem: function(item) {
             if(confirm("¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
                 this.$http.delete(this.deleteModelUrl + item.id).then(function(response) {
-                    this.values.$remove(item);
+                    this.values.splice(this.values.indexOf(item), 1);
                 }).bind(this);
             }
         },
         itemEdited: function(item) {
             var index = this.values.indexOf(item.old);
             if (index !== -1) {
-                this.values.$set(index, item.new);
+                Vue.set(this.values, index, item.new)
             }
         },
         itemCreated: function(item) {

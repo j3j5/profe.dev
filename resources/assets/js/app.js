@@ -9,7 +9,6 @@ require('./bootstrap');
 require('./extras');
 require('./admin')
 
-
 const NotificationComponent = Vue.extend(Notification);
 
 const openNotification = (propsData = {

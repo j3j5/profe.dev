@@ -7,7 +7,7 @@
 
         <admin-table model-name="{{ $model }}"></admin-table>
 
-        @include("admin.$model.modal")
+        {{-- @include("admin.$model.modal") --}}
     </div>
 </div>
 @endsection

@@ -59,7 +59,7 @@
         },
         data: function () {
             return {
-                getTableUrl: "/admin/api/"+this.modelName+"/table",
+                getTableUrl:    "/admin/api/"+this.modelName+"/table",
                 createModelUrl: '/admin/api/' + this.modelName + '/create',
                 updateModelUrl: '/admin/api/' + this.modelName + '/update/',
                 deleteModelUrl: '/admin/api/' + this.modelName + '/delete/',
