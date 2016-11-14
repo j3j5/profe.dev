@@ -43,10 +43,18 @@ export default {
                     self.sortOrders[column.title] = 0;
                 }
             });
-            if (this.sortOrders[key] === 0) {
-                this.sortOrders[key] = 1;
-            } else {
-                this.sortOrders[key] = this.sortOrders[key] * -1;
+            switch (this.sortOrders[key]) {
+                case 'asc':
+                    this.sortOrders[key] = 'desc';
+                    break;
+                case 'desc':
+                    this.sortOrders[key] = 'asc';
+                    break;
+                case 0:
+                default:
+                    this.sortOrders[key] = 'asc'
+                    break;
+
             }
         },
         getClasses: function (key) {

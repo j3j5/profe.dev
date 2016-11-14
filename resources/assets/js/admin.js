@@ -5,7 +5,6 @@ import AdminGallery from './admin/components/AdminGallery.vue'
 import AdminGalleryImages from './admin/components/AdminGalleryImages.vue'
 import Modal from './components/Modal.vue'
 import Notification from './components/Notification.vue';
-// import Dropzone from './components/Dropzone.vue';
 
 Vue.component('AdminTable', AdminTable);
 Vue.component('AdminValues', AdminValues);
