@@ -4,8 +4,8 @@
         <i class="fa fa-5x fa-plus-circle"></i>
     </div>
     <div class="new thumbnail text-center">
-        <form id="fileUpload" action="{{ createUrl }}">
-            <input type="hidden" name="_token" value="{{csrf_token}}">
+        <form id="fileUpload" v-bind:action="createUrl">
+            <input type="hidden" name="_token" v-bind:value="csrf_token">
             <div class="dz-message" v-bind:style="formMsg">
                 <i class="fa fa-4x fa-plus-circle"></i>
                 <i class="fa fa-4x fa-upload"></i>
@@ -13,7 +13,7 @@
         </form>
     </div>
 </div>
-<div @click="editItem(model)" class="col-sm-4 col-md-2" v-for="model in values" track-by="id">
+<div @click="editItem(model)" class="col-sm-4 col-md-2" v-for="model in values" v-bind:key="model.id">
     <div class="thumbnail gallery-item">
     <button class="btn btn-danger btn-sm featured-button" href="#" @click.prevent.stop="toggleFeatured(model)">
         <i class="fa fa-2x" v-bind:class="{ 'fa-star': model.featured, 'fa-star-o': !model.featured }"></i>
@@ -22,9 +22,9 @@
         <i class="fa fa-2x fa-trash-o"></i>
     </button>
     <div class="gallery-image">
-        {{{model.imagen | displayMedia}}}
+        <div v-html="model.imagen | displayMedia"></div>
         <div class="caption">
-            <span v-if="model.titulo || model.autor" class="text-center"><strong>{{model.titulo}}</strong> por {{model.autor}}
+            <span v-if="model.titulo || model.autor" class="text-center"><strong>{{ model.titulo }}</strong> por {{ model.autor }}
         </span>
         </div>
     </div>

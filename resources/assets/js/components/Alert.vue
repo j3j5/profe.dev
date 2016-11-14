@@ -1,5 +1,5 @@
 <template>
-    <modal :show.sync="show"
+    <modal :show="show"=>
     <div class="">
         <button @click="no" type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <p>{{ message }}</p>

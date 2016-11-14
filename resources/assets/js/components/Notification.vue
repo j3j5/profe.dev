@@ -1,5 +1,5 @@
 <template>
-    <div class="alert alert-{{type}} notification" role="alert">
+    <div v-bind:class="'alert alert-' + type + ' notification'" role="alert">
         <button type="button" class="close" @click="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <div class="" v-if="title">
             <h3>{{ title }}</h3>
@@ -55,16 +55,13 @@ export default {
         }
     },
 
-    compiled () {
-        if (this.$_parent_) {
-            this.$appendTo(this.$_parent_.$el)
-            delete this.$_parent_
-        }
-    },
-
     mounted () {
         if (this.duration > 0) {
             this.timer = setTimeout(() => this.close(), this.duration)
+        }
+        if (this.$_parent_) {
+            this.$appendTo(this.$_parent_.$el)
+            delete this.$_parent_
         }
     },
 
