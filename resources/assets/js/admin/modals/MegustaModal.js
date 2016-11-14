@@ -74,7 +74,7 @@ Vue.component('AddMegustaModal', {
             });
         },
     },
-    ready: function() {
+    mounted: function() {
         var self = this;
         Dropzone.options.filesDropzone = false;
 

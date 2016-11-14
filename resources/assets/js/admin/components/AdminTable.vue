@@ -84,7 +84,7 @@
                self.displayCols.push(obj);
            });
         },
-        ready: function() {
+        mounted: function() {
             this.fetchTable();
         },
         watch: {

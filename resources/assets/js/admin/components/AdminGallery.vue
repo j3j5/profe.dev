@@ -47,7 +47,7 @@ export default {
             showFilter: false,
         };
     },
-    ready: function() {
+    mounted: function() {
         this.fetchData();
     },
     methods: {
