@@ -78,7 +78,7 @@ Vue.component('AddExamenModal', {
             });
         },
     },
-    ready: function() {
+    mounted: function() {
         var self = this;
         Dropzone.options.imagesDropzone = false;
         Dropzone.options.filesDropzone = false;

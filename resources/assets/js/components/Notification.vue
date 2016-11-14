@@ -62,7 +62,7 @@ export default {
         }
     },
 
-    ready () {
+    mounted () {
         if (this.duration > 0) {
             this.timer = setTimeout(() => this.close(), this.duration)
         }

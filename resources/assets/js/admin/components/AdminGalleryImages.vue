@@ -75,7 +75,7 @@ export default {
             return $('meta[name="_token"]').attr('content');
         }
     },
-    ready: function() {
+    mounted: function() {
         var self = this;
 
         Dropzone.options.fileUpload = false;

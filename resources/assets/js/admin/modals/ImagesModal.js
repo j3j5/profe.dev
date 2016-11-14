@@ -98,7 +98,7 @@ Vue.component('AddImageModal', {
             });
         },
     },
-    ready: function() {
+    mounted: function() {
         Dropzone.options.filesDropzone = false;
         var self = this;
         this.myDropzone = new Dropzone("form#files-dropzone", {

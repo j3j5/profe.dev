@@ -98,7 +98,7 @@ Vue.component('AddConceptoModal', {
             }).bind(this);
         }
     },
-    ready: function() {
+    computed: function() {
         Dropzone.options.thumbDropzone = false;
         var self = this;
         this.thumbDropzone = new Dropzone("form#thumb-dropzone", {

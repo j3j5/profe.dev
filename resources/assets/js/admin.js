@@ -29,8 +29,6 @@ new Vue({
             showModal: false,
         };
     },
-    ready: function () {
-    },
     methods: {
         closeAndResetModal: function() {
             this.selectedModel = {};
