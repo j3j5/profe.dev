@@ -1,5 +1,5 @@
 <template>
-    <div v-el:dropzone>
+    <div ref="dropzone">
         <slot name="dropzone-container">
             <slot name="dropzone-message">Drop files here to upload</slot>
         </slot>
@@ -45,7 +45,7 @@ export default {
             return this.multiple ? true : false;
         }
     },
-    ready() {
+    mounted: {
         Dropzone.autoDiscover = false;
         let params = {
             url: this.path,

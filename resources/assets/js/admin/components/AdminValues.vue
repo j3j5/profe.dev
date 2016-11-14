@@ -2,19 +2,18 @@
     <table class="table admin-table">
         <thead>
         <tr>
-            <th v-for="column in columns | filterBy true in 'visible'"
+            <th v-for="column in visibleColumns"
                 @click="sortBy(column.title)"
-                track-by="$index"
                 :class="getClasses(column.title)">
-                {{ column.title | capitalize }}
+                {{ capitalize(column.title) }}
             </th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="entry in filteredValues | orderBy sortKey sortOrders[sortKey]" track-by="id" @click="editItem(entry)">
-            <td v-for="column in columns | filterBy true in 'visible'"
+        <tr v-for="entry in filteredValues" track-by="id" @click="editItem(entry)">
+            <td v-for="column in visibleColumns"
                 v-show="column.visible">
-                {{{ entry[column.title] | displayMedia }}}
+                <div v-html="displayMedia(entry[column.title])"></div>
             </td>
             <td>
                 <button class="btn btn-sm btn-danger" href="#" @click.stop="deleteItem(entry)">
@@ -65,14 +64,33 @@ export default {
             var data = {entry: entry, url: this.$parent.updateModelUrl};
             this.$dispatch("editItem", data);
         },
+        capitalize: function(word) {
+            return word[0].toUpperCase() + word.slice(1);
+        },
+        displayMedia: function(value) {
+            if(String(value).match(/.*\.(png|jpe?g|gif)(\?.*)?$/i)) {
+                return '<img src="' + IMG_BASE_URL + value + '" alt="' + value + '" class="admin-thumb img-responsive">';
+            } else if(String(value).match(/.*\.(pdf|doc|docx)(\?.*)?$/i)) {
+                return '<a target="_blank" href="' + FILES_BASE_URL + value + '" class="">' + value + '</a>';
+            } else {
+                return value;
+            }
+        },
     },
     computed: {
+        visibleColumns: function() {
+            return this.columns.filter(function(column) {
+                return column.visible;
+            });
+        },
+
         filteredValues: function () {
             var result = this.$options.filters.filterBy(this.values, this.filterKey);
             result = this.$options.filters.orderBy(result, this.sortKey, this.sortOrders[this.sortKey]);
             this.filteredSize = result.length;
             return result;
         },
+
     },
 }
 </script>

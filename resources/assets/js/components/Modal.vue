@@ -1,12 +1,14 @@
 <template>
-    <div class="modal-mask" v-show="show" @click="close" transition="modal">
-        <div class="modal-wrapper">
-            <div class="modal-container" @click.stop>
-                <button @click="close" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <slot></slot>
+    <transition name="modal">
+        <div class="modal-mask" v-show="show" @click="close">
+            <div class="modal-wrapper">
+                <div class="modal-container" @click.stop>
+                    <button @click="close" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <slot></slot>
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
