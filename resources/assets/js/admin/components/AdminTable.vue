@@ -135,7 +135,7 @@
                 this.showFilter = !this.showFilter;
             },
             openModal: function() {
-                this.$dispatch('openModal', {url: this.createModelUrl});
+                this.bus.$emit('openModal', {url: this.createModelUrl});
             },
         },
         events: {

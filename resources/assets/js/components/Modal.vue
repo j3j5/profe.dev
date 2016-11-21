@@ -4,7 +4,7 @@
             <div class="modal-wrapper">
                 <div class="modal-container" @click.stop>
                     <button @click="close" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <slot></slot>
+                    <slot name="modal-stuff"></slot>
                 </div>
             </div>
         </div>
@@ -15,15 +15,29 @@
 export default {
     name: "Modal",
     props: {
-        show: {
-            type: Boolean,
-            required: true,
-        },
+
+    },
+    data: function() {
+        return {
+            show: false,
+        };
     },
     methods: {
         close: function() {
-            this.$dispatch('closeModal');
+            this.show = false;
         },
+    },
+    created: function() {
+        var self = this;
+        this.bus.$on('openModal', function (data) {
+            self.show = true;
+        });
+        this.bus.$on('editItem', function (data) {
+            self.show = true;
+        });
+        this.bus.$on('closeModal', function () {
+            self.show = false;
+        });
     },
     mounted: function () {
         document.addEventListener("keydown", (e) => {
