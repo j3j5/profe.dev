@@ -75,14 +75,30 @@
             };
         },
         created: function () {
-           this.setSortOrders();
-           var self = this;
-           this.columns.forEach(function (column) {
-               var obj = {};
-               obj.title = column.title;
-               obj.visible = true;
-               self.displayCols.push(obj);
-           });
+            this.setSortOrders();
+            var self = this;
+            this.columns.forEach(function (column) {
+                var obj = {};
+                obj.title = column.title;
+                obj.visible = true;
+                self.displayCols.push(obj);
+            });
+            this.bus.$on('itemCreated', function (item) {
+                this.values.push(item);
+            });
+            this.bus.$on('itemEdited', function (item) {
+                var index = this.values.indexOf(item.old);
+                if (index !== -1) {
+                    this.values.$set(index, item.new);
+                }
+            });
+            this.bus.$on('removeItem', function (item) {
+                if(confirm("Estás a punto de borrar " + item.nombre + ".\n¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
+                    this.$http.delete(this.deleteModelUrl + item.id).then(function(response) {
+                        this.values.$remove(item);
+                    }).bind(this);
+                }
+            });
         },
         mounted: function() {
             this.fetchTable();
@@ -136,24 +152,6 @@
             },
             openModal: function() {
                 this.bus.$emit('openModal', {url: this.createModelUrl});
-            },
-        },
-        events: {
-            removeItem: function(item) {
-                if(confirm("Estás a punto de borrar " + item.nombre + ".\n¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
-                    this.$http.delete(this.deleteModelUrl + item.id).then(function(response) {
-                        this.values.$remove(item);
-                    }).bind(this);
-                }
-            },
-            itemCreated: function(item) {
-                this.values.push(item);
-            },
-            itemEdited: function(item) {
-                 var index = this.values.indexOf(item.old);
-                 if (index !== -1) {
-                     this.values.$set(index, item.new);
-                 }
             },
         },
     }

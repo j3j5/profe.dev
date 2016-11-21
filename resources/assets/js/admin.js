@@ -29,6 +29,16 @@ var admin = new Vue({
             showModal: false,
         };
     },
+    created: function() {
+        this.bus.$on('itemCreated', function (data) {
+            var notification = {message: 'Yaaay, ¡el nuevo elemento se guardó correctamente!', type: 'info'};
+            this.openNotificationWithType(notification);
+        });
+        this.bus.$on('itemEdited', function (data) {
+            var notification = {message: 'Yaaay, ¡los cambios se guardaron correctamente!', type: 'info'};
+            this.openNotificationWithType(notification);
+        });
+    },
     methods: {
         closeAndResetModal: function() {
             this.selectedModel = {};
@@ -43,26 +53,10 @@ var admin = new Vue({
         },
     },
     events : {
-        closeModal: function(data) {
-            this.closeAndResetModal();
-        },
-        editItem: function(data) {
-            this.selectedModel = data.entry;
-            this.modalAction = data.url + this.selectedModel.id;
-            this.showModal = true;
-        },
-        itemCreated: function(item) {
-            // this.$broadcast('itemCreated', item);
-            this.closeAndResetModal();
-            var notification = {message: 'Yaaay, ¡el nuevo elemento se guardó correctamente!', type: 'info'};
-            this.openNotificationWithType(notification);
-        },
         itemEdited: function(item) {
             var info = {old: this.selectedModel, new: item};
             this.$broadcast('itemEdited', info);
             this.closeAndResetModal();
-            var notification = {message: 'Yaaay, ¡los cambios se guardaron correctamente!', type: 'info'};
-            this.openNotificationWithType(notification);
         },
     },
  });

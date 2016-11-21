@@ -23,20 +23,30 @@ export default {
         };
     },
     methods: {
+        showIt: function() {
+            this.show = true;
+        },
         close: function() {
             this.show = false;
+            this.bus.$emit('resetModal');
         },
     },
     created: function() {
         var self = this;
         this.bus.$on('openModal', function (data) {
-            self.show = true;
-        });
-        this.bus.$on('editItem', function (data) {
-            self.show = true;
+            self.showIt();
         });
         this.bus.$on('closeModal', function () {
-            self.show = false;
+            self.close();
+        });
+        this.bus.$on('itemCreated', function () {
+            self.close();
+        });
+        this.bus.$on('itemEdited', function () {
+            self.close();
+        });
+        this.bus.$on('editItem', function (data) {
+            self.showIt();
         });
     },
     mounted: function () {

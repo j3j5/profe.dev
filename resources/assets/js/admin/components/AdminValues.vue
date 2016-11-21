@@ -71,7 +71,7 @@ export default {
             return classes;
         },
         deleteItem: function(entry) {
-            this.$dispatch('removeItem', entry);
+            this.bus.$emit('removeItem', data);
         },
         editItem: function(entry) {
             var data = {entry: entry, url: this.$parent.updateModelUrl};
