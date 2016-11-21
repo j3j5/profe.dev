@@ -26,9 +26,14 @@ export default {
                 self.action = data.url;
                 self.model = data.entry;
             });
-            this.bus.$on('closeModal', function () {
-                self.action = '';
-                self.model = {};
+            this.bus.$on('resetModal', function () {
+                self.reset();
+            });
+            this.bus.$on('itemCreated', function () {
+                self.reset();
+            });
+            this.bus.$on('itemEdited', function () {
+                self.reset();
             });
         },
         watch: {
@@ -78,22 +83,28 @@ export default {
         methods: {
             close: function() {
                 this.bus.$emit('closeModal');
-                this.thumbDropzone.removeAllFiles();
-                this.filesDropzone.removeAllFiles();
+                this.reset();
             },
             submitForm: function() {
                 this.$http.post(this.action, this.formData)
                 .then(function(response) {
                     if (Object.keys(this.model).length > 0) {
-                        this.$dispatch('itemEdited',  JSON.parse(response.body));
+                        this.bus.$emit('itemEdited', JSON.parse(response.body));
+                        // this.$dispatch('itemEdited',  JSON.parse(response.body));
                     } else {
-                        this.$dispatch('itemCreated',  JSON.parse(response.body));
+                        this.bus.$emit('itemCreated', JSON.parse(response.body));
+                        // this.$dispatch('itemCreated',  JSON.parse(response.body));
                     }
-                    this.thumbDropzone.removeAllFiles();
-                    this.filesDropzone.removeAllFiles();
+                    this.reset();
                 }, function(response) {
                     alert(response);
                 });
+            },
+            reset: function() {
+                this.action = '';
+                this.model = {};
+                this.thumbDropzone.removeAllFiles();
+                this.filesDropzone.removeAllFiles();
             },
         },
         mounted: function() {
