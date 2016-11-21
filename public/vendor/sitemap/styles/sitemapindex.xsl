@@ -5,8 +5,8 @@
 <head>
 <meta charset="utf-8"/>
 <title>XML Sitemap Index</title>
-<script type="text/javascript" src="https://cdn.roumen.it/repo/jquery/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="https://cdn.roumen.it/repo/jquery.tablesorter/2.0.5/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.0.31/js/jquery.tablesorter.min.js"></script>
 <script	type="text/javascript"><![CDATA[
 $(document).ready(function() {
 $("#sitemap").tablesorter({sortList:[[0,1]],widgets:['zebra']});
