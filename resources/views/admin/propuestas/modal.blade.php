@@ -5,34 +5,34 @@
     :model="selectedModel"
 ></add-propuesta-modal>
 
-
-<template id="propuesta-modal-template">
-    <modal :show="show">
+<script type="text/x-template" id="propuesta-modal-template">
+    <modal :show="show" >
+        <div slot="modal-stuff">
         <div class="modal-header-1">
             <h2>Nueva Propuesta</h2>
         </div>
         <div class="modal-body">
             <div class="form-group">
                 <label for="nombre" class="control-label">Nombre</label>
-                <input class="form-control" v-model="nombre" name="nombre" type="text" id="nombre" value="@{{ nombre }}">
+                <input class="form-control" v-model="nombre" name="nombre" type="text" id="nombre" :value="nombre">
             </div>
 
             <div class="form-group">
                 <label for="contenidos" class="control-label">Contenidos</label>
-                <input class="form-control" v-model="contenidos" name="contenidos" type="text" id="contenidos" value="@{{ contenidos }}">
+                <input class="form-control" v-model="contenidos" name="contenidos" type="text" id="contenidos" :value="contenidos">
             </div>
 
             <div class="form-group">
                 <label for="curso" class="control-label">Curso</label>
                 <select v-model="curso" class="form-control">
-                    <option v-for="n in 3" value=@{{n+1}}>@{{ n+1 | parseCurso }}</option>
+                    <option v-for="n in 3" :value="n"></option>
                 </select>
             </div>
             <div class="container">
                 {{-- THUMBNAIL --}}
                 <div class="col-sm-6">
                     <label for="thumbnail" class="control-label">Thumbnail</label>
-                    <input class="form-control" v-model="thumbnail" name="thumbnail" type="text" id="thumbnail" value="@{{ thumbnail }}" disabled>
+                    <input class="form-control" v-model="thumbnail" name="thumbnail" type="text" id="thumbnail" :value="thumbnail" disabled>
                     <form id="images-dropzone" action="{{ route("thumbUpload") }}" class="dropzone" v-bind:style="thumbBgStyle">
                         {{ csrf_field() }}
                         <div class="dz-message" v-bind:style="formMsg">
@@ -43,7 +43,7 @@
                 {{-- ARCHIVO --}}
                 <div class="col-sm-6">
                     <label for="archivo" class="control-label">Archivo</label>
-                    <input class="form-control" v-model="archivo" name="archivo" type="text" id="archivo" value="@{{ archivo }}" disabled>
+                    <input class="form-control" v-model="archivo" name="archivo" type="text" id="archivo" :value="archivo" disabled>
                     <form id="files-dropzone" action="{{ route("uploadRoute", $model) }}" class="dropzone">
                         {{ csrf_field() }}
                         <div class="dz-message" v-bind:style="formMsg">
@@ -62,5 +62,6 @@
                 Cancelar
             </button>
         </div>
+        </div>
     </modal>
-</template>
+</script>
