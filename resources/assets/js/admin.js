@@ -1,10 +1,10 @@
-
 import AdminTable from './admin/components/AdminTable.vue'
 import AdminValues from './admin/components/AdminValues.vue'
 import AdminGallery from './admin/components/AdminGallery.vue'
 import AdminGalleryImages from './admin/components/AdminGalleryImages.vue'
 import Modal from './components/Modal.vue'
 import Notification from './components/Notification.vue';
+import AddPropuestaModal from './admin/modals/PropuestasModal.vue';
 
 Vue.component('AdminTable', AdminTable);
 Vue.component('AdminValues', AdminValues);
@@ -13,13 +13,14 @@ Vue.component('AdminGallery', AdminGallery);
 Vue.component('AdminGalleryImages', AdminGalleryImages);
 Vue.component('notification', Notification);
 
-require('./admin/modals/PropuestasModal.js')
-require('./admin/modals/ImagesModal.js')
-require('./admin/modals/ConceptosModal.js')
-require('./admin/modals/MegustaModal.js')
-require('./admin/modals/ExamenModal.js')
+Vue.component('AddPropuestaModal', AddPropuestaModal);
 
-new Vue({
+// require('./admin/modals/ImagesModal.js')
+// require('./admin/modals/ConceptosModal.js')
+// require('./admin/modals/MegustaModal.js')
+// require('./admin/modals/ExamenModal.js')
+
+var admin = new Vue({
     el: '#admin',
     data: function() {
         return {
@@ -42,10 +43,6 @@ new Vue({
         },
     },
     events : {
-        openModal: function(data) {
-            this.showModal = true;
-            this.modalAction = data.url;
-        },
         closeModal: function(data) {
             this.closeAndResetModal();
         },
@@ -55,7 +52,7 @@ new Vue({
             this.showModal = true;
         },
         itemCreated: function(item) {
-            this.$broadcast('itemCreated', item);
+            // this.$broadcast('itemCreated', item);
             this.closeAndResetModal();
             var notification = {message: 'Yaaay, ¡el nuevo elemento se guardó correctamente!', type: 'info'};
             this.openNotificationWithType(notification);

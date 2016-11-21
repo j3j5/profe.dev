@@ -75,7 +75,7 @@ export default {
         },
         editItem: function(entry) {
             var data = {entry: entry, url: this.$parent.updateModelUrl};
-            this.$dispatch("editItem", data);
+            this.bus.$emit('editItem', data);
         },
         capitalize: function(word) {
             return word[0].toUpperCase() + word.slice(1);

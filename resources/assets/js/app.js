@@ -5,9 +5,23 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
 require('./bootstrap');
+// require('./bus')
 require('./extras');
-require('./admin')
+
+const bus = new Vue() // Single event hub
+
+// Distribute to components using global mixin
+Vue.mixin({
+    data: function () {
+        return {
+            bus: bus
+        }
+    }
+})
+
+require('./admin');
 
 const NotificationComponent = Vue.extend(Notification);
 
