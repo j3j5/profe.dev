@@ -95,11 +95,15 @@
             });
             this.bus.$on('removeItem', function (item) {
                 if(confirm("Estás a punto de borrar " + item.nombre + ".\n¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
-                    this.$http.delete(this.deleteModelUrl + item.id)
+                    self.$http.delete(self.deleteModelUrl + item.id)
                     .then( function(response) {
-                        var index = this.values.indexOf(item);
-                        this.values.splice(index, 1);
-                    }).bind(this);
+                        var index = self.values.indexOf(item);
+                        self.values.splice(index, 1);
+                    }, function(response) {
+                        console.log('error on the del req');
+                        console.log(response);
+                        alert(response.body);
+                    });
                 }
             });
         },
