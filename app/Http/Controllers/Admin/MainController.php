@@ -49,9 +49,9 @@ class MainController extends Controller {
 
         switch ($table) {
             case 'me_gustas':
-                return view('main.index-gallery', $data);
+                return view('admin.index-gallery', $data);
             default:
-                return view('main.index-table', $data);
+                return view('admin.index-table', $data);
         }
 
     }
