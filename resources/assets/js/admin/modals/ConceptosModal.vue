@@ -1,6 +1,8 @@
-Vue.component('AddConceptoModal', {
+<script>
+export default {
+    name: 'AddConceptoModal',
     template: "#concepto-modal-template",
-    props: ['show', 'name', 'action', 'model'],
+    props: ['show', 'name',],
     data: function() {
         return {
             palabra: '',
@@ -9,6 +11,8 @@ Vue.component('AddConceptoModal', {
             thumbnail: '',
             grupo_id: '',
             grupos: [],
+            action: '',
+            model: '',
             thumbDropzone: false,
             formFields: ['palabra', 'definicion', 'curso', 'thumbnail', 'grupo_id'],
             showGrupo: false,
@@ -17,6 +21,24 @@ Vue.component('AddConceptoModal', {
     },
     created: function() {
         this.fetchGrupos();
+
+        var self = this;
+        this.bus.$on('openModal', function (data) {
+            self.action = data.url;
+        });
+        this.bus.$on('editItem', function (data) {
+            self.action = data.url;
+            self.model = data.entry;
+        });
+        this.bus.$on('resetModal', function () {
+            self.reset();
+        });
+        this.bus.$on('itemCreated', function () {
+            self.reset();
+        });
+        this.bus.$on('itemEdited', function () {
+            self.reset();
+        });
     },
     watch: {
         model: function() {
@@ -57,7 +79,7 @@ Vue.component('AddConceptoModal', {
         formData: function() {
             var self = this;
             var mydata = {};
-            this.formFields.forEach(function(field) {
+            this.formFields.forEach( function(field) {
                 if (self.$data.hasOwnProperty(field)) {
                     mydata[field] = self.$data[field];
                 }
@@ -67,21 +89,27 @@ Vue.component('AddConceptoModal', {
     },
     methods: {
         close: function() {
-            this.$dispatch('closeModal');
-            this.thumbDropzone.removeAllFiles();
+            this.bus.$emit('closeModal');
+            this.reset();
         },
         submitForm: function() {
             this.$http.post(this.action, this.formData)
             .then(function(response) {
                 if (Object.keys(this.model).length > 0) {
-                    this.$dispatch('itemEdited',  JSON.parse(response.body));
+                    var eventData = {old: this.model, new: response.body};
+                    this.bus.$emit('itemEdited', eventData);
                 } else {
-                    this.$dispatch('itemCreated',  JSON.parse(response.body));
+                    this.bus.$emit('itemCreated', response.body);
                 }
-                this.thumbDropzone.removeAllFiles();
+                this.close();
             }, function(response) {
                 alert(response);
             });
+        },
+        reset: function() {
+            this.action = '';
+            this.model = {};
+            this.thumbDropzone.removeAllFiles();
         },
         fetchGrupos: function() {
             this.$http.get('/admin/api/grupos').then(function(response) {
@@ -91,14 +119,14 @@ Vue.component('AddConceptoModal', {
         createNewGrupo: function() {
             var data = {nombre: this.grupoConcepto};
             this.$http.post('/admin/api/grupoConcepto/create', data).then(function(response) {
-                var newGrupo = JSON.parse(response.body);
+                var newGrupo = response.body;
                 this.grupos.push(newGrupo);
                 this.showGrupo = false;
                 this.grupo_id = newGrupo.id;
             }).bind(this);
         }
     },
-    computed: function() {
+    mounted: function() {
         Dropzone.options.thumbDropzone = false;
         var self = this;
         this.thumbDropzone = new Dropzone("form#thumb-dropzone", {
@@ -110,4 +138,5 @@ Vue.component('AddConceptoModal', {
             addRemoveLinks: true
         });
     },
-});
+}
+</script>
