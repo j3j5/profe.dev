@@ -11,6 +11,7 @@ import AddPropuestaModal from './admin/modals/PropuestasModal.vue';
 import AddImageModal from './admin/modals/ImagesModal.vue';
 import AddConceptoModal from './admin/modals/ConceptosModal.vue';
 import AddMegustaModal from './admin/modals/MegustaModal.vue';
+import AddExamenModal from './admin/modals/ExamenModal.vue';
 
 Vue.component('AdminTable', AdminTable);
 Vue.component('AdminValues', AdminValues);
@@ -23,6 +24,7 @@ Vue.component('AddPropuestaModal', AddPropuestaModal);
 Vue.component('AddImageModal', AddImageModal);
 Vue.component('AddConceptoModal', AddConceptoModal);
 Vue.component('AddMegustaModal', AddMegustaModal);
+Vue.component('AddExamenModal', AddExamenModal);
 
 // require('./admin/modals/ImagesModal.js')
 // require('./admin/modals/ConceptosModal.js')
