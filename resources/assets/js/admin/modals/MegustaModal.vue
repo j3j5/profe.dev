@@ -1,12 +1,16 @@
-Vue.component('AddMegustaModal', {
+<script>
+export default {
+    name: 'AddMegustaModal',
     template: "#megusta-modal-template",
-    props: ['show', 'name', 'action', 'model'],
+    props: ['show', 'name',],
     data: function() {
         return {
             titulo: '',
             autor: '',
             curso: 1,
             imagen: '',
+            action: '',
+            model: '',
             fileDropzone: false,
             formFields: ['titulo', 'autor', 'curso', 'imagen'],
         };
@@ -21,6 +25,25 @@ Vue.component('AddMegustaModal', {
                 }
             }
         },
+    },
+    created: function() {
+        var self = this;
+        this.bus.$on('openModal', function (data) {
+            self.action = data.url;
+        });
+        this.bus.$on('editItem', function (data) {
+            self.action = data.url;
+            self.model = data.entry;
+        });
+        this.bus.$on('resetModal', function () {
+            self.reset();
+        });
+        this.bus.$on('itemCreated', function () {
+            self.reset();
+        });
+        this.bus.$on('itemEdited', function () {
+            self.reset();
+        });
     },
     computed: {
         formBgStyle: function() {
@@ -57,21 +80,27 @@ Vue.component('AddMegustaModal', {
     },
     methods: {
         close: function() {
-            this.$dispatch('closeModal');
-            this.filesDropzone.removeAllFiles();
+            this.bus.$emit('closeModal');
+            this.reset();
         },
         submitForm: function() {
             this.$http.post(this.action, this.formData)
             .then(function(response) {
                 if (Object.keys(this.model).length > 0) {
-                    this.$dispatch('itemEdited',  JSON.parse(response.body));
+                    var eventData = {old: this.model, new: response.body};
+                    this.bus.$emit('itemEdited', eventData);
                 } else {
-                    this.$dispatch('itemCreated',  JSON.parse(response.body));
+                    this.bus.$emit('itemCreated', response.body);
                 }
-                this.filesDropzone.removeAllFiles();
+                this.close();
             }, function(response) {
-                alert(response);
+                alert(response.body);
             });
+        },
+        reset: function() {
+            this.action = '';
+            this.model = {};
+            this.filesDropzone.removeAllFiles();
         },
     },
     mounted: function() {
@@ -88,4 +117,5 @@ Vue.component('AddMegustaModal', {
         });
 
     },
-});
+}
+</script>
