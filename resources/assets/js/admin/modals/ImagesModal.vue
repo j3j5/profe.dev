@@ -1,15 +1,38 @@
-Vue.component('AddImageModal', {
+<script>
+export default {
+    name: 'AddImageModal',
     template: "#image-modal-template",
-    props: ['show', 'name', 'action', 'model'],
+    props: ['show', 'name',],
     data: function() {
         return {
             titulo: '',
             artista: '',
             anho: false,
             image: '',
+            action: '',
+            model: '',
             myDropzone: false,
             formFields: ['titulo', 'artista', 'anho', 'image'],
         };
+    },
+    created: function() {
+        var self = this;
+        this.bus.$on('openModal', function (data) {
+            self.action = data.url;
+        });
+        this.bus.$on('editItem', function (data) {
+            self.action = data.url;
+            self.model = data.entry;
+        });
+        this.bus.$on('resetModal', function () {
+            self.reset();
+        });
+        this.bus.$on('itemCreated', function () {
+            self.reset();
+        });
+        this.bus.$on('itemEdited', function () {
+            self.reset();
+        });
     },
     watch: {
         model: function() {
@@ -81,21 +104,27 @@ Vue.component('AddImageModal', {
     },
     methods: {
         close: function() {
-            this.$dispatch('closeModal');
-            this.myDropzone.removeAllFiles();
+            this.bus.$emit('closeModal');
+            this.reset();
         },
         submitForm: function() {
             this.$http.post(this.action, this.formData)
             .then(function(response) {
                 if (Object.keys(this.model).length > 0) {
-                    this.$dispatch('itemEdited',  JSON.parse(response.body));
+                    var eventData = {old: this.model, new: response.body};
+                    this.bus.$emit('itemEdited', eventData);
                 } else {
-                    this.$dispatch('itemCreated',  JSON.parse(response.body));
+                    this.bus.$emit('itemCreated', response.body);
                 }
-                this.myDropzone.removeAllFiles();
+                this.close();
             }, function(response) {
                 alert(response);
             });
+        },
+        reset: function() {
+            this.action = '';
+            this.model = {};
+            this.myDropzone.removeAllFiles();
         },
     },
     mounted: function() {
@@ -110,4 +139,5 @@ Vue.component('AddImageModal', {
             addRemoveLinks: true
         });
     },
-});
+}
+</script>

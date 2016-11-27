@@ -5,6 +5,7 @@ import AdminGalleryImages from './admin/components/AdminGalleryImages.vue'
 import Modal from './components/Modal.vue'
 import Notification from './components/Notification.vue';
 import AddPropuestaModal from './admin/modals/PropuestasModal.vue';
+import AddImageModal from './admin/modals/ImagesModal.vue';
 
 Vue.component('AdminTable', AdminTable);
 Vue.component('AdminValues', AdminValues);
@@ -14,6 +15,7 @@ Vue.component('AdminGalleryImages', AdminGalleryImages);
 Vue.component('notification', Notification);
 
 Vue.component('AddPropuestaModal', AddPropuestaModal);
+Vue.component('AddImageModal', AddImageModal);
 
 // require('./admin/modals/ImagesModal.js')
 // require('./admin/modals/ConceptosModal.js')
