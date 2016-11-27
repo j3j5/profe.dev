@@ -7,6 +7,6 @@
          case 3:
              return "3º (Tercero)";
          default:
-             return "error";
+             return value;
      }
  });

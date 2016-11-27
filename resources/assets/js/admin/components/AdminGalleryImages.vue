@@ -5,7 +5,7 @@
             <i class="fa fa-5x fa-plus-circle"></i>
         </div>
         <div class="new thumbnail text-center">
-            <form id="fileUpload" v-bind:action="createUrl">
+            <form id="fileUpload" v-bind:action="bulkUploadUrl">
                 <input type="hidden" name="_token" v-bind:value="csrf_token">
                 <div class="dz-message" v-bind:style="formMsg">
                     <i class="fa fa-4x fa-plus-circle"></i>
@@ -65,9 +65,6 @@ export default {
         openModal: function() {
             this.bus.$emit('openModal', {url: this.createModelUrl});
         },
-        // closeModal: function() {
-            // this.$dispatch('closeModal');
-        // },
         displayMedia: function(value) {
             if(String(value).match(/.*\.(png|jpe?g|gif)(\?.*)?$/i)) {
                 return '<img src="' + IMG_BASE_URL + value + '" alt="' + value + '" class="admin-thumb img-responsive">';
@@ -79,9 +76,6 @@ export default {
         },
     },
     computed: {
-        createUrl: function() {
-            return this.bulkUploadUrl;
-        },
         csrf_token: function() {
             return $('meta[name="_token"]').attr('content');
         }
@@ -94,7 +88,7 @@ export default {
             init: function() {
                 this.on("success", function(file, response) {
                     console.log('success ' + file.name);
-                    self.$dispatch('itemCreated', response);
+                    self.bus.$emit('itemCreated', response);
                     this.removeFile(file);
                 });
             },
