@@ -32,9 +32,7 @@ class MainController extends Controller {
 
     public function index(Request $request, $table)
     {
-        $model = str_singular(ucfirst(camel_case($table)));
-        $model = "App\Models\\$model";
-
+        $model = str_singular(camel_case($table));
         if ($table == 'images') {
             $this->images_base_url = $this->getUploadsBaseUrl()."images/galeria/1/";
         }
@@ -44,15 +42,16 @@ class MainController extends Controller {
         $js_variables .= PHP_EOL . 'var BASE_URL = "'. url('') . '";';
         Asset::addScript($js_variables, 'footer');
 
+        $data = [
+            'table' => $table,
+            'model' => $model,
+        ];
+
         switch ($table) {
             case 'me_gustas':
-                return view('main.index-gallery', [
-                    'model' => $table
-                ]);
+                return view('main.index-gallery', $data);
             default:
-                return view('main.index-table', [
-                    'model' => $table,
-                ]);
+                return view('main.index-table', $data);
         }
 
     }
