@@ -1,23 +1,28 @@
 import AdminTable from './admin/components/AdminTable.vue'
 import AdminValues from './admin/components/AdminValues.vue'
+
 import AdminGallery from './admin/components/AdminGallery.vue'
 import AdminGalleryImages from './admin/components/AdminGalleryImages.vue'
-import Modal from './components/Modal.vue'
+
 import Notification from './components/Notification.vue';
+
+import Modal from './components/Modal.vue'
 import AddPropuestaModal from './admin/modals/PropuestasModal.vue';
 import AddImageModal from './admin/modals/ImagesModal.vue';
 import AddConceptoModal from './admin/modals/ConceptosModal.vue';
+import AddMegustaModal from './admin/modals/MegustaModal.vue';
 
 Vue.component('AdminTable', AdminTable);
 Vue.component('AdminValues', AdminValues);
-Vue.component('Modal', Modal);
 Vue.component('AdminGallery', AdminGallery);
 Vue.component('AdminGalleryImages', AdminGalleryImages);
 Vue.component('notification', Notification);
 
+Vue.component('Modal', Modal);
 Vue.component('AddPropuestaModal', AddPropuestaModal);
 Vue.component('AddImageModal', AddImageModal);
 Vue.component('AddConceptoModal', AddConceptoModal);
+Vue.component('AddMegustaModal', AddMegustaModal);
 
 // require('./admin/modals/ImagesModal.js')
 // require('./admin/modals/ConceptosModal.js')

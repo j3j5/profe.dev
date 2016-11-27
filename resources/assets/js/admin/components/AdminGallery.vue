@@ -17,7 +17,10 @@
             <admin-gallery-images
                 v-if="values.length > 0"
                 :values="values"
-                :filter-key="filterKey">
+                :filter-key="filterKey"
+                :bulkUploadUrl="bulkUploadUrl"
+                :createModelUrl="createModelUrl"
+                :updateModelUrl="updateModelUrl">
             </admin-gallery-images>
             <div v-else class="alert alert-info" role="alert">No hay nada todavía</div>
         </div>
@@ -47,6 +50,31 @@ export default {
             showFilter: false,
         };
     },
+    created: function () {
+        var self = this;
+        this.bus.$on('itemCreated', function (item) {
+            self.values.push(item);
+        });
+        this.bus.$on('itemEdited', function (item) {
+            var index = self.values.indexOf(item.old);
+            if (index !== -1) {
+                Vue.set(self.values, index, item.new)
+            }
+        });
+        this.bus.$on('removeItem', function (item) {
+            if(confirm("¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
+                self.$http.delete(self.deleteModelUrl + item.id)
+                .then( function(response) {
+                    var index = self.values.indexOf(item);
+                    self.values.splice(index, 1);
+                }, function(response) {
+                    console.log('error on the del req');
+                    console.log(response);
+                    alert(response.body);
+                });
+            }
+        });
+    },
     mounted: function() {
         this.fetchData();
     },
@@ -55,24 +83,6 @@ export default {
             this.$http.get(this.getTableUrl).then(function(response) {
                 this.values = response.data.values;
             }).bind(this);
-        },
-    },
-    events: {
-        removeItem: function(item) {
-            if(confirm("¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
-                this.$http.delete(this.deleteModelUrl + item.id).then(function(response) {
-                    this.values.splice(this.values.indexOf(item), 1);
-                }).bind(this);
-            }
-        },
-        itemEdited: function(item) {
-            var index = this.values.indexOf(item.old);
-            if (index !== -1) {
-                Vue.set(this.values, index, item.new)
-            }
-        },
-        itemCreated: function(item) {
-            this.values.push(item);
         },
     },
 }

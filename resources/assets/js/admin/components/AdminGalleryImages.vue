@@ -38,7 +38,7 @@
 export default {
     name: "AdminGaleryImages",
     components: {},
-    props: ['values', 'filterKey'],
+    props: ['values', 'filterKey', 'createModelUrl', 'updateModelUrl', 'bulkUploadUrl'],
     data: function() {
         return {
             fileUpload: false,
@@ -46,28 +46,28 @@ export default {
     },
     methods: {
         deleteItem: function(entry) {
-            this.$dispatch('removeItem', entry);
+            this.bus.$emit('removeItem', entry);
         },
         toggleFeatured: function(item) {
-            console.log('featuring');
             var data = {featured: !item.featured};
-            this.$http.post(this.$parent.updateModelUrl + item.id, data)
+            this.$http.post(this.updateModelUrl + item.id, data)
             .then(function(response) {
                 item.featured = data.featured;
             }, function(response) {
+                console.log(response.body)
                 alert(response.body);
             });
         },
         editItem: function(entry) {
-            var data = {entry: entry, url: this.$parent.updateModelUrl};
-            this.$dispatch("editItem", data);
+            var data = {entry: entry, url: this.updateModelUrl + entry.id};
+            this.bus.$emit('editItem', data);
         },
         openModal: function() {
-            this.$dispatch('openModal', {url: this.$parent.createModelUrl});
+            this.bus.$emit('openModal', {url: this.createModelUrl});
         },
-        closeModal: function() {
-            this.$dispatch('closeModal');
-        },
+        // closeModal: function() {
+            // this.$dispatch('closeModal');
+        // },
         displayMedia: function(value) {
             if(String(value).match(/.*\.(png|jpe?g|gif)(\?.*)?$/i)) {
                 return '<img src="' + IMG_BASE_URL + value + '" alt="' + value + '" class="admin-thumb img-responsive">';
@@ -80,7 +80,7 @@ export default {
     },
     computed: {
         createUrl: function() {
-            return this.$parent.bulkUploadUrl;
+            return this.bulkUploadUrl;
         },
         csrf_token: function() {
             return $('meta[name="_token"]').attr('content');
