@@ -135,8 +135,6 @@ export default {
             }
         }
 
-
-
         td {
             max-width: 300px;
             font-size: 1.2em;
