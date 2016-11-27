@@ -25,9 +25,9 @@ require('vue-resource');
  * the outgoing requests issued by this application. The CSRF middleware
  * included with Laravel will automatically verify the header's value.
  */
-
-Vue.http.interceptors.push(function (request, next) {
-    request.headers['X-XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN');
+Vue.http.interceptors.push((request, next) => {
+    request.headers.set('X-XSRF-TOKEN', Cookies.get('XSRF-TOKEN'));
+    // request.headers.set('X-CSRF-TOKEN', decodeURIComponent(Cookies.get('XSRF-TOKEN')));
 
     next();
 });

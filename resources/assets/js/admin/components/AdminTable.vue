@@ -41,7 +41,8 @@
                 :values="values"
                 :sort-key="sortKey"
                 :sort-orders="sortOrders"
-                :filter-key="filterKey">
+                :filter-key="filterKey"
+                :update-model-url="updateModelUrl">
             </admin-values>
             <div v-else class="alert alert-info" role="alert">No hay nada todavía</div>
         </div>
@@ -84,18 +85,20 @@
                 self.displayCols.push(obj);
             });
             this.bus.$on('itemCreated', function (item) {
-                this.values.push(item);
+                self.values.push(item);
             });
             this.bus.$on('itemEdited', function (item) {
-                var index = this.values.indexOf(item.old);
+                var index = self.values.indexOf(item.old);
                 if (index !== -1) {
-                    this.values.$set(index, item.new);
+                    Vue.set(self.values, index, item.new)
                 }
             });
             this.bus.$on('removeItem', function (item) {
                 if(confirm("Estás a punto de borrar " + item.nombre + ".\n¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
-                    this.$http.delete(this.deleteModelUrl + item.id).then(function(response) {
-                        this.values.$remove(item);
+                    this.$http.delete(this.deleteModelUrl + item.id)
+                    .then( function(response) {
+                        var index = this.values.indexOf(item);
+                        this.values.splice(index, 1);
                     }).bind(this);
                 }
             });

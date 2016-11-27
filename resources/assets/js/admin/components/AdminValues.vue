@@ -28,7 +28,7 @@
 <script>
 export default {
     name: 'AdminValues',
-    props: ['columns', 'values', 'sortKey', 'sortOrders', 'filterKey'],
+    props: ['columns', 'values', 'sortKey', 'sortOrders', 'filterKey', 'updateModelUrl'],
     data: function() {
         return {
             sortingKey: this.sortKey,
@@ -71,10 +71,10 @@ export default {
             return classes;
         },
         deleteItem: function(entry) {
-            this.bus.$emit('removeItem', data);
+            this.bus.$emit('removeItem', entry);
         },
         editItem: function(entry) {
-            var data = {entry: entry, url: this.$parent.updateModelUrl};
+            var data = {entry: entry, url: this.updateModelUrl + entry.id};
             this.bus.$emit('editItem', data);
         },
         capitalize: function(word) {
