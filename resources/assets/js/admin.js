@@ -6,6 +6,7 @@ import Modal from './components/Modal.vue'
 import Notification from './components/Notification.vue';
 import AddPropuestaModal from './admin/modals/PropuestasModal.vue';
 import AddImageModal from './admin/modals/ImagesModal.vue';
+import AddConceptoModal from './admin/modals/ConceptosModal.vue';
 
 Vue.component('AdminTable', AdminTable);
 Vue.component('AdminValues', AdminValues);
@@ -16,6 +17,7 @@ Vue.component('notification', Notification);
 
 Vue.component('AddPropuestaModal', AddPropuestaModal);
 Vue.component('AddImageModal', AddImageModal);
+Vue.component('AddConceptoModal', AddConceptoModal);
 
 // require('./admin/modals/ImagesModal.js')
 // require('./admin/modals/ConceptosModal.js')
