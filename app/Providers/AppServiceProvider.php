@@ -28,23 +28,18 @@ class AppServiceProvider extends ServiceProvider
             Asset::$secure = true;
         }
 
-        // CSS Files
+        // Assets Files
         Asset::add('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
-
-        // Asset::add('css/vendor/bootstrap.min.simplex.css');
         Asset::add("//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
-        Asset::add("css/app.css");
 
-        // JS Files
-        Asset::add("js/app.js");
-//         Asset::add('/upup.min.js');
-//         Asset::add('/upup.sw.min.js');
-
-//         $offline_script = "UpUp.start({
-//             'content-url': 'offline/index.html',
-//             'assets': ['/css/vendor/bootstrap.min.superhero.css', '/css/offline.css',]
-//         });";
-//         Asset::addScript($offline_script);
+        Asset::add("js/base.js");
+        if (request()->is('admin*')) {
+            Asset::add("css/admin.css");
+            Asset::add("js/admin.js");
+        } else {
+            Asset::add("css/app.css");
+            Asset::add("js/app.js");
+        }
     }
 
     /**
@@ -61,7 +56,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $files = [
             "css/app.css",
+            "js/base.js",
             "js/app.js",
+            "js/admin.js",
         ];
         $assets = [];
         foreach ($files as $file) {

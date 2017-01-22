@@ -33,3 +33,17 @@ Vue.http.interceptors.push((request, next) => {
 });
 
 window.Dropzone = require("dropzone");
+
+/**
+ * Single event hub for all Vue components.
+ */
+const bus = new Vue();
+
+// Distribute to components using global mixin
+Vue.mixin({
+    data: function () {
+        return {
+            bus: bus
+        }
+    }
+})

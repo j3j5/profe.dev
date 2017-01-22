@@ -1,0 +1,57 @@
+/* Sticky footer with navbar
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-top: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: $general-font;
+    background-color: $light-leaf;
+    background-image: url('/images/patterns/ignasi.png');
+}
+
+.navbar-default {
+    background-color: $leaf;
+    background-image: url('/images/patterns/brickwall.png');
+    font-family: $tough-handwritten;
+    font-size: 2em;
+    border: none;
+}
+
+.navbar-default {
+    .navbar-brand img {
+        max-height: 300%;
+    }
+
+    .navbar-brand:hover {
+        color: gray;
+    }
+
+    .navbar-nav > li > a {
+        color: white;
+    }
+    .navbar-nav > li > a:hover {
+        color: gray;
+    }
+}
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: $leaf;
+    background-image: url('/images/patterns/brickwall.png');
+    left: 0;
+
+    .text-muted {
+        margin: 20px 0;
+        color: white;
+    }
+}

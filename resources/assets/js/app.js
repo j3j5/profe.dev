@@ -6,42 +6,7 @@
  */
 
 
-require('./bootstrap');
-// require('./bus')
-require('./extras');
+// require('./bootstrap');
 
-const bus = new Vue() // Single event hub
-
-// Distribute to components using global mixin
-Vue.mixin({
-    data: function () {
-        return {
-            bus: bus
-        }
-    }
-})
-
-const NotificationComponent = Vue.extend(Notification);
-
-Vue.mixin({
-    methods: {
-        openNotification: (propsData = {
-            title: '',
-            message: '',
-            type: '',
-            direction: '',
-            duration: 4500,
-            container: '.notifications'
-        }) => {
-            return new NotificationComponent({
-                el: document.createElement('div'),
-                propsData
-            })
-        },
-    },
-})
-
-
-
-
-require('./admin');
+import AdminTable from './admin/components/AdminTable.vue'
+import AdminValues from './admin/components/AdminValues.vue'

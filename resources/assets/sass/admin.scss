@@ -1,5 +1,16 @@
+@import "basics/colors.scss";
+@import "basics/fonts.scss";
+@import "layout.scss";
 @import "node_modules/dropzone/src/basic.scss";
 @import "node_modules/dropzone/src/dropzone.scss";
+
+.admin-row {
+    vertical-align: middle !important;
+
+    &-thumb {
+        text-align: center;
+    }
+}
 
 .uploadZone {
     padding: 15px;

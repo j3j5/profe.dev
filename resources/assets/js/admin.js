@@ -1,3 +1,12 @@
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * include Vue and Vue Resource. This gives a great starting point for
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+require('./extras');
+
 import AdminTable from './admin/components/AdminTable.vue'
 import AdminValues from './admin/components/AdminValues.vue'
 
@@ -26,10 +35,29 @@ Vue.component('AddConceptoModal', AddConceptoModal);
 Vue.component('AddMegustaModal', AddMegustaModal);
 Vue.component('AddExamenModal', AddExamenModal);
 
-// require('./admin/modals/ImagesModal.js')
-// require('./admin/modals/ConceptosModal.js')
-// require('./admin/modals/MegustaModal.js')
-// require('./admin/modals/ExamenModal.js')
+
+/**
+ * Add mixin to open notifications
+ */
+const NotificationComponent = Vue.extend(Notification);
+
+Vue.mixin({
+    methods: {
+        openNotification: (propsData = {
+            title: '',
+            message: '',
+            type: '',
+            direction: '',
+            duration: 4500,
+            container: '.notifications'
+        }) => {
+            return new NotificationComponent({
+                el: document.createElement('div'),
+                propsData
+            })
+        },
+    },
+})
 
 var admin = new Vue({
     el: '#admin',
