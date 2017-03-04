@@ -35,29 +35,7 @@ Vue.component('AddConceptoModal', AddConceptoModal);
 Vue.component('AddMegustaModal', AddMegustaModal);
 Vue.component('AddExamenModal', AddExamenModal);
 
-
-/**
- * Add mixin to open notifications
- */
-const NotificationComponent = Vue.extend(Notification);
-
-Vue.mixin({
-    methods: {
-        openNotification: (propsData = {
-            title: '',
-            message: '',
-            type: '',
-            direction: '',
-            duration: 4500,
-            container: '.notifications'
-        }) => {
-            return new NotificationComponent({
-                el: document.createElement('div'),
-                propsData
-            })
-        },
-    },
-})
+require('./mixins')
 
 var admin = new Vue({
     el: '#admin',
@@ -72,20 +50,13 @@ var admin = new Vue({
         var self = this;
         this.bus.$on('itemCreated', function (data) {
             var notification = {message: 'Yaaay, ¡el nuevo elemento se guardó correctamente!', type: 'info'};
-            self.openNotificationWithType(notification);
+            self.openNotification(notification);
         });
         this.bus.$on('itemEdited', function (data) {
             var notification = {message: 'Yaaay, ¡los cambios se guardaron correctamente!', type: 'info'};
-            self.openNotificationWithType(notification);
+            self.openNotification(notification);
         });
     },
     methods: {
-        openNotificationWithType (noti) {
-            this.openNotification({
-                title: noti.title,
-                message: noti.message,
-                type: noti.type
-            });
-        },
     },
  });

@@ -14,6 +14,7 @@
 Route::get('/', ['as' => 'Home', 'uses' => 'HomeController@index']);
 
 Route::get('/home', 'HomeController@redirectHome');
+Route::get('crucigramas', 'CursosController@getCrossWords');
 
 // Authentication routes...
 Route::auth();

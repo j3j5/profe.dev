@@ -27,23 +27,26 @@
     <body class="{{$body_class or ""}}">
 
         @if(request()->is('admin/*'))
+        <div id="admin">
             @include('admin.layouts.admin-navigation')
         @else
+        <div id="app">
             @include('site.layouts.navigation')
         @endif
 
-        @yield('content')
+            @yield('content')
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <p class="text-muted pull-right">
-                <strong>
-                    Hecho con <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> por J&amp;M
-                    <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> {{ date('Y') }}
-                </strong></p>
-            </div>
-        </footer>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <p class="text-muted pull-right">
+                    <strong>
+                        Hecho con <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> por J&amp;M
+                        <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> {{ date('Y') }}
+                    </strong></p>
+                </div>
+            </footer>
 
+        </div>
         <!-- js scripts -->
         {{ Asset::scripts('footer') }}
         <!-- js files -->

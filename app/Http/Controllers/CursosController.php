@@ -118,6 +118,45 @@ class CursosController extends Controller
         return view('site.cursos.acreditaciones', ['curso' => 'segundo']);
     }
 
+    public function getCrossWords()
+    {
+        // Asset::addScript(file_get_contents(public_path('js/crosswords.js')), 'ready');
+
+        view()->share('title', "Crucigramas de Primero");
+        view()->share('curso', 'Primero');
+        // return view('site.cursos.crosswords');
+
+
+        $words = [
+            "Education Hub",
+             "Information Technology Hub",
+             "Cultural Hub",
+             "Capital of India",
+             "India's financial capital",
+             "Saffron region"
+        ];
+        $answers = [
+            "pune",
+            "bangalore",
+            "hyderabad",
+            "delhi",
+            "mumbai",
+            "kashmir",
+            "democracy",
+            "autocracy",
+            "dictatorship",
+            "meritocracy",
+            "montevideo",
+            "cat",
+            "dog",
+            "mouse",
+            "rabbit",
+        ];
+        view()->share('words' , $words);
+        view()->share('answers' , $answers);
+        return view('site.crosswords');
+    }
+
     private function fromNumberToName($curso)
     {
         switch ($curso) {
