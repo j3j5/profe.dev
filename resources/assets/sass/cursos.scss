@@ -104,6 +104,10 @@
         margin-top: 10px;
         margin-bottom: 0px;
         color: $pioletongo; /* pioletongo */
+
+        @media screen and (max-width: 640px) {
+            font-size: 24px;
+        }
     }
 }
 
