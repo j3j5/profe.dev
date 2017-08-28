@@ -3,7 +3,7 @@ export default {
     name: 'AddExamenModal',
     template: "#examen-modal-template",
     props: ['show', 'name',],
-    data: function() {
+    data() {
         return {
             nombre: '',
             trimestre: 1,
@@ -17,7 +17,7 @@ export default {
             formFields: ['nombre', 'trimestre', 'curso', 'thumbnail', 'archivo'],
         };
     },
-    created: function() {
+    created() {
         var self = this;
         this.bus.$on('openModal', function (data) {
             self.action = data.url;
@@ -37,7 +37,7 @@ export default {
         });
     },
     watch: {
-        model: function() {
+        model() {
             for (var property in this.$data) {
                 if (this.model.hasOwnProperty(property)) {
                     this.$data[property] = this.model[property];
@@ -48,7 +48,7 @@ export default {
         },
     },
     computed: {
-        thumbBgStyle: function() {
+        thumbBgStyle() {
             return {
                 backgroundSize: 'cover',
                 backgroundImage: this.imageUrl,
@@ -56,7 +56,7 @@ export default {
                 backgroundPosition: 'center',
             };
         },
-        formMsg: function() {
+        formMsg() {
             return {
                 backgroundColor: "white",
                 opacity: "0.8",
@@ -64,13 +64,13 @@ export default {
                 margin: "2em auto",
             }
         },
-        imageUrl: function() {
+        imageUrl() {
             if(this.thumbnail) {
                 return "url('/uploads/" + this.thumbnail + "')";
             }
             return '';
         },
-        formData: function() {
+        formData() {
             var mydata = {};
             for (var property in this.$data) {
                 if(jQuery.inArray(property, this.formFields) != -1) {
@@ -81,13 +81,13 @@ export default {
         },
     },
     methods: {
-        close: function() {
+        close() {
             this.bus.$emit('closeModal');
             this.reset();
         },
-        submitForm: function() {
-            this.$http.post(this.action, this.formData)
-            .then(function(response) {
+        submitForm() {
+            Vue.axios.post(this.action, this.formData)
+            .then((response) => {
                 if (Object.keys(this.model).length > 0) {
                     var eventData = {old: this.model, new: response.body};
                     this.bus.$emit('itemEdited', eventData);
@@ -95,35 +95,34 @@ export default {
                     this.bus.$emit('itemCreated', response.body);
                 }
                 this.close();
-            }, function(response) {
+            }, (response) => {
                 alert(response);
             });
         },
-        reset: function() {
+        reset() {
             this.action = '';
             this.model = {};
             this.thumbDropzone.removeAllFiles();
             this.filesDropzone.removeAllFiles();
         },
     },
-    mounted: function() {
-        var self = this;
+    mounted() {
         Dropzone.options.imagesDropzone = false;
         Dropzone.options.filesDropzone = false;
 
         this.thumbDropzone = new Dropzone("form#images-dropzone", {
-            init: function() {
-                this.on("success", function(file, responseText) {
-                    self.thumbnail = file.name;
+            init: () => {
+                this.on("success", (file, responseText) => {
+                    this.thumbnail = file.name;
                 });
             },
             addRemoveLinks: true
         });
 
         this.filesDropzone = new Dropzone("form#files-dropzone", {
-            init: function() {
-                this.on("success", function(file, responseText) {
-                    self.archivo = file.name;
+            init: () => {
+                this.on("success", (file, responseText) => {
+                    this.archivo = file.name;
                 });
             },
             addRemoveLinks: true

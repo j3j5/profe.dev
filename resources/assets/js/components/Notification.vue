@@ -46,7 +46,7 @@ export default {
                 parent = document.createElement('div')
                 parent.classList.add(this.container.replace('.', ''))
             }
-            const Notifications = Vue.extend()
+            const Notifications = Vue.extend();
             $parent = new Notifications({
                 el: parent
             }).$appendTo(document.body)

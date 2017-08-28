@@ -117,59 +117,66 @@ export default {
 }
 </script>
 
-<style lang="sass">
-    .admin-table {
+<style>
+    .admin-table thead {
+        background-color: rgba(220, 236, 239, 0.55);
+        border-top: 3px solid #ddd;
+        border: 3px solid rgb(220, 236, 239);
+    }
 
-        thead {
-            // background-color: rgba(255, 214, 175, 0.55);
-            background-color: rgba(220, 236, 239, 0.55);
-            border-top: 3px solid #ddd;
-            border: 3px solid rgb(220, 236, 239);
-            th {
-                vertical-align: middle !important;
-                font-size: 2em;
-                font-weight: bold;
-                text-align: center;
-                min-width: 150px;
-                border: 3px solid #ddd;
-            }
-        }
+    .admin-table thead th {
+        vertical-align: middle !important;
+        font-size: 2em;
+        font-weight: bold;
+        text-align: center;
+        min-width: 150px;
+        border: 3px solid #ddd;
+    }
 
-        td {
+    .admin-table td {
             max-width: 300px;
             font-size: 1.2em;
             text-align: center;
             vertical-align: middle !important;
-            border: 3px solid #ddd !important;
-        }
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            min-width: 150px;
+            border: 3px solid #ddd;
+    }
 
-        tbody {
-            tr:hover {
-                background-color: rgba(249, 249, 249, 0.8);
-            }
-        }
-        .admin-thumb {
-            max-height: 90px;
-            margin: auto;
-        }
+    .admin-table td {
+        max-width: 300px;
+        font-size: 1.2em;
+        text-align: center;
+        vertical-align: middle !important;
+        border: 3px solid #ddd !important;
+    }
 
-        .arrow {
-            opacity: 1;
-            position: relative;
-        }
-        .arrow:after {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            display: block;
-            font-family: 'Glyphicons Halflings';
-            content: "\e150";
-        }
-        .arrow.asc:after {
-            content: "\e155";
-        }
-        .arrow.dsc:after {
-            content: "\e156";
-        }
+    .admin-table tbody tr:hover {
+            background-color: rgba(249, 249, 249, 0.8);
+    }
+    .admin-thumb {
+        max-height: 90px;
+        margin: auto;
+    }
+
+    .arrow {
+        opacity: 1;
+        position: relative;
+    }
+    .arrow:after {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        display: block;
+        font-family: 'Glyphicons Halflings';
+        content: "\e150";
+    }
+    .arrow.asc:after {
+        content: "\e155";
+    }
+    .arrow.dsc:after {
+        content: "\e156";
     }
 </style>

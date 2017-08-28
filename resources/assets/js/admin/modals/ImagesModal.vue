@@ -3,7 +3,7 @@ export default {
     name: 'AddImageModal',
     template: "#image-modal-template",
     props: ['show', 'name',],
-    data: function() {
+    data() {
         return {
             titulo: '',
             artista: '',
@@ -15,27 +15,26 @@ export default {
             formFields: ['titulo', 'artista', 'anho', 'image'],
         };
     },
-    created: function() {
-        var self = this;
-        this.bus.$on('openModal', function (data) {
-            self.action = data.url;
+    created() {
+        this.bus.$on('openModal', (data) => {
+            this.action = data.url;
         });
-        this.bus.$on('editItem', function (data) {
-            self.action = data.url;
-            self.model = data.entry;
+        this.bus.$on('editItem', (data) => {
+            this.action = data.url;
+            this.model = data.entry;
         });
-        this.bus.$on('resetModal', function () {
-            self.reset();
+        this.bus.$on('resetModal', () =>  {
+            this.reset();
         });
-        this.bus.$on('itemCreated', function () {
-            self.reset();
+        this.bus.$on('itemCreated', () => {
+            this.reset();
         });
-        this.bus.$on('itemEdited', function () {
-            self.reset();
+        this.bus.$on('itemEdited', () => {
+            this.reset();
         });
     },
     watch: {
-        model: function() {
+        model() {
             var modelProp;
             for (var property in this.$data) {
                 switch(property) {
@@ -58,7 +57,7 @@ export default {
         },
     },
     computed: {
-        formBgStyle: function() {
+        formBgStyle() {
             return {
                 backgroundSize: 'cover',
                 backgroundImage: this.imageUrl,
@@ -66,7 +65,7 @@ export default {
                 backgroundPosition: 'center',
             };
         },
-        formMsg: function() {
+        formMsg() {
             return {
                 backgroundColor: "white",
                 opacity: "0.8",
@@ -74,13 +73,13 @@ export default {
                 margin: "2em auto",
             }
         },
-        imageUrl: function() {
+        imageUrl() {
             if(this.image) {
                 return "url('/images/galeria/1/" + this.image + "')";
             }
             return '';
         },
-        formData: function() {
+        formData() {
             var thedata = {};
             var key;
             for (var property in this.$data) {
@@ -103,13 +102,13 @@ export default {
         },
     },
     methods: {
-        close: function() {
+        close() {
             this.bus.$emit('closeModal');
             this.reset();
         },
-        submitForm: function() {
-            this.$http.post(this.action, this.formData)
-            .then(function(response) {
+        submitForm() {
+            Vue.axios.post(this.action, this.formData)
+            .then((response) => {
                 if (Object.keys(this.model).length > 0) {
                     var eventData = {old: this.model, new: response.body};
                     this.bus.$emit('itemEdited', eventData);
@@ -117,23 +116,22 @@ export default {
                     this.bus.$emit('itemCreated', response.body);
                 }
                 this.close();
-            }, function(response) {
+            }, (response) => {
                 alert(response);
             });
         },
-        reset: function() {
+        reset() {
             this.action = '';
             this.model = {};
             this.myDropzone.removeAllFiles();
         },
     },
-    mounted: function() {
+    mounted() {
         Dropzone.options.filesDropzone = false;
-        var self = this;
         this.myDropzone = new Dropzone("form#files-dropzone", {
-            init: function() {
-                this.on("success", function(file, responseText) {
-                    self.image = file.name;
+            init() {
+                this.on("success", (file, responseText) => {
+                    this.image = file.name;
                 });
             },
             addRemoveLinks: true

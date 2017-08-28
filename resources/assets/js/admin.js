@@ -26,14 +26,9 @@ Vue.component('AddConceptoModal', AddConceptoModal);
 Vue.component('AddMegustaModal', AddMegustaModal);
 Vue.component('AddExamenModal', AddExamenModal);
 
-// require('./admin/modals/ImagesModal.js')
-// require('./admin/modals/ConceptosModal.js')
-// require('./admin/modals/MegustaModal.js')
-// require('./admin/modals/ExamenModal.js')
-
 var admin = new Vue({
     el: '#admin',
-    data: function() {
+    data() {
         return {
             selectedModel: {},
             modalAction: '',

@@ -86,7 +86,7 @@ export default {
             this.reset();
         },
         submitForm: function() {
-            this.$http.post(this.action, this.formData)
+            Vue.axios.post(this.action, this.formData)
             .then(function(response) {
                 if (Object.keys(this.model).length > 0) {
                     var eventData = {old: this.model, new: response.body};

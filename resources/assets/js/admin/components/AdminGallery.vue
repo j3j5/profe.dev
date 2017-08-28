@@ -31,13 +31,8 @@
 export default {
     name: "AdminGalery",
     components: {},
-    props: {
-        modelName: {
-            type: String,
-            required: false,
-        }
-    },
-    data: function () {
+    props: ['modelName'],
+    data() {
         return {
             getTableUrl: "/admin/api/"+this.modelName+"/table",
             createModelUrl: '/admin/api/' + this.modelName + '/create',
@@ -50,24 +45,23 @@ export default {
             showFilter: false,
         };
     },
-    created: function () {
-        var self = this;
-        this.bus.$on('itemCreated', function (item) {
-            self.values.push(item);
+    created() {
+        this.bus.$on('itemCreated', (item) => {
+            this.values.push(item);
         });
-        this.bus.$on('itemEdited', function (item) {
+        this.bus.$on('itemEdited', (item) => {
             var index = self.values.indexOf(item.old);
             if (index !== -1) {
                 Vue.set(self.values, index, item.new)
             }
         });
-        this.bus.$on('removeItem', function (item) {
+        this.bus.$on('removeItem', (item) => {
             if(confirm("¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
-                self.$http.delete(self.deleteModelUrl + item.id)
-                .then( function(response) {
-                    var index = self.values.indexOf(item);
-                    self.values.splice(index, 1);
-                }, function(response) {
+                this.axios.delete(self.deleteModelUrl + item.id)
+                .then( (response) => {
+                    var index = this.values.indexOf(item);
+                    this.values.splice(index, 1);
+                }, (response) => {
                     console.log('error on the del req');
                     console.log(response);
                     alert(response.body);
@@ -75,14 +69,14 @@ export default {
             }
         });
     },
-    mounted: function() {
+    mounted() {
         this.fetchData();
     },
     methods: {
-        fetchData: function () {
-            this.$http.get(this.getTableUrl).then(function(response) {
+        fetchData() {
+            Vue.axios.get(this.getTableUrl).then((response) => {
                 this.values = response.data.values;
-            }).bind(this);
+            });
         },
     },
 }

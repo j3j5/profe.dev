@@ -39,7 +39,7 @@ export default {
     name: "AdminGaleryImages",
     components: {},
     props: ['values', 'filterKey', 'createModelUrl', 'updateModelUrl', 'bulkUploadUrl'],
-    data: function() {
+    data() {
         return {
             fileUpload: false,
         };
@@ -50,7 +50,7 @@ export default {
         },
         toggleFeatured: function(item) {
             var data = {featured: !item.featured};
-            this.$http.post(this.updateModelUrl + item.id, data)
+            Vue.axios.post(this.updateModelUrl + item.id, data)
             .then(function(response) {
                 item.featured = data.featured;
             }, function(response) {

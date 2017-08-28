@@ -93,7 +93,7 @@ export default {
             this.reset();
         },
         submitForm: function() {
-            this.$http.post(this.action, this.formData)
+            Vue.axios.post(this.action, this.formData)
             .then(function(response) {
                 if (Object.keys(this.model).length > 0) {
                     var eventData = {old: this.model, new: response.body};
@@ -112,18 +112,18 @@ export default {
             this.thumbDropzone.removeAllFiles();
         },
         fetchGrupos: function() {
-            this.$http.get('/admin/api/grupos').then(function(response) {
+            Vue.axios.get('/admin/api/grupos').then((response) => {
                 this.grupos = response.data.grupos;
-            }).bind(this);
+            });
         },
         createNewGrupo: function() {
             var data = {nombre: this.grupoConcepto};
-            this.$http.post('/admin/api/grupoConcepto/create', data).then(function(response) {
+            Vue.axios.post('/admin/api/grupoConcepto/create', data).then((response) => {
                 var newGrupo = response.body;
                 this.grupos.push(newGrupo);
                 this.showGrupo = false;
                 this.grupo_id = newGrupo.id;
-            }).bind(this);
+            });
         }
     },
     mounted: function() {

@@ -52,12 +52,7 @@
     export default {
         name: "AdminTable",
         components: {},
-        props: {
-            modelName: {
-                type: String,
-                required: false,
-            }
-        },
+        props: ['modelName'],
         data: function () {
             return {
                 getTableUrl:    "/admin/api/"+this.modelName+"/table",
@@ -93,12 +88,12 @@
                     Vue.set(self.values, index, item.new)
                 }
             });
-            this.bus.$on('removeItem', function (item) {
+            this.bus.$on('removeItem', (item) => {
                 if(confirm("Estás a punto de borrar " + item.nombre + ".\n¿Estás segura de que deseas eliminarlo?\nNo se podrá recuperar.")) {
-                    self.$http.delete(self.deleteModelUrl + item.id)
-                    .then( function(response) {
+                    Vue.axios.delete(self.deleteModelUrl + item.id)
+                    .then( (response) => {
                         var index = self.values.indexOf(item);
-                        self.values.splice(index, 1);
+                        this.values.splice(index, 1);
                     }, function(response) {
                         console.log('error on the del req');
                         console.log(response);
@@ -134,10 +129,10 @@
         },
         methods: {
             fetchTable: function() {
-                this.$http.get(this.getTableUrl).then(function(response) {
+                Vue.axios.get(this.getTableUrl).then((response) => {
                     this.columns = response.data.columns;
                     this.values = response.data.values;
-                }).bind(this);
+                });
             },
             setSortOrders: function () {
                 this.sortKey = "";
