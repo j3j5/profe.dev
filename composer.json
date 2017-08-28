@@ -24,7 +24,7 @@
         "iansltx/flysystem-b2": "dev-master",
         "roumen/asset": "^2.5",
         "roumen/sitemap": "2.6.*",
-        "laravelcollective/html": "dev-master",
+        "laravelcollective/html": "^5.3",
         "ademes/acetone": "dev-master",
         "barryvdh/laravel-debugbar": "^2.2",
         "graham-campbell/exceptions": "^9.1"
@@ -57,7 +57,7 @@
             "php artisan optimize"
         ],
         "pre-update-cmd": [
-           "php artisan clear-compiled" 
+           "php artisan clear-compiled"
         ],
         "post-update-cmd": [
             "php artisan optimize"
