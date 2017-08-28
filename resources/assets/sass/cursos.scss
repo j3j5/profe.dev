@@ -7,7 +7,13 @@
 
 .breadcrumb {
     background-color: transparent;
+
     font-size: 0.5em;
+
+    @media screen and (max-width: 640px) {
+        font-size: 0.3em;
+    }
+
     padding: 0px 0px 0px 20px;
     margin: 0px;
 
@@ -90,8 +96,10 @@
 
 .propuesta {
     margin: 5px 10px;
-    max-width: 30%;
-    /*min-height: 40%;*/
+    @media screen and (min-width: 769px) {
+        max-width: 30%;
+        /*min-height: 40%;*/
+    }
     border: 1px solid black;
     border-radius: 15px;
     background-color: $buttermilk; /* buttermilk */
@@ -105,8 +113,11 @@
         margin-bottom: 0px;
         color: $pioletongo; /* pioletongo */
 
-        @media screen and (max-width: 640px) {
+        @media screen and ( min-width:481px) and (max-width: 640px) {
             font-size: 24px;
+        }
+        @media screen and ( max-width:480px) {
+            font-size: 14px;
         }
     }
 }
