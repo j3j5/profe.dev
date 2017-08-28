@@ -21,7 +21,6 @@ Vue.mixin({
     }
 })
 
-const NotificationComponent = Vue.extend(Notification);
 
 Vue.mixin({
     methods: {

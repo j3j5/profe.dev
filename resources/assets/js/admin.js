@@ -4,7 +4,7 @@ import AdminValues from './admin/components/AdminValues.vue'
 import AdminGallery from './admin/components/AdminGallery.vue'
 import AdminGalleryImages from './admin/components/AdminGalleryImages.vue'
 
-import Notification from './components/Notification.vue';
+// import Notification from './components/Notification.vue';
 
 import Modal from './components/Modal.vue'
 import AddPropuestaModal from './admin/modals/PropuestasModal.vue';
@@ -17,7 +17,7 @@ Vue.component('AdminTable', AdminTable);
 Vue.component('AdminValues', AdminValues);
 Vue.component('AdminGallery', AdminGallery);
 Vue.component('AdminGalleryImages', AdminGalleryImages);
-Vue.component('notification', Notification);
+// Vue.component('notification', Notification);
 
 Vue.component('Modal', Modal);
 Vue.component('AddPropuestaModal', AddPropuestaModal);
@@ -48,11 +48,11 @@ var admin = new Vue({
     },
     methods: {
         openNotificationWithType (noti) {
-            this.openNotification({
-                title: noti.title,
-                message: noti.message,
-                type: noti.type
-            });
+            // this.openNotification({
+            //     title: noti.title,
+            //     message: noti.message,
+            //     type: noti.type
+            // });
         },
     },
  });
