@@ -34,6 +34,7 @@ set('writable_mode', 'chmod');
 set('shared_files', ['.env']);
 set('shared_dirs', [
     'storage',
+    'node_modules'
 ]);
 set('writable_dirs', ['bootstrap/cache', 'storage/app']);
 
