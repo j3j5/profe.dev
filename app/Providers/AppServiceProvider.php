@@ -36,15 +36,9 @@ class AppServiceProvider extends ServiceProvider
         Asset::add("css/app.css");
 
         // JS Files
+        Asset::add("js/manifest.js");
+        Asset::add("js/vendor.js");
         Asset::add("js/app.js");
-//         Asset::add('/upup.min.js');
-//         Asset::add('/upup.sw.min.js');
-
-//         $offline_script = "UpUp.start({
-//             'content-url': 'offline/index.html',
-//             'assets': ['/css/vendor/bootstrap.min.superhero.css', '/css/offline.css',]
-//         });";
-//         Asset::addScript($offline_script);
     }
 
     /**

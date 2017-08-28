@@ -17,7 +17,6 @@ class PropuestasController extends AdminController
     public function __construct()
     {
         $this->model = 'propuestas';
-        // dd($this->model, __FILE__);
         parent::__construct();
     }
 

@@ -33,10 +33,6 @@ class VerifyCsrfToken extends BaseVerifier
             return $next($request);
         }
 
-        if ($this->isReading($request) || $this->shouldPassThrough($request) || $this->tokensMatch($request)) {
-            return $this->addCookieToResponse($request, $next($request));
-        }
-
-        throw new TokenMismatchException;
+        return parent::handle($request, $next);
     }
 }
