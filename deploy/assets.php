@@ -22,5 +22,5 @@ task('env:link', function () {
 })->desc('Symlink environment file');
 
 task('log:set-permissions', function () {
-    run('sudo chmod 664 {{deploy_path}}/current/storage/logs/laravel.log');
+    run('sudo chmod 664 {{deploy_path}}/current/storage/logs/laravel.log', ['tty' => true]);
 })->desc('Make laravel.log readable by the web server');
