@@ -69,12 +69,15 @@
 }
 
 .image-gallery-prueba {
-    height:200px;
+    height: 200px;
     margin: 5px 0px;
     display: inline-block;
 
-    img {
-        max-height:100%;
+    figure img {
+        max-height: 300px;
+    }
+    figcaption {
+        font-size: 2.5rem;
     }
 }
 
@@ -84,6 +87,22 @@
 
 #blueimp-gallery .modal-body img {
     border-radius: 2px;
+}
+
+.blueimp-gallery > .description {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  margin: 0 40px 0 0;
+  font-size: 20px;
+  line-height: 30px;
+  color: #fff;
+  text-shadow: 0 0 2px #000;
+  opacity: .8;
+  display: none;
+}
+.blueimp-gallery-controls > .description {
+  display: block;
 }
 
 /* Propuestas */
