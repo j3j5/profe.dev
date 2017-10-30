@@ -29,7 +29,11 @@ require('vue-resource');
 Vue.http.interceptors.push(function (request, next) {
     request.headers['X-XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN');
 
-    next();
+    next(response => {
+        if (typeof response.data === "string") {
+            response.data = JSON.parse(response.data);
+        }
+    });
 });
 
 window.Dropzone = require("dropzone");
