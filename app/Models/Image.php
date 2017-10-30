@@ -35,6 +35,9 @@ class Image extends Model
             if($image->prueba) {
                 $image->prueba = date('Y');
             }
+            if (empty($image->curso)) {
+                $image->curso = 1;
+            }
         });
     }
 
