@@ -44,11 +44,14 @@
             </div>
         </footer>
 
-        <!-- js scripts -->
-        {{ Asset::scripts('footer') }}
+        <!-- js scripts early -->
+        {{ Asset::scripts('footer_early') }}
         <!-- js files -->
         {{ Asset::js() }}
         <!-- jquery scripts -->
         {{ Asset::scripts('ready') }}
+        <!-- js scripts late -->
+        {{ Asset::scripts('footer_late') }}
+
     </body>
 </html>

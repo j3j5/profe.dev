@@ -104,9 +104,6 @@ class CursosController extends Controller
 
         $examenes = Examen::whereCurso($this->fromNameToNumber($curso))->get();
 
-//         foreach ($examenes as &$examen) {
-//             $examen->contenidos = explode(",", $propuesta->contenidos);
-//         }
         return view("site.cursos.propuestas", [
             'curso' => $curso,
             'propuestas' => $examenes,
@@ -159,6 +156,6 @@ class CursosController extends Controller
         Asset::add("css/vendor/blueimp-gallery.min.css");
         Asset::add("js/vendor/blueimp-gallery.min.js");
 
-        Asset::addScript(file_get_contents(public_path("js/gallery.js")));
+        Asset::addScript(file_get_contents(public_path("js/gallery.js")), 'footer_late');
     }
 }
