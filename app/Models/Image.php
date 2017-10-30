@@ -47,7 +47,7 @@ class Image extends Model
 
         if ($validator->fails()) {
             // send back to the page with the input data and errors
-            return response()->json(['error' => $validator->errors()], 400);
+            return ['error' => $validator->errors()];
         } else {
             return self::create($input);
         }
