@@ -15,7 +15,7 @@ class Image extends Model
         "artista"   => "required|string",
         "año"       => "integer",
         "archivo"   => "string",
-        "prueba"    => 'string'
+        "prueba"    => 'boolean'
     ];
 
     public static function bootstrap($controller)
