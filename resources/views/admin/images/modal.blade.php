@@ -29,6 +29,14 @@
             </div>
 
             <div class="form-group">
+                <div class="checkbox">
+                    <label for="prueba" class="control-label">
+                        <input id="prueba" type="checkbox" v-model="prueba" name="prueba" value="@{{ prueba }}"> ¿Es para la prueba?
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
                 {{-- Imagen --}}
                 <label for="image" class="control-label">Archivo</label>
                 <input class="form-control" v-model="image" name="image" type="text" id="image" value="@{{ image }}" disabled>

@@ -55,6 +55,9 @@ class ImagesController extends MainController
                 $image = new Image;
                 $image->curso = $request->get('curso');
                 $image->{"nombre-archivo"} = $request->file('file')->getClientOriginalName();
+                if($request->has('prueba')) {
+                    $image->prueba = $request->input('prueba');
+                }
                 $image->save();
 
                 // sending back with message

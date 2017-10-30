@@ -37,6 +37,17 @@ use App\Models\Examen;
                 </div>
             </a>
             @endif
+
+            @if(request()->is("curso/primero"))
+            <a href="{{ route("Prueba", [$curso]) }}">
+                <div class="col-md-4 container-seccion">
+                    <div class="curso-seccion">
+                        <p>Prueba</p>
+                    </div>
+                </div>
+            </a>
+            @endif
+
             @if(request()->is("curso/segundo"))
             <a href="https://f001.backblaze.com/file/profemariana/uploads/SIMULACROS+2%C2%B0.pdf">
                 <div class="col-md-4 container-seccion">
@@ -45,15 +56,15 @@ use App\Models\Examen;
                     </div>
                 </div>
             </a>
-	    <a href="{{ route("acreditaciones", [$curso]) }}">
+            <a href="{{ route("acreditaciones", [$curso]) }}">
                 <div class="col-md-4 container-seccion">
                     <div class="curso-seccion">
                         <p>Acreditaciones</p>
                     </div>
                 </div>
             </a>
-
             @endif
+
             @if(MeGusta::whereCurso($cursoNr)->exists())
             <a href="{{ route("Megustas", [$curso]) }}">
                 <div class="col-md-offset-4 col-md-4 container-seccion">
@@ -63,6 +74,6 @@ use App\Models\Examen;
                 </div>
             </a>
         </div> <!--  content row    -->
-        @endif
+            @endif
     </div> <!--  container    -->
 @stop

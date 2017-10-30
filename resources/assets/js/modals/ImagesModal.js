@@ -8,7 +8,7 @@ Vue.component('AddImageModal', {
             anho: false,
             image: '',
             myDropzone: false,
-            formFields: ['titulo', 'artista', 'anho', 'image'],
+            formFields: ['titulo', 'artista', 'anho', 'image', 'prueba'],
         };
     },
     watch: {

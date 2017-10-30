@@ -15,6 +15,7 @@ class Image extends Model
         "artista"   => "required|string",
         "año"       => "integer",
         "archivo"   => "string",
+        "prueba"    => 'string'
     ];
 
     public static function bootstrap($controller)
@@ -24,6 +25,17 @@ class Image extends Model
         } else {
             $controller->images_base_url = "http://{$_SERVER['HTTP_HOST']}/images/galeria/1/";
         }
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::saving(function ($image) {
+            if($image->prueba) {
+                $image->prueba = date('Y');
+            }
+        });
     }
 
     public static function validateAndCreate($input)
@@ -40,6 +52,6 @@ class Image extends Model
 
     public static function getVisibleColumns()
     {
-        return ['titulo', 'artista', 'año', 'nombre-archivo'];
+        return ['titulo', 'artista', 'año', 'nombre-archivo', 'prueba'];
     }
 }

@@ -51,7 +51,7 @@ class CursosController extends Controller
 
         $this->addGalleryAssets();
 
-        $images = Image::whereCurso($this->fromNameToNumber($curso))->get();
+        $images = Image::whereCurso($this->fromNameToNumber($curso))->whereNull('prueba')->get();
 
         return view("site.cursos.gallery", [
             'curso' => $curso,
@@ -113,6 +113,20 @@ class CursosController extends Controller
     public function getAcreditaciones($curso)
     {
         return view('site.cursos.acreditaciones', ['curso' => 'segundo']);
+    }
+
+    public function getPrueba($curso)
+    {
+        view()->share('title', "Galería de " . ucfirst($curso) . " para la prueba");
+
+        $this->addGalleryAssets();
+
+        $images = Image::whereCurso($this->fromNameToNumber($curso))->where('prueba', '2017')->get();
+
+        return view("site.cursos.prueba", [
+            'curso' => $curso,
+            'images' => $images,
+        ]);
     }
 
     private function fromNumberToName($curso)

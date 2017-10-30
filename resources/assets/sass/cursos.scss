@@ -62,10 +62,20 @@
     height:100px;
     margin: 5px 0px;
     display: inline-block;
+
+    img {
+        max-height:100%;
+    }
 }
 
-.image-gallery img {
-    max-height:100%;
+.image-gallery-prueba {
+    height:200px;
+    margin: 5px 0px;
+    display: inline-block;
+
+    img {
+        max-height:100%;
+    }
 }
 
 .slides .modal-content {
