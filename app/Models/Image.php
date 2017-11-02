@@ -15,7 +15,7 @@ class Image extends Model
         "artista"   => "required|string",
         "año"       => "integer",
         "archivo"   => "string",
-        "prueba"    => 'boolean'
+        "prueba"    => 'string'
     ];
 
     public static function bootstrap($controller)
@@ -32,9 +32,6 @@ class Image extends Model
         parent::boot();
 
         self::saving(function ($image) {
-            if($image->prueba) {
-                $image->prueba = date('Y');
-            }
             if (empty($image->curso)) {
                 $image->curso = 1;
             }

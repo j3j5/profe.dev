@@ -54,6 +54,9 @@ Route::group(['prefix' => 'curso/{curso}'], function () {
     Route::get('/megusta', ['as' => 'Megustas', 'uses' => 'CursosController@getLikes']);
     Route::get('/examenes', ['as' => 'Examenes', 'uses' => 'CursosController@getExamenes']);
     Route::get('/acreditaciones', ['as' => 'acreditaciones', 'uses' => 'CursosController@getAcreditaciones']);
-    Route::get('/prueba', ['as' => 'Prueba', 'uses' => 'CursosController@getPrueba']);
+    Route::group(['prefix' => '/prueba'], function() {
+        Route::get('/', ['as' => 'PruebaGrupos', 'uses' => 'CursosController@getPruebaGrupos']);
+        Route::get('/{grupo}/', ['as' => 'Prueba', 'uses' => 'CursosController@getPrueba']);
+    });
 });
 // Tests

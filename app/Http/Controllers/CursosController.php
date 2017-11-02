@@ -115,17 +115,26 @@ class CursosController extends Controller
         return view('site.cursos.acreditaciones', ['curso' => 'segundo']);
     }
 
-    public function getPrueba($curso)
+    public function getPrueba($curso, $grupo)
     {
         view()->share('title', "Galería de " . ucfirst($curso) . " para la prueba");
 
         $this->addGalleryAssets();
 
-        $images = Image::whereCurso($this->fromNameToNumber($curso))->where('prueba', '2017')->get();
+        $images = Image::whereCurso($this->fromNameToNumber($curso))->where('prueba', $grupo)->get();
 
         return view("site.cursos.prueba", [
             'curso' => $curso,
             'images' => $images,
+        ]);
+    }
+
+    public function getPruebaGrupos($curso)
+    {
+        view()->share('title', "Grupos para la prueba " . ucfirst($curso));
+
+        return view("site.cursos.prueba_grupos", [
+            'curso' => $curso,
         ]);
     }
 

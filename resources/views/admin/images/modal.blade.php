@@ -30,9 +30,10 @@
 
             <div class="form-group">
                 <div class="checkbox">
-                    <label for="prueba" class="control-label">
-                        <input id="prueba" type="checkbox" v-model="prueba" name="prueba" value="@{{ prueba }}"> ¿Es para la prueba?
-                    </label>
+                    <label for="prueba" class="control-label">¿Es para la prueba? Elige grupo</label>
+                    <select v-model="prueba" class="form-control">
+                        <option v-for="n in ['2017-A', '2017-B']" value=@{{n}}>@{{ n }}</option>
+                    </select>
                 </div>
             </div>
 

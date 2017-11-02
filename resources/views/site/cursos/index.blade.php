@@ -39,7 +39,7 @@ use App\Models\Examen;
             @endif
 
             @if(request()->is("curso/primero"))
-            <a href="{{ route("Prueba", [$curso]) }}">
+            <a href="{{ route("PruebaGrupos", [$curso]) }}">
                 <div class="col-md-4 container-seccion">
                     <div class="curso-seccion">
                         <p>Prueba</p>
