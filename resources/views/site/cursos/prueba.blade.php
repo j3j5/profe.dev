@@ -4,8 +4,30 @@
 
     @include('site.partials._cursos-header')
 
+    <div class="container">
+        <a href="{{ route("Glossary", ['primero']) }}">
+            <div class="col-md-4">
+                <div class="curso-seccion text-center">
+                    <h3><i class="fa fa-list" aria-hidden="true"></i> Glosario <i class="fa fa-file" aria-hidden="true"></i></h3>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="curso-seccion text-center">
+                    <h3><i class="fa fa-question-circle-o" aria-hidden="true"></i> Reglamento <i class="fa fa-life-ring" aria-hidden="true"></i></h3>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="container">
+        <p></p>
+    </div>
+
     @if(!$images->isEmpty())
     <div class="container">
+
         <div id="links" class="text-center">
             @foreach($images as $image)
             <div class="image-gallery-prueba">
