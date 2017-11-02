@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // CSS Files
-        Asset::add('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
+        Asset::add('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
         // Asset::add('css/vendor/bootstrap.min.simplex.css');
         Asset::add("//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
