@@ -67,7 +67,7 @@ use App\Models\Examen;
 
             @if(MeGusta::whereCurso($cursoNr)->exists())
             <a href="{{ route("Megustas", [$curso]) }}">
-                <div class="col-md-offset-4 col-md-4 container-seccion">
+                <div class="col-md-4 container-seccion">
                     <div class="curso-seccion">
                         <p>Me Gusta</p>
                     </div>

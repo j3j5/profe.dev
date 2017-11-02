@@ -38,7 +38,7 @@
     }
 }
 
-.curso-seccion {
+.curso-seccion, .prueba-grupo {
     font-family: $marker;
     font-size: 2.6em;
     border-radius: 15px;
@@ -49,13 +49,16 @@
     background-color: $buttermilk;
     // background-color: rgba($buttermilk, .6);
     border: 1px solid black;
-}
 
-.curso-seccion p {
-    padding: 0.3em;
-    color: $blackish; /* blackish */
-}
+    p {
+        padding: 0.3em;
+        color: $blackish; /* blackish */
+    }
 
+    h1,h2,h3 {
+        margin: 20px;
+    }
+}
 
 /* Galeria */
 .image-gallery {
