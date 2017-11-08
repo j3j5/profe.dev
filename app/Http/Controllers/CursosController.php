@@ -126,6 +126,7 @@ class CursosController extends Controller
         return view("site.cursos.prueba", [
             'curso' => $curso,
             'images' => $images,
+            'grupo' => $grupo,
         ]);
     }
 
